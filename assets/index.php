@@ -1,1 +1,0 @@
-<?php // Tiga är guld.
