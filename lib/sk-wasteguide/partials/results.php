@@ -67,7 +67,7 @@ echo '<div class="col-lg-12">'; ?>
 					<div class="card-block">
 
 						<div class="">
-							<h4>Sorteras som...</h4>
+							<h4><?php _e('Sorteras som...', 'msva'); ?></h4>
 							<div class="">
 								<?php foreach( $sorting_terms as $term ) : ?>
 									<strong><?php echo $term->name; ?></strong>
@@ -76,7 +76,7 @@ echo '<div class="col-lg-12">'; ?>
 							</div>
 						</div>
 						<div class="">
-							<h4>Lämnas till...</h4>
+							<h4><?php _e('Lämnas till...', 'msva'); ?></h4>
 							<div class="">
 								<?php
 								foreach( $leave_terms as $term ) {
