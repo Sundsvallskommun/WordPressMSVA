@@ -4,7 +4,7 @@
 	Visar alla resultat i sorteringsguiden för: ”<?php echo esc_html( get_search_query() ); ?>"
 </div>
 
-<div class="container-fluid">
+<div class="container-fluid wasteguide-results">
 
 	<div class="">
 		<?php echo do_shortcode( '[sorteringsguide]' ); ?>
