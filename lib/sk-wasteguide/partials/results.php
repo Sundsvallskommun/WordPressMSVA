@@ -49,12 +49,10 @@ echo '<div class="col-lg-12">'; ?>
 		<ol class="search-module__items">
 
 		<?php foreach ($result['posts'] as $post): ?>
-
 			<?php
 				$post_data = get_post( $post['id'] );
 				$sorting_terms = wp_get_post_terms( $post['id'], 'material_sorting' );
 				$leave_terms = wp_get_post_terms( $post['id'], 'material_deposit' );
-
 			?>
 			<div class="card">
 				<div class="card-header" role="tab" id="headingOne">
@@ -78,14 +76,10 @@ echo '<div class="col-lg-12">'; ?>
 						<div class="">
 							<h4><?php _e('Lämnas till...', 'msva'); ?></h4>
 							<div class="">
-								<?php
-								foreach( $leave_terms as $term ) {
-									?>
+								<?php foreach( $leave_terms as $term ) : ?>
 									<strong><?php echo $term->name; ?></strong>
-									<?php
-									echo get_field( 'beskrivning', $term );
-								}
-								?>
+									<?php echo get_field( 'beskrivning', $term ); ?>
+								<?php endforeach; ?>
 							</div>
 						</div>
 
