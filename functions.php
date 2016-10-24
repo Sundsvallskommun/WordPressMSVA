@@ -27,3 +27,7 @@ add_action( 'wp_enqueue_scripts', 'sk_childtheme_enqueue_styles' );
  */
 //require_once locate_template( 'lib/XXXX' );
 //$sk_name = new SK_NAME();
+
+/* SK Waste Guide */
+require_once locate_template( 'lib/sk-wasteguide/class-sk-wasteguide.php' );
+$sk_wasteguide = new SK_Wasteguide();
