@@ -27,14 +27,20 @@ add_filter('acf/settings/save_json', function() {
 	return get_stylesheet_directory() . '/acf-json';
 });
 
+
+/**
+ * Get ACF json fields from parent theme, child theme and plugins having acf fields
+ *
+ */
 add_filter('acf/settings/load_json', function( $paths ) {
-	$paths = array(get_template_directory() . '/acf-json');
+
+	$parent_theme_paths = array( get_template_directory() . '/acf-json' );
+	$paths = array_merge( $paths, $parent_theme_paths );
 
 	if(is_child_theme())
 	{
 		$paths[] = get_stylesheet_directory() . '/acf-json';
 	}
-
 	return $paths;
 });
 

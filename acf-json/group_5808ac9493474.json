@@ -1,0 +1,50 @@
+{
+    "key": "group_5808ac9493474",
+    "title": "Sorteringsguide kategoribeskrivning",
+    "fields": [
+        {
+            "key": "field_5808ac9cbfa66",
+            "label": "Detaljerad beskrivning",
+            "name": "beskrivning",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "minimal",
+            "media_upload": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "material_sorting"
+            }
+        ],
+        [
+            {
+                "param": "taxonomy",
+                "operator": "==",
+                "value": "material_deposit"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "menu_item_level": "all",
+    "modified": 1477576896
+}
