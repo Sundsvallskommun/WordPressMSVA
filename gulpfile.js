@@ -57,8 +57,12 @@ gulp.task('editor-styles', function() {
 
 
 gulp.task('scripts', function() {
-	gulp.src('./assets/js/source/app.dev.js')
+		gulp.src([
+			'./assets/js/source/app.dev.js',
+			'./lib/sk-municipality-adaptation/assets/js/sk-municipality-adaptation.js'
+		])
 		.pipe(sourcemaps.init())
+		.pipe(concat('all.js'))
 		.pipe(browserify())
 		.pipe(rename('app.js'))
 		.pipe(uglify())

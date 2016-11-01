@@ -15,6 +15,8 @@ function sk_childtheme_enqueue_styles() {
 		array( 'main' ),
 		wp_get_theme()->get('Version')
 	);
+
+	wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/assets/js/app.js', ['jquery', 'handlebars', 'typeahead'] );
 }
 add_action( 'wp_enqueue_scripts', 'sk_childtheme_enqueue_styles' );
 
@@ -58,3 +60,7 @@ add_filter('acf/settings/load_json', function( $paths ) {
 /* SK Waste Guide */
 require_once locate_template( 'lib/sk-wasteguide/class-sk-wasteguide.php' );
 $sk_wasteguide = new SK_Wasteguide();
+
+/* SK Municipality Adaptation */
+require_once locate_template( 'lib/sk-municipality-adaptation/class-sk-municipality-adaptation.php' );
+$sk_municipality_adaptation = new SK_Municipality_Adaptation();
