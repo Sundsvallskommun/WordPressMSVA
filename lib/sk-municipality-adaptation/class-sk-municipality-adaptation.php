@@ -1,12 +1,28 @@
 <?php
 
+require_once 'class-sk-municipality-adaptation-settings.php';
+
 class SK_Municipality_Adaptation {
 
 	protected $valid_post_types;
 
 	public function __construct() {
 
-		$this->valid_post_types = array( 'post', 'page' );
+		$this->init();
+		$this->add_hooks();
+
+	}
+
+
+	private function init() {
+
+		$settings = new SK_Municipality_Adaptation_Settings();
+		$this->valid_post_types = self::valid_post_types();
+
+	}
+
+
+	private function add_hooks() {
 
 		// Add logic and markup for metabox
 		add_action( 'add_meta_boxes', array( $this, 'meta_boxes' ) );
@@ -14,6 +30,17 @@ class SK_Municipality_Adaptation {
 
 		// Add filter for querys
 		add_action( 'pre_get_posts', array( $this, 'modify_query' ) );
+
+	}
+
+
+
+	public static function valid_post_types() {
+
+		$options = get_option( 'municipality_adaptation_valid_post_types', true );
+		if ( empty( $options ) ) $options = array();
+
+		return $options;
 
 	}
 
@@ -43,19 +70,19 @@ class SK_Municipality_Adaptation {
 		<ul class="municipality-adaptation-checklist">
 			<li>
 				<label class="selectit">
-					<input value="sundsvall" type="checkbox" name="municipality_adaptation[]" <?php echo $this->checked( 'sundsvall', $municipalities ); ?>/>
+					<input value="sundsvall" type="checkbox" name="municipality_adaptation[]" <?php echo self::checked( 'sundsvall', $municipalities ); ?>/>
 					Sundsvall
 				</label>
 			</li>
 			<li>
 				<label class="selectit">
-					<input value="nordanstig" type="checkbox" name="municipality_adaptation[]" <?php echo $this->checked( 'nordanstig', $municipalities ); ?>/>
+					<input value="nordanstig" type="checkbox" name="municipality_adaptation[]" <?php echo self::checked( 'nordanstig', $municipalities ); ?>/>
 					Nordanstig
 				</label>
 			</li>
 			<li>
 				<label class="selectit">
-					<input value="timra" type="checkbox" name="municipality_adaptation[]" <?php echo $this->checked( 'timra', $municipalities ); ?>/>
+					<input value="timra" type="checkbox" name="municipality_adaptation[]" <?php echo self::checked( 'timra', $municipalities ); ?>/>
 					Timrå
 				</label>
 			</li>
@@ -133,7 +160,7 @@ class SK_Municipality_Adaptation {
 	}
 
 
-	private function checked( $needle, $haystack ) {
+	public static function checked( $needle, $haystack ) {
 
 		if ( in_array( $needle, $haystack ) ) return 'checked';
 
