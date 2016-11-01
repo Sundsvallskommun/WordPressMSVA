@@ -1,6 +1,7 @@
 <?php
 
 require_once 'class-sk-municipality-adaptation-settings.php';
+require_once 'class-sk-municipality-adaptation-query.php';
 
 class SK_Municipality_Adaptation {
 
@@ -17,6 +18,8 @@ class SK_Municipality_Adaptation {
 	private function init() {
 
 		$settings = new SK_Municipality_Adaptation_Settings();
+		$query = new SK_Municipality_Adaptation_Query();
+
 		$this->valid_post_types = self::valid_post_types();
 
 	}
@@ -27,9 +30,6 @@ class SK_Municipality_Adaptation {
 		// Add logic and markup for metabox
 		add_action( 'add_meta_boxes', array( $this, 'meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save' ), 10, 3 );
-
-		// Add filter for querys
-		add_action( 'pre_get_posts', array( $this, 'modify_query' ) );
 
 	}
 
@@ -61,11 +61,8 @@ class SK_Municipality_Adaptation {
 
 	public function metabox_municipality_markup( $post ) {
 
-		$municipalities = get_post_meta( $post->ID, 'municipality_adaptation', true );
-		$municipalities = $this->municipalities_to_array( $municipalities );
+		$municipalities = $this->chosen_municipalities( $post->ID );
 		ob_start();
-
-
 		?>
 		<ul class="municipality-adaptation-checklist">
 			<li>
@@ -120,24 +117,10 @@ class SK_Municipality_Adaptation {
 	}
 
 
-	public function modify_query( $query ) {
+	private function chosen_municipalities( $post_id ) {
 
-		// Check if on frontend and that this is a post type we should modify results for
-		if( ! is_admin() && $this->query_has_valid_post_type( $query->query_vars['post_type'] ) ) {
-
-			$query->set(
-				'meta_query',
-				array(
-					array(
-						'key' => 'municipality_adaptation',
-						'value' => 'sundsvall',
-						'compare' => 'LIKE'
-					)
-				)
-			);
-		}
-
-		return $query;
+		$municipalities = get_post_meta( $post_id, 'municipality_adaptation', true );
+		return $this->municipalities_to_array( $municipalities );
 
 	}
 
@@ -167,15 +150,5 @@ class SK_Municipality_Adaptation {
 		return '';
 
 	}
-
-
-	private function query_has_valid_post_type( $post_type ) {
-
-		if ( in_array( $post_type, $this->valid_post_types ) ) return true;
-
-		return false;
-
-	}
-
 
 }
