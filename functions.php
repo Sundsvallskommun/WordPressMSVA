@@ -16,7 +16,7 @@ function sk_childtheme_enqueue_styles() {
 		wp_get_theme()->get('Version')
 	);
 
-	wp_enqueue_script( 'main', get_stylesheet_directory_uri() . '/assets/js/app.js', ['jquery', 'handlebars', 'typeahead'] );
+	wp_enqueue_script( 'main-child', get_stylesheet_directory_uri() . '/assets/js/app.js', ['jquery', 'handlebars', 'typeahead'] );
 }
 add_action( 'wp_enqueue_scripts', 'sk_childtheme_enqueue_styles' );
 

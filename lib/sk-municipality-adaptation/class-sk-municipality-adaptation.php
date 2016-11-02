@@ -1,153 +1,80 @@
 <?php
 
+/**
+ * Main class for the module Municipality Adaption.
+ * Initializes objects
+ *
+ * @package    SK_Municipality_Adaptation
+ * @author     Andreas Färnstrand <andreas.farnstrand@cybercom.com>
+ */
+
 require_once 'class-sk-municipality-adaptation-settings.php';
 require_once 'class-sk-municipality-adaptation-query.php';
+require_once 'class-sk-municipality-adaptation-cookie.php';
+require_once 'class-sk-municipality-adaptation-admin.php';
 
 class SK_Municipality_Adaptation {
 
-	protected $valid_post_types;
 
+	/**
+	 * Class constructor
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
 	public function __construct() {
 
 		$this->init();
-		$this->add_hooks();
 
 	}
 
 
+	/**
+	 * Initialize module classes
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
 	private function init() {
 
 		$settings = new SK_Municipality_Adaptation_Settings();
 		$query = new SK_Municipality_Adaptation_Query();
-
-		$this->valid_post_types = self::valid_post_types();
-
-	}
-
-
-	private function add_hooks() {
-
-		// Add logic and markup for metabox
-		add_action( 'add_meta_boxes', array( $this, 'meta_boxes' ) );
-		add_action( 'save_post', array( $this, 'save' ), 10, 3 );
+		$admin = new SK_Municipality_Adaptation_Admin();
 
 	}
 
 
+	/**
+	 * Check if the given post id and it's connected
+	 * municipals against the users municipality adaption cookie.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 * @param integer
+	 *
+	 * @return boolean
+	 */
+	public static function page_access( $post_id ) {
 
-	public static function valid_post_types() {
+		if ( ! SK_Municipality_Adaptation_Cookie::exists() ) return true;
 
-		$options = get_option( 'municipality_adaptation_valid_post_types', true );
-		if ( empty( $options ) ) $options = array();
-
-		return $options;
-
-	}
-
-
-	public function meta_boxes() {
-		$valid_post_types = array( 'post', 'page' );
-
-		add_meta_box(
-			'municipality',
-			__( 'Kommuntillhörighet', 'msva' ),
-			array( $this, 'metabox_municipality_markup' ),
-			$valid_post_types,
-			'side'
-		);
+		$post_municipalities = SK_Municipality_Adaptation_Admin::chosen_municipalities( $post_id );
+		return SK_Municipality_Adaptation_Cookie::match( $post_municipalities );
 
 	}
 
 
-	public function metabox_municipality_markup( $post ) {
+	/**
+	 * Load the partial for when the user does
+	 * not have page access.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
+	public static function municipality_no_access_markup() {
 
-		$municipalities = $this->chosen_municipalities( $post->ID );
-		ob_start();
-		?>
-		<ul class="municipality-adaptation-checklist">
-			<li>
-				<label class="selectit">
-					<input value="sundsvall" type="checkbox" name="municipality_adaptation[]" <?php echo self::checked( 'sundsvall', $municipalities ); ?>/>
-					Sundsvall
-				</label>
-			</li>
-			<li>
-				<label class="selectit">
-					<input value="nordanstig" type="checkbox" name="municipality_adaptation[]" <?php echo self::checked( 'nordanstig', $municipalities ); ?>/>
-					Nordanstig
-				</label>
-			</li>
-			<li>
-				<label class="selectit">
-					<input value="timra" type="checkbox" name="municipality_adaptation[]" <?php echo self::checked( 'timra', $municipalities ); ?>/>
-					Timrå
-				</label>
-			</li>
-		</ul>
-		<p class="howto">Ange för vilken/vilka kommuner posten är aktuell</p>
-		<?php
-		return ob_end_flush();
-
-	}
-
-
-	public function save( $post_id, $post, $update ) {
-
-		// Security checks
-		if ( ! current_user_can( 'edit_post', $post_id ) ) return $post_id;
-		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return $post_id;
-
-		// Check if this is a valid post type
-		if ( ! in_array( $post->post_type, $this->valid_post_types ) ) return $post_id;
-
-		if ( isset( $_POST['municipality_adaptation'] ) ) {
-
-			update_post_meta(
-				$post_id,
-				'municipality_adaptation',
-				$this->municipalities_to_string( $_POST['municipality_adaptation'] )
-			);
-
-		} else {
-
-			delete_post_meta( $post_id, 'municipality_adaptation' );
-
-		}
-
-	}
-
-
-	private function chosen_municipalities( $post_id ) {
-
-		$municipalities = get_post_meta( $post_id, 'municipality_adaptation', true );
-		return $this->municipalities_to_array( $municipalities );
-
-	}
-
-
-	private function municipalities_to_string( $municipalities ) {
-
-		if ( is_array( $municipalities ) ) return implode( ',', $municipalities );
-
-		return '';
-
-	}
-
-
-	private function municipalities_to_array( $municipalities ) {
-
-		if( ! empty( $municipalities ) ) return explode( ',', $municipalities );
-
-		return array();
-
-	}
-
-
-	public static function checked( $needle, $haystack ) {
-
-		if ( in_array( $needle, $haystack ) ) return 'checked';
-
-		return '';
+		load_template( get_stylesheet_directory() . '/lib/sk-municipality-adaptation/partials/missing-municipality-access.php' );
 
 	}
 

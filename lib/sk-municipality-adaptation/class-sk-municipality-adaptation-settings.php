@@ -1,7 +1,21 @@
 <?php
 
+/**
+ * Class wrapping the functionality for module settings.
+ *
+ * @package    SK_Municipality_Adaptation
+ * @author     Andreas Färnstrand <andreas.farnstrand@cybercom.com>
+ */
+
 class SK_Municipality_Adaptation_Settings {
 
+
+	/**
+	 * Class constructor
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
 	public function __construct() {
 
 		// Add section to admin for valid post types used in adaptation
@@ -10,6 +24,12 @@ class SK_Municipality_Adaptation_Settings {
 	}
 
 
+	/**
+	 * Setup the settings functionality
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
 	public function settings_api_init() {
 
 		// Add the section to reading settings so we can add our
@@ -43,6 +63,13 @@ class SK_Municipality_Adaptation_Settings {
 	}
 
 
+	/**
+	 * Callback and HTML markup for the post types
+	 * checkboxes on settings page
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
 	public function valid_post_types_field_callback() {
 		ob_start();
 
@@ -51,14 +78,14 @@ class SK_Municipality_Adaptation_Settings {
 				'public' => true
 			)
 		);
-		$valid_post_types = SK_Municipality_Adaptation::valid_post_types();
+		$valid_post_types = self::valid_post_types();
 
 		?>
 		<ul>
 			<?php foreach( $post_types as $key => $post_type ) : ?>
 				<li>
 					<label class="selectit">
-						<input type="checkbox" name="municipality_adaptation_valid_post_types[]" value="<?php echo $post_type; ?>" <?php echo SK_Municipality_Adaptation::checked( $post_type, $valid_post_types ); ?>/>
+						<input type="checkbox" name="municipality_adaptation_valid_post_types[]" value="<?php echo $post_type; ?>" <?php echo SK_Municipality_Adaptation_Admin::checked( $post_type, $valid_post_types ); ?>/>
 						<?php echo $post_type; ?>
 					</label>
 				</li>
@@ -68,5 +95,22 @@ class SK_Municipality_Adaptation_Settings {
 		return ob_end_flush();
 	}
 
+
+	/**
+	 * Get valid post types chosen on the settings page
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 * @return array    array with the options
+	 */
+	public static function valid_post_types() {
+
+		$options = get_option( 'municipality_adaptation_valid_post_types', true );
+		if ( empty( $options ) ) $options = array();
+
+		return $options;
+
+	}
 
 }
