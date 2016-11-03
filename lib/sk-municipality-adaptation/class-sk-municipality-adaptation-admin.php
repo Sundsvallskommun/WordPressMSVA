@@ -149,7 +149,55 @@ class SK_Municipality_Adaptation_Admin {
 	public static function chosen_municipalities( $post_id ) {
 
 		$municipalities = get_post_meta( $post_id, 'municipality_adaptation', true );
+
 		return self::municipalities_to_array( $municipalities );
+
+	}
+
+
+	/**
+	 * Get chosen municipalities meta for a post
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 * @param $post_id  integer
+	 *
+	 * @return array    the chosen municipalities
+	 */
+	public static function post_municipalities( $post_id ) {
+
+		if( ! $municipalities = self::top_parent_municipalities( $post_id ) ) {
+
+			$municipalities = get_post_meta( $post_id, 'municipality_adaptation', true );
+
+		}
+
+		return self::municipalities_to_array( $municipalities );
+
+	}
+
+
+	/**
+	 * Get chosen municipalities meta for a post also
+	 * considering the top parent municipalities for the post.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 * @param $post_id  integer
+	 *
+	 * @return array    the chosen municipalities
+	 */
+	public static function top_parent_municipalities( $post_id ) {
+
+		$parents = get_post_ancestors( $post_id );
+		if( ! is_array( $parents ) || count( $parents ) == 0 ) return false;
+
+		$parent_id = array_pop( $parents );
+		$check_id = ($parent_id) ? $parent_id : $post_id;
+
+		return get_post_meta( $check_id, 'municipality_adaptation', true );
 
 	}
 

@@ -58,7 +58,6 @@ class SK_Municipality_Adaptation_Cookie {
 		if ( ! is_array( $values ) || count( $values ) == 0 ) return true;
 		if ( in_array( self::value(), $values ) ) return true;
 
-
 		return false;
 
 	}

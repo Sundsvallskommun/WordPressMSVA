@@ -59,8 +59,8 @@ class SK_Municipality_Adaptation {
 
 		if ( ! SK_Municipality_Adaptation_Cookie::exists() ) return true;
 
-		$post_municipalities = SK_Municipality_Adaptation_Admin::chosen_municipalities( $post_id );
-		return SK_Municipality_Adaptation_Cookie::match( $post_municipalities );
+		$post_municipalities = SK_Municipality_Adaptation_Admin::post_municipalities( $post_id );
+		return SK_Municipality_Adaptation_Cookie::match(  $post_municipalities );
 
 	}
 
