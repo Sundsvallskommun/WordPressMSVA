@@ -23,7 +23,7 @@ var gulp         = require('gulp'),
 var config = {
 	/* Local address of wordpress install. Used by browsersync,
 	 * use proxy flag to override (e.g. --proxy tema.dev) */
-	PROXY: util.env.proxy || 'tivoli.dev',
+	PROXY: util.env.proxy || 'msva.dev',
 
 	production: !!util.env.production
 }
@@ -57,8 +57,12 @@ gulp.task('editor-styles', function() {
 
 
 gulp.task('scripts', function() {
-	gulp.src('./assets/js/source/app.dev.js')
+		gulp.src([
+			'./assets/js/source/app.dev.js',
+			'./lib/sk-municipality-adaptation/assets/js/sk-municipality-adaptation.js'
+		])
 		.pipe(sourcemaps.init())
+		.pipe(concat('all.js'))
 		.pipe(browserify())
 		.pipe(rename('app.js'))
 		.pipe(uglify())
