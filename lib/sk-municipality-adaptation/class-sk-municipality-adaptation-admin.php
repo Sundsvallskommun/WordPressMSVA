@@ -94,8 +94,23 @@ class SK_Municipality_Adaptation_Admin {
 			</li>
 		</ul>
 		<p class="howto">Ange för vilken/vilka kommuner posten är aktuell</p>
+		<label class="selectit">
+			<input type="checkbox" name="municipality_adaptation_override" <?php if ( self::override_parent( $post->ID  ) ) echo 'checked'; ?>/>
+			<?php _e( 'Åsidosätt eventuell förälders kommuntillhörighet', 'msva' ); ?>
+		</label>
+		<p class="howto"><?php _e( 'Detta gör att även om en föräldrasida är låst till en specifik kommun så kan barnsidan ändå visas för ovan valda kommuner.' ); ?></p>
 		<?php
 		return ob_end_flush();
+
+	}
+
+
+	public static function override_parent( $post_id ) {
+
+		$override = get_post_meta( $post_id, 'municipality_adaptation_override', true );
+		if ( $override == true ) return true;
+
+		return false;
 
 	}
 
@@ -130,6 +145,16 @@ class SK_Municipality_Adaptation_Admin {
 		} else {
 
 			delete_post_meta( $post_id, 'municipality_adaptation' );
+
+		}
+
+		if ( isset( $_POST['municipality_adaptation_override'] ) ) {
+
+			update_post_meta( $post_id, 'municipality_adaptation_override', true );
+
+		} else {
+
+			delete_post_meta( $post_id, 'municipality_adaptation_override' );
 
 		}
 
@@ -170,6 +195,12 @@ class SK_Municipality_Adaptation_Admin {
 		if( ! $municipalities = self::top_parent_municipalities( $post_id ) ) {
 
 			$municipalities = get_post_meta( $post_id, 'municipality_adaptation', true );
+
+		} else {
+
+			if ( self::override_parent( $post_id ) ) {
+				$municipalities = get_post_meta( $post_id, 'municipality_adaptation', true );
+			}
 
 		}
 
