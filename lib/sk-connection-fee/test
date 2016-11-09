@@ -1,0 +1,222 @@
+Protected Sub frmCity_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+                             Select Case frmCity.Text
+                                                          Case "Sundsvall"
+                                                                                       frmServiceWater.Visible = "True"
+                                                                                       frmServiceSpillWater.Visible = "True"
+                                                                                       frmServiceRain.Visible = "True"
+                                                                                       TomtytaHela.Attributes.Add("style","display:normal")
+                                                                                       lblSum.Text = ""
+                                                                                       frmArea.Text = ""
+                                                          Case "Timrå"
+                                                                                       frmServiceWater.Visible = "True"
+                                                                                       frmServiceSpillWater.Visible = "True"
+                                                                                       frmServiceRain.Visible = "True"
+                                                                                       TomtytaHela.Attributes.Add("style","display:normal")
+                                                                                       lblSum.Text = ""
+                                                                                       frmArea.Text = ""
+                                                          Case else
+                                                                                       frmServiceWater.Visible = "True"
+                                                                                       frmServiceSpillWater.Visible = "True"
+                                                                                       frmServiceRain.Visible = "False"
+                                                                                       TomtytaHela.Attributes.Add("style","display:none")
+                                                                                       lblSum.Text = ""
+                                                                                       frmArea.Text = ""
+                             End Select
+
+End Sub
+
+                             Protected Sub btnCalculate_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+
+                             'System.Threading.Thread.Sleep(1000)
+
+
+                             'skapar variabler
+                             Dim VarSumBeforeReduction, VarAreaAvgift, VarLägenhetsAvgift, VarSum, VarVattenAvgift, VarSpillvattenAvgift, VarDagvattenAvgift as Double
+                             Dim VarServisAvgift, VarArea, VarPunktAvgift, VarServices, VarAppartments as Integer
+
+                             'kontrollerar kommun
+
+                             Select Case frmCity.Text
+
+                                                          Case "Sundsvall"
+
+
+                                                          'Uträkning för Sundsvall
+                                                          VarServisAvgift = 100000
+                                                          VarPunktAvgift = 50000
+                                                          VarArea = Cint(frmArea.Text)
+                                                          VarAppartments = Cint(frmAppartments.Text)
+
+                                                          Select Case VarArea
+                                                                                       Case <= 1000
+                                                                                                                    VarAreaAvgift = VarArea * 30
+                                                                                       Case 1001 to 2000
+                                                                                                                    VarAreaAvgift = 30000 +(VarArea-1000)*15
+                                                                                       Case > 2000
+                                                                                                                    VarAreaAvgift = 30000 + 15000 + (VarArea-2000)*9
+                                                          End Select
+
+                                                          Select Case VarAppartments
+                                                                                       Case <= 40
+                                                                                                                    VarLägenhetsAvgift= VarAppartments * 15000
+                                                                                       Case 41 to 50
+                                                                                                                    VarLägenhetsAvgift= 600000 +(VarAppartments-40)*10700
+                                                                                       Case > 50
+                                                                                                                    VarLägenhetsAvgift= 600000 + 107000 + (VarAppartments-50)*7500
+                                                          End Select
+
+                                                          If VarArea > 1500 AND VarAppartments >= 1 then
+                                                                                       'VarAreaAvgift = 25000 + 500*12.5
+                                                                                       VarAreaAvgift = 30000 + 500*15
+
+                                                          else
+                                                          end if
+
+                                                          VarSum = VarPunktAvgift + VarAreaAvgift + VarLägenhetsAvgift
+                                                          VarSumBeforeReduction = VarSum + VarServisAvgift
+
+                                                          'Beräknar reducering för Sundsvall
+                                                          If frmServiceWater.checked then
+                                                                                       VarVattenAvgift = VarSum*0.3
+                                                                                       VarServices = VarServices + 1
+                                                          end if
+
+                                                          If frmServiceSpillWater.checked then
+                                                                                       VarSpillvattenAvgift = VarSum*0.6
+                                                                                       VarServices = VarServices + 1
+                                                          end if
+
+                                                          If frmServiceRain.checked then
+                                                                                       VarDagvattenAvgift = VarSum*0.1
+                                                                                       VarServices = VarServices + 1
+                                                          end if
+
+
+                                                          Select Case VarServices
+
+                                                                                       Case 1
+                                                                                                                    VarServisAvgift = VarServisAvgift*0.7
+                                                                                       Case 2
+                                                                                                                    VarServisAvgift = VarServisAvgift*0.85
+                                                                                       Case 3
+                                                                                                                    VarServisAvgift = VarServisAvgift
+                                                                                       Case else
+                                                                                                                    VarServisAvgift = 0
+
+                                                          End Select
+
+                                                          VarSum = VarVattenAvgift + VarSpillvattenAvgift + VarDagvattenAvgift + VarServisAvgift
+
+                                                          Case "Timrå"
+
+                                                          'Uträkning för Timrå
+                                                          VarServisAvgift = 83000
+                                                          VarPunktAvgift = 40000
+                                                          VarArea = Cint(frmArea.Text)
+                                                          VarAppartments = Cint(frmAppartments.Text)
+
+                                                          Select Case VarArea
+                                                                                       Case <= 1000
+                                                                                                                    VarAreaAvgift = VarArea * 25
+                                                                                       Case 1001 to 2000
+                                                                                                                    VarAreaAvgift = 25000 +(VarArea-1000)*12.5
+                                                                                       Case > 2000
+                                                                                                                    VarAreaAvgift = 25000 + 12500 + (VarArea-2000)*7.5
+                                                          End Select
+
+                                                          Select Case VarAppartments
+                                                                                       Case <= 40
+                                                                                                                    VarLägenhetsAvgift= VarAppartments * 7000
+                                                                                       Case 41 to 50
+                                                                                                                    VarLägenhetsAvgift= 280000 +(VarAppartments-40)*5000
+                                                                                       Case > 50
+                                                                                                                    VarLägenhetsAvgift= 280000 + 50000 + (VarAppartments-50)*3500
+                                                          End Select
+
+                                                          If VarArea > 1500 AND VarAppartments >= 1 then
+                                                                                       VarAreaAvgift = 25000 + 500*12.5
+                                                          else
+                                                          end if
+
+                                                          VarSum = VarPunktAvgift + VarAreaAvgift + VarLägenhetsAvgift
+                                                          VarSumBeforeReduction = VarSum + VarServisAvgift
+
+
+
+                                                          'Beräknar reducering för Timrå
+
+                                                          If frmServiceWater.checked then
+                                                                                       VarVattenAvgift = VarSum*0.3
+                                                                                       VarServices = VarServices + 1
+                                                          end if
+
+                                                          If frmServiceSpillWater.checked then
+                                                                                       VarSpillvattenAvgift = VarSum*0.6
+                                                                                       VarServices = VarServices + 1
+                                                          end if
+
+                                                          If frmServiceRain.checked then
+                                                                                       VarDagvattenAvgift = VarSum*0.1
+                                                                                       VarServices = VarServices + 1
+                                                          end if
+
+
+                                                          Select Case VarServices
+
+                                                                                       Case 1
+                                                                                                                    VarServisAvgift = VarServisAvgift*0.7
+                                                                                       Case 2
+                                                                                                                    VarServisAvgift = VarServisAvgift*0.85
+                                                                                       Case 3
+                                                                                                                    VarServisAvgift = VarServisAvgift
+                                                                                       Case else
+                                                                                                                    VarServisAvgift = 0
+
+                                                          End Select
+
+                                                          VarSum = VarVattenAvgift + VarSpillvattenAvgift + VarDagvattenAvgift + VarServisAvgift
+
+
+
+
+
+
+
+                                                          Case "Nordanstig"
+
+
+                                                          'Uträkning för Nordanstig
+                                                          VarServisAvgift = 150000
+
+                                                          Select Case frmAppartments.Text
+                                                                                       Case > 1
+                                                                                                                    VarLägenhetsAvgift = 20000
+                                                                                       Case else
+                                                                                                                    VarLägenhetsAvgift = 0
+                                                          End Select
+
+                                                          VarSum = VarLägenhetsAvgift + VarServisAvgift
+                                                          VarSumBeforeReduction = VarSum
+
+                                                          'Beräknar reducering för Nordanstig
+                                                          If frmServiceWater.checked then
+                                                                                       VarServices = VarServices + 1
+                                                          end if
+
+                                                          If frmServiceSpillWater.checked then
+                                                                                       VarServices = VarServices + 1
+                                                          end if
+                                                          Select Case VarServices
+                                                                                       Case 1
+                                                                                                                    VarSum = VarSum*0.75
+                                                                                       Case 2
+                                                                                                                    VarSum = VarSum
+                                                                                       Case else
+                                                                                                                    VarSum = 0
+                                                          End Select
+
+                             End Select
+                                                          lblSum.Text = "<div class='BlueBox'>Anläggningsavgiften i " & frmCity.Text & " för de valda tjänserna blir <span class='SumText'>" & VarSum & "</span> kr inklusive moms.<p><br/>Anslutningen är möjlig om fastigheten ligger inom kommunens verksamhetsområde för allmänna vatten- och avloppstjänster. Den anläggningsavgift som du räknar ut här på sidan måste bekräftas av MittSverige Vatten.</p></div>"
+
+                             End Sub
