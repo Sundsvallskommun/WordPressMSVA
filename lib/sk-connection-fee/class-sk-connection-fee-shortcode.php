@@ -37,6 +37,10 @@ class SK_Connection_Fee_Shortcode {
 	 */
 	public function callback( $atts = array() ) {
 
+		// Only load scripts when shortcode is used
+		wp_enqueue_script( 'connection-fee-js' );
+		wp_enqueue_style( 'connection-fee-css' );
+
 		ob_start();
 		?>
 		<div class="connection-fee-container">

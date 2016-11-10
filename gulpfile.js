@@ -29,7 +29,7 @@ var config = {
 }
 
 gulp.task('styles', ['editor-styles'], function() {
-	gulp.src(['./assets/css/scss/style.scss','./lib/sk-connection-fee/assets/css/scss/sk-connection-fee.scss'])
+	gulp.src('./assets/css/scss/style.scss')
 		.pipe(config.production ? sourcemaps.init() : util.noop())
 		.pipe(sass().on('error', sass.logError))
 		.pipe(autoprefixer({
@@ -59,8 +59,7 @@ gulp.task('editor-styles', function() {
 gulp.task('scripts', function() {
 		gulp.src([
 			'./assets/js/source/app.dev.js',
-			'./lib/sk-municipality-adaptation/assets/js/sk-municipality-adaptation.js',
-			'./lib/sk-connection-fee/assets/js/sk-connection-fee.js'
+			'./lib/sk-municipality-adaptation/assets/js/sk-municipality-adaptation.js'
 		])
 		.pipe(sourcemaps.init())
 		.pipe(concat('all.js'))
