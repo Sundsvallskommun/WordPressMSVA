@@ -15,7 +15,6 @@ require_once 'class-sk-municipality-adaptation-admin.php';
 
 class SK_Municipality_Adaptation {
 
-
 	/**
 	 * Class constructor
 	 *
@@ -75,6 +74,17 @@ class SK_Municipality_Adaptation {
 	public static function municipality_no_access_markup() {
 
 		load_template( get_stylesheet_directory() . '/lib/sk-municipality-adaptation/partials/missing-municipality-access.php' );
+
+	}
+
+
+	public static function municipalities() {
+
+		return array(
+			'sundsvall' => 'Sundsvall',
+			'timra' => 'Timrå',
+			'nordanstig' => 'Nordanstig'
+		);
 
 	}
 

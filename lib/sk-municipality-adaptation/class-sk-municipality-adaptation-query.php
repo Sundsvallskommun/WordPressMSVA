@@ -41,7 +41,7 @@ class SK_Municipality_Adaptation_Query {
 	public function modify_query( $query ) {
 
 		// Check if on frontend and that this is a post type we should modify results for
-		if( ! is_admin() && $this->query_has_valid_post_type( $query->query_vars['post_type'] ) && SK_Municipality_Adaptation_Cookie::exists() ) {
+		if( ! is_admin() && isset( $query->query_vars['post_type'] ) && $this->query_has_valid_post_type( $query->query_vars['post_type'] ) && SK_Municipality_Adaptation_Cookie::exists() ) {
 
 			$query->set(
 				'meta_query',
