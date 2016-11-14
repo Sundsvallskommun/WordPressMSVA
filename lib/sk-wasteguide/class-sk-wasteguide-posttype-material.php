@@ -32,19 +32,19 @@ class SK_Wasteguide_Posttype_Material {
 
 		return array(
 			'name'               => _x( 'Sorteringsguide', 'post type general name', 'wp-plugin-wasteguide' ),
-			'singular_name'      => _x( 'Material', 'post type singular name', 'wp-plugin-wasteguide' ),
+			'singular_name'      => _x( 'Sak', 'post type singular name', 'wp-plugin-wasteguide' ),
 			'menu_name'          => _x( 'Sorteringsguide', 'admin menu', 'wp-plugin-wasteguide' ),
 			'name_admin_bar'     => _x( 'Sorteringsguide', 'add new on admin bar', 'wp-plugin-wasteguide' ),
-			'add_new'            => _x( 'Nytt Material', 'material', 'wp-plugin-wasteguide' ),
-			'add_new_item'       => __( 'Lägg till nytt Material', 'wp-plugin-wasteguide' ),
-			'new_item'           => __( 'Nytt Material', 'wp-plugin-wasteguide' ),
-			'edit_item'          => __( 'Ändra Material', 'wp-plugin-wasteguide' ),
-			'view_item'          => __( 'Visa Material', 'wp-plugin-wasteguide' ),
-			'all_items'          => __( 'Alla Material', 'wp-plugin-wasteguide' ),
-			'search_items'       => __( 'Sök Material', 'wp-plugin-wasteguide' ),
-			'parent_item_colon'  => __( 'Nuvarande Material:', 'wp-plugin-wasteguide' ),
-			'not_found'          => __( 'Inga Material funna.', 'wp-plugin-wasteguide' ),
-			'not_found_in_trash' => __( 'Inga Material funna i papperskorgen.', 'wp-plugin-wasteguide' )
+			'add_new'            => _x( 'Ny Sak', 'material', 'wp-plugin-wasteguide' ),
+			'add_new_item'       => __( 'Lägg till ny Sak', 'wp-plugin-wasteguide' ),
+			'new_item'           => __( 'Ny Sak', 'wp-plugin-wasteguide' ),
+			'edit_item'          => __( 'Ändra Sak', 'wp-plugin-wasteguide' ),
+			'view_item'          => __( 'Visa Sak', 'wp-plugin-wasteguide' ),
+			'all_items'          => __( 'Alla Saker', 'wp-plugin-wasteguide' ),
+			'search_items'       => __( 'Sök Sak', 'wp-plugin-wasteguide' ),
+			'parent_item_colon'  => __( 'Nuvarande Sak:', 'wp-plugin-wasteguide' ),
+			'not_found'          => __( 'Inga Saker funna.', 'wp-plugin-wasteguide' ),
+			'not_found_in_trash' => __( 'Inga Saker funna i papperskorgen.', 'wp-plugin-wasteguide' )
 		);
 
 	}
