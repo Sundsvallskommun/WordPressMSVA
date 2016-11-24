@@ -35,16 +35,16 @@ class SK_Wasteguide_Posttype_Material {
 			'singular_name'      => _x( 'Sak', 'post type singular name', 'wp-plugin-wasteguide' ),
 			'menu_name'          => _x( 'Sorteringsguide', 'admin menu', 'wp-plugin-wasteguide' ),
 			'name_admin_bar'     => _x( 'Sorteringsguide', 'add new on admin bar', 'wp-plugin-wasteguide' ),
-			'add_new'            => _x( 'Ny Sak', 'material', 'wp-plugin-wasteguide' ),
+			'add_new'            => _x( 'Ny sak', 'material', 'wp-plugin-wasteguide' ),
 			'add_new_item'       => __( 'Lägg till ny Sak', 'wp-plugin-wasteguide' ),
-			'new_item'           => __( 'Ny Sak', 'wp-plugin-wasteguide' ),
-			'edit_item'          => __( 'Ändra Sak', 'wp-plugin-wasteguide' ),
-			'view_item'          => __( 'Visa Sak', 'wp-plugin-wasteguide' ),
-			'all_items'          => __( 'Alla Saker', 'wp-plugin-wasteguide' ),
-			'search_items'       => __( 'Sök Sak', 'wp-plugin-wasteguide' ),
-			'parent_item_colon'  => __( 'Nuvarande Sak:', 'wp-plugin-wasteguide' ),
-			'not_found'          => __( 'Inga Saker funna.', 'wp-plugin-wasteguide' ),
-			'not_found_in_trash' => __( 'Inga Saker funna i papperskorgen.', 'wp-plugin-wasteguide' )
+			'new_item'           => __( 'Ny sak', 'wp-plugin-wasteguide' ),
+			'edit_item'          => __( 'Ändra sak', 'wp-plugin-wasteguide' ),
+			'view_item'          => __( 'Visa sak', 'wp-plugin-wasteguide' ),
+			'all_items'          => __( 'Alla saker', 'wp-plugin-wasteguide' ),
+			'search_items'       => __( 'Sök sak', 'wp-plugin-wasteguide' ),
+			'parent_item_colon'  => __( 'Nuvarande sak:', 'wp-plugin-wasteguide' ),
+			'not_found'          => __( 'Inga saker funna.', 'wp-plugin-wasteguide' ),
+			'not_found_in_trash' => __( 'Inga saker funna i papperskorgen.', 'wp-plugin-wasteguide' )
 		);
 
 	}

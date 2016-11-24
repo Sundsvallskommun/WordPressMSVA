@@ -1,5 +1,13 @@
 .wasteguide-results {
 
+  .material-content{
+    margin-top: 1em;
+  }
+
+  .alert{
+    margin-top: 1em;
+  }
+
   .search-modules-row {
     margin-top: 0;
     margin-bottom: 0;
@@ -7,6 +15,21 @@
 
   .wasteguide-search-result {
 
+
+  }
+
+  .wasteguide-search-result-header{
+    .post-count{
+      text-align: right;
+    }
+  }
+
+  .card-header{
+    background-color: #ffffff;
+
+    .card-title{
+      margin-bottom: 0;
+    }
 
   }
 

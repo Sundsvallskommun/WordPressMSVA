@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Register the shortcode and handle search logic
  *
@@ -7,6 +8,8 @@
  * @author     Andreas Färnstrand <andreas.farnstrand@cybercom.com>
  */
 class SK_Wasteguide_Search {
+
+	private $search_string = '';
 
 	/**
 	 * Register the shortcode for use
@@ -27,6 +30,7 @@ class SK_Wasteguide_Search {
 	public function add_material_post_type_to_search( $extra_post_types = array() ) {
 
 		array_push( $extra_post_types, 'material' );
+
 		return $extra_post_types;
 
 	}
@@ -40,65 +44,39 @@ class SK_Wasteguide_Search {
 	 * @return   string
 	 */
 	public function output( $atts, $content ) {
-
 		ob_start();
 		?>
-		<form method="get" action="<?php echo home_url( '/' ); ?>">
-			<label for="sorting-material"><?php _e('Sök i sorteringsguiden', 'msva' ); ?></label>
+		<form method="get" action="">
+			<label for="sorting-material"><?php _e( 'Sök i sorteringsguiden', 'msva' ); ?></label>
 			<div class="input-group">
-				<input type="text" class="form-control" id="sorting-material" placeholder="Ange Material" name="s">
-				<input type="hidden" name="search_type" value="wasteguide" />
+				<input type="text" class="form-control" id="sorting-material"
+				       placeholder="<?php _e( 'Ange vad du vill sortera', 'msva' ); ?>" name="search_wasteguide">
 				<span class="input-group-btn">
-                <button class="btn btn-secondary" type="submit">Sök</button>
-            </span>
+                    <button class="btn btn-secondary" type="submit">Sök</button>
+                </span>
 			</div>
 		</form>
 		<?php
+
+		if ( isset( $_GET['search_wasteguide'] ) ) {
+			require_once( get_stylesheet_directory() . '/lib/sk-wasteguide/template.php' );
+		}
+
 		return ob_get_clean();
 
 	}
 
-
 	/**
-	 * Filter the search query listening
-	 * for the material post type.
+	 * Get searched string.
 	 *
-	 * @since    1.0.0
-	 * @access   public
-	 * @return   object     the query used in search
+	 * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+	 *
+	 * @return mixed
 	 */
-	public function search_filter( $query ) {
+	public static function get_search_string() {
+		$search_string = $_GET['search_wasteguide'];
 
-		if ($query->is_search && !is_admin() ) {
-
-			if( isset( $_GET['search_type'] ) ) {
-
-				$type = $_GET['search_type'];
-
-				if($type == 'wasteguide') {
-
-					$query->set( 'search_type', ['wasteguide'] );
-
-				}
-			}
-		}
-
-		return $query;
-
-	}
-
-	public function template( $template ) {
-		global $wp_query;
-
-		$search_type = get_query_var( 'search_type' );
-
-		if( $wp_query->is_search && is_array( $search_type ) && $search_type[0] == 'wasteguide' ) {
-
-			return locate_template('lib/sk-wasteguide/template.php');
-
-		}
-
-		return $template;
+		return $search_string;
 	}
 
 }

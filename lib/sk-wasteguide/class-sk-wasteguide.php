@@ -27,8 +27,6 @@ class SK_Wasteguide {
 		add_action( 'init', array( $material, 'register_posttype' ) );
 		add_action( 'init', array( $material, 'register_taxonomies' ) );
 
-		add_filter( 'pre_get_posts', array( $shortcode, 'search_filter' ) );
-		add_filter( 'template_include', array( $shortcode, 'template' ) );
 
 	}
 
