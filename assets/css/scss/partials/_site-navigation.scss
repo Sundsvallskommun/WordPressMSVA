@@ -1,0 +1,31 @@
+.site-navigation {
+	border-bottom: 4px solid #C8D2EC;
+
+
+
+	nav a{
+		border-bottom: 4px solid transparent;
+		color: #327FB5;
+		font-weight: bold;
+
+		&:hover,
+		&.current-menu-item,
+		&.current-page-ancestor {
+			border-bottom-color: transparent !important;
+		}
+
+		.menu-item-icon{
+			background-color: #97B1DD !important;
+
+		}
+
+		&:hover .menu-item-icon {
+			background-color: #286AA6 !important;
+		}
+
+	}
+
+
+
+}
+
