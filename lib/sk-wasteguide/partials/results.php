@@ -43,17 +43,20 @@ if ( isset( $_GET['search_wasteguide'] ) && ! empty( $_GET['search_wasteguide'] 
 									<?php endforeach; ?>
 								</div>
 							</div>
-							<div class="row">
-								<div class="col-md-3">
-									<p><?php _e( 'Lämnas till:', 'msva' ); ?></p>
-								</div>
-								<div class="col-md-9">
-									<?php foreach ( $leave_terms as $term ) : ?>
-										<strong><?php echo $term->name; ?></strong>
-										<?php echo get_field( 'beskrivning', $term ); ?>
-									<?php endforeach; ?>
-								</div>
-							</div>
+
+							<?php if ( ! empty( $leave_terms ) ) : ?>
+								<?php foreach ( $leave_terms as $key => $term ) : ?>
+									<div class="row">
+										<div class="col-md-3">
+											<p><?php $key === 0 ? _e( 'Lämnas till:', 'msva' ) : _e( '...eller till:', 'msva' ); ?></p>
+										</div>
+										<div class="col-md-9">
+											<strong><?php echo $term->name; ?></strong>
+											<?php echo get_field( 'beskrivning', $term ); ?>
+										</div>
+									</div>
+								<?php endforeach; ?>
+							<?php endif; ?>
 							<div class="material-content">
 								<?php echo apply_filters( 'the_content', $post->post_content );; ?>
 							</div>
