@@ -9,7 +9,6 @@
  */
 function sk_childtheme_enqueue_styles() {
 
-	wp_enqueue_style( 'main', get_template_directory_uri() . '/style.css' );
 	wp_enqueue_style( 'child-style',
 		get_stylesheet_directory_uri() . '/assets/css/style.css',
 		array( 'main' ),
@@ -19,7 +18,6 @@ function sk_childtheme_enqueue_styles() {
 	wp_enqueue_script( 'main-child', get_stylesheet_directory_uri() . '/assets/js/app.js', ['jquery', 'handlebars', 'typeahead'] );
 }
 add_action( 'wp_enqueue_scripts', 'sk_childtheme_enqueue_styles' );
-
 
 /**
  * Get ACF-JSON from parent theme.
