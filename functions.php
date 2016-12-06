@@ -1,4 +1,18 @@
 <?php
+
+function msva_options_page() {
+	if( function_exists('acf_add_options_page') ) {
+		acf_add_options_sub_page(array(
+			'page_title'  => 'Inställningar för MSVA',
+			'menu_title'  => 'MSVA',
+			'parent_slug' => 'general-settings'
+		));
+	}
+}
+add_filter('init', 'msva_options_page');
+
+
+
 /**
  * CSS setup for SK Child Theme.
  *
