@@ -45,12 +45,14 @@ class SK_Wasteguide_Search {
 	 */
 	public function output( $atts, $content ) {
 		ob_start();
+		$waste_guide_id = get_field('msva_wasteguide_search_result', 'options');
+
 		?>
-		<form method="get" action="">
-			<label for="sorting-material"><?php _e( 'Sök i sorteringsguiden', 'msva' ); ?></label>
+		<form method="get" action="<?php echo get_permalink( $waste_guide_id ); ?>">
+			<label for="sorting-material"><?php _e( 'Vad vill du återvinna?', 'msva' ); ?></label>
 			<div class="input-group">
 				<input type="text" class="form-control" id="sorting-material"
-				       placeholder="<?php _e( 'Ange vad du vill sortera', 'msva' ); ?>" name="search_wasteguide">
+				       placeholder="<?php _e( 'T.ex diskborste', 'msva' ); ?>" name="search_wasteguide">
 				<span class="input-group-btn">
                     <button class="btn btn-secondary" type="submit">Sök</button>
                 </span>
