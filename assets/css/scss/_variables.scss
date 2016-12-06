@@ -1,1 +1,10 @@
 
+$font-family-large:          'Lato', sans-serif;
+$font-family-sans-serif:     'Lato', sans-serif;
+$font-family-base:           $font-family-sans-serif !default;
+
+$headings-margin-bottom:     .5em;
+$headings-font-family:       $font-family-large;
+$headings-font-weight:       400 !default;
+$headings-line-height:       1.1 !default;
+$headings-color:             inherit !default;
