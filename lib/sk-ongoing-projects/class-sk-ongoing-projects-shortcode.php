@@ -50,7 +50,7 @@ class SK_Ongoing_Projects_Shortcode {
 		ob_start();
 		?>
 
-		<?php if ( count( $projects ) > 1 && is_array( $projects ) ) : ?>
+		<?php if ( count( $projects ) > 0 && is_array( $projects ) ) : ?>
 			<ul>
 				<?php foreach ( $projects as $project ) : ?>
 				<li>
