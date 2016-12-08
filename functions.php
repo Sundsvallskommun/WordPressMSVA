@@ -80,3 +80,7 @@ $sk_municipality_adaptation = new SK_Municipality_Adaptation();
 /* SK Connection Fee */
 require_once locate_template( 'lib/sk-connection-fee/class-sk-connection-fee.php' );
 $sk_connection_fee = new SK_Connection_Fee();
+
+/* SK Ongoing projects */
+require_once locate_template( 'lib/sk-ongoing-projects/class-sk-ongoing-projects.php' );
+$sk_connection_fee = new SK_Ongoing_Projects();
