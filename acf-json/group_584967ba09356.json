@@ -1,0 +1,61 @@
+{
+    "key": "group_584967ba09356",
+    "title": "Svarstext",
+    "fields": [
+        {
+            "key": "field_584967f8422cf",
+            "label": "Fritext f\u00f6r extern visning",
+            "name": "fritext_for_extern_visning",
+            "type": "wysiwyg",
+            "instructions": "Ange svarinneh\u00e5ll f\u00f6r extern visning",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "sundsvalls_kommun",
+            "media_upload": 1
+        },
+        {
+            "key": "field_5849686e422d0",
+            "label": "Fritext f\u00f6r intern visning",
+            "name": "fritext_for_intern_visning",
+            "type": "wysiwyg",
+            "instructions": "Ange svarinneh\u00e5ll f\u00f6r intern visning",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "sundsvalls_kommun",
+            "media_upload": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "faq"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "menu_item_level": "all",
+    "modified": 1481206391
+}
