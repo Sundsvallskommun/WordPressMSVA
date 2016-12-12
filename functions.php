@@ -30,6 +30,7 @@ function sk_childtheme_enqueue_styles() {
 	);
 
 	wp_enqueue_script( 'main-child', get_stylesheet_directory_uri() . '/assets/js/app.js', ['jquery', 'handlebars', 'typeahead'] );
+	wp_localize_script( 'main-child', 'ajax_object', array( 'ajaxurl' => admin_url( 'admin-ajax.php' ) ) );
 }
 add_action( 'wp_enqueue_scripts', 'sk_childtheme_enqueue_styles' );
 
