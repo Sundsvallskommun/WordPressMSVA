@@ -1,6 +1,11 @@
 <?php
 
-
+/**
+ * Wrapper class for the FAQ post type
+ *
+ * @package    SK_FAQ
+ * @author     Andreas Färnstrand <andreas.farnstrand@cybercom.com>
+ */
 class SK_FAQ_Posttype {
 
 	/**

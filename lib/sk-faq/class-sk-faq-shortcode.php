@@ -1,9 +1,22 @@
 <?php
 
-
+/**
+ * The FAQ shortcode class
+ *
+ * @package    SK_FAQ
+ * @author     Andreas Färnstrand <andreas.farnstrand@cybercom.com>
+ */
 class SK_FAQ_Shortcode {
 
 
+	/**
+	 * Constructor for the shortcode class
+	 * Add the shortcode.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 */
 	public function __construct() {
 
 		add_shortcode( 'faq', array( $this, 'callback' ) );
@@ -11,11 +24,23 @@ class SK_FAQ_Shortcode {
 	}
 
 
+	/**
+	 * The callback function for the shortcode.
+	 * Provides the HTML output.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 * @param array     the shortcode attributes
+	 *
+	 * @return string   the html output
+	 *
+	 */
 	public function callback( $atts ) {
 		$attributes = shortcode_atts(
 			array(
 				'categories' => '',
-                'admin' => 'false'
+				'admin'      => 'false'
 			),
 			$atts
 		);
@@ -31,11 +56,11 @@ class SK_FAQ_Shortcode {
 
 		<?php if ( count( $faqs ) > 0 && is_array( $faqs ) ) : ?>
 
-            <?php
-            if ( $attributes['admin'] === 'true' ) {
-                echo $this->filter_options();
-            }
-            ?>
+			<?php
+			if ( $attributes['admin'] === 'true' ) {
+				echo $this->filter_options();
+			}
+			?>
 
 			<?php foreach ( $faqs as $faq ) : ?>
 
@@ -58,6 +83,7 @@ class SK_FAQ_Shortcode {
 				?>
 
 			<?php endforeach; ?>
+
 		<?php endif; ?>
 
 
@@ -67,22 +93,44 @@ class SK_FAQ_Shortcode {
 	}
 
 
+	/**
+	 * The html output for the FAQ filtering options
+	 * when user is able to administrate the FAQ.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 * @return string   the html output
+	 *
+	 */
 	private function filter_options() {
-	    ob_start();
-	    ?>
+		ob_start();
+		?>
         <div class="faq-filter row">
             <div class="col-lg-6">
                 <div class="input-group">
-                    <input type="text" class="form-control search-filter" placeholder="<?php _e( 'Sök efter...', 'msva' ); ?>">
+                    <input type="text" class="form-control search-filter"
+                           placeholder="<?php _e( 'Sök efter...', 'msva' ); ?>">
                 </div>
             </div>
         </div>
-        <?php
-        return ob_get_clean();
+		<?php
+		return ob_get_clean();
 
-    }
+	}
 
 
+	/**
+	 * The html output for the single FAQ content.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 * @param object    the faq post object
+	 * @param boolean   if user has access
+	 *
+	 * @return string   the html output
+	 */
 	private function content( $faq, $has_access ) {
 		$content       = '';
 		$external_text = ( $faq->meta['external_text'] ) ? $faq->meta['external_text'] : null;
@@ -106,6 +154,11 @@ class SK_FAQ_Shortcode {
                 </div>
 			<?php endif; ?>
 
+            <div class="row faq-edit">
+                <a href="<?php echo get_edit_post_link( $faq->ID ); ?>" class="float-xs-right"
+                   target="_blank"><?php _e( 'Redigera', 'msva' ); ?></a>
+            </div>
+
 			<?php
 			$content = ob_get_clean();
 
@@ -128,6 +181,16 @@ class SK_FAQ_Shortcode {
 	}
 
 
+	/**
+	 * Check if user is contributor or above
+	 * as a role.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 * @return boolean      the user access
+	 *
+	 */
 	private function has_access() {
 
 		if ( current_user_can( 'edit_post' ) ) {
