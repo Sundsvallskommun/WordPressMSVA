@@ -1,0 +1,13 @@
+/* Tooltip */
+.tooltip > .tooltip-inner {
+  background-color: #f8f8f8;
+  color: #0078bf;
+  border: 1px solid #0863b1;
+  padding: 15px;
+  text-align: left;
+}
+
+/* Tooltip on top */
+.tooltip-arrow {
+display: none;
+}
