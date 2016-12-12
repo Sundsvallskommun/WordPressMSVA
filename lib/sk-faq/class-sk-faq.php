@@ -35,6 +35,52 @@ class SK_FAQ {
 		// Enqueue scripts and styles for later use.
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_styles_and_scripts' ) );
 
+		// Add the single FAQ template to the template list
+		add_filter( 'template_include', array( $this, 'add_single_faq_template' ) );
+
+	}
+
+
+	/**
+	 * Include the single faq template if this is
+	 * a faq and user has access to it.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 * @param string    the template
+	 *
+	 * @return string   the new template|the old template
+	 */
+	public function add_single_faq_template( $template ) {
+		global $wp, $post;
+
+		if ( $wp->query_vars['post_type'] == 'faq' ) {
+
+			$internal_only = get_post_meta( $post->ID, 'visa_endast_internt', true );
+
+			// Redirect to 404 if user not allowed access
+			if ( $internal_only && ! current_user_can( 'edit_post' ) ) {
+
+				status_header( 404 );
+				get_template_part( 404 );
+				exit();
+
+			} else { // Include the single template for FAQs
+
+				$template_filename = 'single-faq.php';
+				if ( file_exists( get_stylesheet_directory() . '/lib/sk-faq/assets/templates/' . $template_filename ) ) {
+
+					return get_stylesheet_directory() . '/lib/sk-faq/assets/templates/' . $template_filename;
+
+				}
+
+			}
+
+		}
+
+		return $template;
+
 	}
 
 

@@ -42,10 +42,10 @@ class SK_FAQ_Posttype {
 			'query_var'          => true,
 			'rewrite'            => array( 'slug' => 'faq' ),
 			'capability_type'    => 'post',
-			'has_archive'        => false,
+			'has_archive'        => true,
 			'hierarchical'       => false,
 			'menu_position'      => null,
-			'supports'           => array( 'title' ),
+			'supports'           => array( 'title', 'revisions' ),
 			'taxonomies'         => array( 'category' )
 		);
 

@@ -154,6 +154,11 @@ class SK_FAQ_Shortcode {
                 </div>
 			<?php endif; ?>
 
+            <div class="row faq-show">
+                <a href="<?php echo get_permalink( $faq->ID ); ?>"
+                   class="float-xs-right"><?php _e( 'Gå Till frågan', 'msva' ); ?></a>
+            </div>
+
             <div class="row faq-edit">
                 <a href="<?php echo get_edit_post_link( $faq->ID ); ?>" class="float-xs-right"
                    target="_blank"><?php _e( 'Redigera', 'msva' ); ?></a>
