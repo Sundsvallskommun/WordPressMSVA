@@ -84,4 +84,8 @@ $sk_connection_fee = new SK_Connection_Fee();
 
 /* SK Ongoing projects */
 require_once locate_template( 'lib/sk-ongoing-projects/class-sk-ongoing-projects.php' );
-$sk_connection_fee = new SK_Ongoing_Projects();
+$sk_ongoing_projects = new SK_Ongoing_Projects();
+
+/* SK FAQ */
+require_once locate_template( 'lib/sk-faq/class-sk-faq.php' );
+$sk_faq = new SK_FAQ();
