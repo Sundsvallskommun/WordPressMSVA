@@ -17,6 +17,16 @@ class SK_FAQ {
 			'change_title_placeholder'
 		) ); // Set new placeholder text for title
 
+		add_action( 'wp_enqueue_scripts', array( $this, 'register_styles_and_scripts' ) );
+
+	}
+
+
+	public function register_styles_and_scripts() {
+
+		wp_register_script( 'sk-faq-js', get_stylesheet_directory_uri() . '/lib/sk-faq/assets/js/sk-faq.js', array('jquery') );
+		wp_register_style( 'sk-faq-css', get_stylesheet_directory_uri() . '/lib/sk-faq/assets/css/sk-faq.css' );
+
 	}
 
 

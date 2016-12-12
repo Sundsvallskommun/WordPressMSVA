@@ -14,7 +14,8 @@ class SK_FAQ_Shortcode {
 	public function callback( $atts ) {
 		$attributes = shortcode_atts(
 			array(
-				'categories' => ''
+				'categories' => '',
+                'admin' => 'false'
 			),
 			$atts
 		);
@@ -22,10 +23,20 @@ class SK_FAQ_Shortcode {
 		$faqs       = SK_FAQ::faq( $attributes['categories'] );
 		$has_access = $this->has_access();
 
+		wp_enqueue_script( 'sk-faq-js' );
+		wp_enqueue_style( 'sk-faq-css' );
+
 		ob_start();
 		?>
 
 		<?php if ( count( $faqs ) > 0 && is_array( $faqs ) ) : ?>
+
+            <?php
+            if ( $attributes['admin'] === 'true' ) {
+                echo $this->filter_options();
+            }
+            ?>
+
 			<?php foreach ( $faqs as $faq ) : ?>
 
 				<?php
@@ -54,6 +65,22 @@ class SK_FAQ_Shortcode {
 		return ob_get_clean();
 
 	}
+
+
+	private function filter_options() {
+	    ob_start();
+	    ?>
+        <div class="faq-filter row">
+            <div class="col-lg-6">
+                <div class="input-group">
+                    <input type="text" class="form-control search-filter" placeholder="<?php _e( 'Sök efter...', 'msva' ); ?>">
+                </div>
+            </div>
+        </div>
+        <?php
+        return ob_get_clean();
+
+    }
 
 
 	private function content( $faq, $has_access ) {
