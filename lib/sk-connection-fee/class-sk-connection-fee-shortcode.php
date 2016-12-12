@@ -88,7 +88,7 @@ class SK_Connection_Fee_Shortcode {
 				<div class="form-group" id="sk-connection-fee-area-group">
 					<legend><?php _e( 'Tomtyta för fastigheten som skall anslutas', 'msva' ); ?></legend>
 
-					<input type="text" type="number" class="form-control" id="sk-connection-fee-area-input" placeHolder="<?php _e( 'Tex 1500', 'msva' ); ?>" name="area" />
+					<input type="number" min="0" max="1500" class="form-control" id="sk-connection-fee-area-input" placeHolder="<?php _e( 'Tex 1500', 'msva' ); ?>" name="area">
 
 					<div class="form-control-feedback"><?php _e('För bostadsfastighet med högst två lägenheter maximeras den avgiftspliktiga tomtytan till 1500 m².', 'msva' ); ?></div>
 
@@ -110,7 +110,7 @@ class SK_Connection_Fee_Shortcode {
 
 				</div>
 
-				<button type="button" id="sk-connection-fee-submit" class="btn btn-primary float-xs-right"><?php _e( 'Beräkna', 'msva' ); ?></button>
+				<button type="button" id="sk-connection-fee-submit" class="btn btn-secondary float-xs-right"><?php _e( 'Beräkna', 'msva' ); ?></button>
 
 
 			</form>

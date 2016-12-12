@@ -49,6 +49,7 @@ class SK_Connection_Fee_Ajax {
 		$municipality = $params['municipality'];
 
 		// Get user supplied parameters
+		//$area = absint( preg_replace('/\s+/', '', $params['area'] ) ); // remove whitespace, not needed for area i guess.
 		$area = absint( $params['area'] );
 		$apartments = absint( $params['apartments'] );
 
@@ -136,7 +137,7 @@ class SK_Connection_Fee_Ajax {
 		$response_markup = <<<eol
 <div class="card card-block">
   <p class="card-text">
-  Anläggningsavgiften i %s för de valda tjänserna blir <strong>%d</strong> kr inklusive moms.
+  Anläggningsavgiften i %s för de valda tjänserna blir <strong>%s</strong> kr inklusive moms.
   </p>
   <p class="card-text">
 	Anslutningen är möjlig om fastigheten ligger inom kommunens verksamhetsområde för allmänna vatten- och avloppstjänster.
@@ -145,7 +146,7 @@ class SK_Connection_Fee_Ajax {
 </div>
 eol;
 
-		return sprintf( $response_markup, $municipality, $sum );
+		return sprintf( $response_markup, $municipality, number_format( $sum,  0, ' ', ' ' ) );
 
 	}
 
