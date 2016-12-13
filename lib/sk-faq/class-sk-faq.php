@@ -55,7 +55,7 @@ class SK_FAQ {
 	public function add_single_faq_template( $template ) {
 		global $wp, $post;
 
-		if ( $wp->query_vars['post_type'] == 'faq' ) {
+		if ( isset( $wp->query_vars['post_type'] ) && $wp->query_vars['post_type'] == 'faq' ) {
 
 			$internal_only = get_post_meta( $post->ID, 'visa_endast_internt', true );
 
