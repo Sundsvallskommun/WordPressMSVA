@@ -1,0 +1,38 @@
+.btn-secondary {
+  background-color: $btn-secondary-bg;
+  border-color: $btn-secondary-border;
+  color: $btn-secondary-color;
+}
+
+.btn-secondary:hover {
+  background-color: $msva-base-button-hover-bg;
+  border-color: $btn-secondary-border;
+  color: $btn-secondary-color;
+}
+
+.btn-secondary.focus, .btn-secondary:focus {
+  background-color: $msva-base-button-active-bg;
+  border-color: $msva-base-button-active-border;
+  color: $msva-base-button-active-color;
+}
+
+.btn-secondary.active, .btn-secondary:active, .open > .btn-secondary.dropdown-toggle {
+  background-color: $msva-base-button-active-bg;
+  background-image: none;
+  border-color: $msva-base-button-active-border;
+  color: $msva-base-button-active-color;
+}
+
+.btn-secondary.active.focus, .btn-secondary.active:focus, .btn-secondary.active:hover, .btn-secondary.focus:active, .btn-secondary:active:focus, .btn-secondary:active:hover, .open > .btn-secondary.dropdown-toggle.focus, .open > .btn-secondary.dropdown-toggle:focus, .open > .btn-secondary.dropdown-toggle:hover {
+  background-color: $msva-base-button-active-bg;
+  border-color: $msva-base-button-active-border;
+  color: $msva-base-button-active-color;
+}
+.btn-secondary.disabled.focus, .btn-secondary.disabled:focus, .btn-secondary.focus:disabled, .btn-secondary:disabled:focus {
+  background-color: #fff;
+  border-color: #ccc;
+}
+.btn-secondary.disabled:hover, .btn-secondary:disabled:hover {
+  background-color: #fff;
+  border-color: #ccc;
+}

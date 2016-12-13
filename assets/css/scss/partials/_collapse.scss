@@ -1,0 +1,23 @@
+.sk-collapse {
+
+	> div {
+		//border: 5px solid $gray-lightest;
+	}
+
+	> h2,
+	> h3,
+	> h4 {
+
+		a {
+			background: #f9f9f9;
+
+			&:after {
+				background: $msva-base-color;
+			}
+
+		}
+	}
+
+}
+
+

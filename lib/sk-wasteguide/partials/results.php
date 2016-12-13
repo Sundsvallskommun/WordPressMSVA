@@ -39,19 +39,21 @@ if ( isset( $_GET['search_wasteguide'] ) && ! empty( $_GET['search_wasteguide'] 
 									</div>
 								</div>
 							<?php endif; ?>
-							<div class="card-inner sort-as">
-								<div class="row">
-									<div class="col-md-3">
-										<p><?php _e( 'Sorteras som:', 'msva' ); ?></p>
-									</div>
-									<div class="col-md-9">
-										<?php foreach ( $sorting_terms as $term ) : ?>
-											<strong><?php echo $term->name; ?></strong>
-											<?php echo get_field( 'beskrivning', $term ); ?>
-										<?php endforeach; ?>
+							<?php if ( ! empty( $sorting_terms ) ) : ?>
+								<div class="card-inner sort-as">
+									<div class="row">
+										<div class="col-md-3">
+											<p><?php _e( 'Sorteras som:', 'msva' ); ?></p>
+										</div>
+										<div class="col-md-9">
+											<?php foreach ( $sorting_terms as $term ) : ?>
+												<strong><?php echo $term->name; ?></strong>
+												<?php echo get_field( 'beskrivning', $term ); ?>
+											<?php endforeach; ?>
+										</div>
 									</div>
 								</div>
-							</div>
+							<?php endif; ?>
 
 
 							<?php if ( ! empty( $leave_terms ) ) : ?>
