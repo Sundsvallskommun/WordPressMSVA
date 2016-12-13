@@ -1,0 +1,273 @@
+{
+    "key": "group_584fe482cac99",
+    "title": "Skapa driftmeddelande",
+    "fields": [
+        {
+            "key": "field_584fe85c529c5",
+            "label": "H\u00e4ndelse",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "operation-message-section-header",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "",
+            "esc_html": 0
+        },
+        {
+            "key": "field_584fe4b23b9cc",
+            "label": "H\u00e4ndelse",
+            "name": "handelse",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "handelse_1": "H\u00e4ndelse 1",
+                "handelse_2": "H\u00e4ndelse 2",
+                "handelse_3": "H\u00e4ndelse 3"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_584fe50f3b9cd",
+            "label": "Alt. h\u00e4ndelse",
+            "name": "alt_handelse",
+            "type": "text",
+            "instructions": "Om du inte finner l\u00e4mpligt alternativ ovan",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": 255
+        },
+        {
+            "key": "field_584fe8f3bc90f",
+            "label": "Plats",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "operation-message-section-header",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_584fea99bc910",
+            "label": "Kommun",
+            "name": "kommun",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "sundsvall": "Sundsvall",
+                "timra": "Timr\u00e5",
+                "nordanstig": "Nordanstig"
+            },
+            "default_value": [],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_584feafdbc911",
+            "label": "Alt. Fritext",
+            "name": "alt_kommun_fritext",
+            "type": "text",
+            "instructions": "Ange fritextalternativ om inte kommun passar",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_584fec3ecad69",
+            "label": "Information",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "operation-message-section-header",
+                "id": ""
+            },
+            "message": "",
+            "new_lines": "",
+            "esc_html": 0
+        },
+        {
+            "key": "field_584fec9dcad6a",
+            "label": "Information",
+            "name": "om_information",
+            "type": "wysiwyg",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "tabs": "all",
+            "toolbar": "sundsvalls_kommun",
+            "media_upload": 1
+        },
+        {
+            "key": "field_584fecf6cad6b",
+            "label": "Omr\u00e5de\/Gata",
+            "name": "om_omradegata",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_584fefb2e2f5c",
+            "label": "Avslut",
+            "name": "om_avslut",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_584fefffe2f5d",
+            "label": "Publicering och Arkivering",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "operation-message-section-header",
+                "id": ""
+            },
+            "message": "Ange datum och tid f\u00f6r publicering respektive arkivering",
+            "new_lines": "",
+            "esc_html": 0
+        },
+        {
+            "key": "field_584ff04be2f5e",
+            "label": "Publicering",
+            "name": "om_publicering",
+            "type": "date_time_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "Y-m-d H:i",
+            "return_format": "Y-m-d H:i",
+            "first_day": 1
+        },
+        {
+            "key": "field_584ff0cee2f5f",
+            "label": "Arkivering",
+            "name": "om_arkivering",
+            "type": "date_time_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "display_format": "Y-m-d H:i",
+            "return_format": "Y-m-d H:i",
+            "first_day": 1
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "page_template",
+                "operator": "==",
+                "value": "page-templates\/page-skapa-driftmeddelande.php"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "menu_item_level": "all",
+    "modified": 1481634040
+}
