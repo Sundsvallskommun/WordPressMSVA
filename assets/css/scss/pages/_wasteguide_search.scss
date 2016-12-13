@@ -1,5 +1,7 @@
 .wasteguide-results {
-
+  .post-count__total{
+    padding: 0.5em;
+  }
   .material-content{
     margin-top: 1em;
   }
@@ -31,6 +33,18 @@
       margin-bottom: 0;
     }
 
+  }
+
+  .card-block{
+    padding: 0;
+    .card-inner{
+      padding: 1.25em;
+      padding-bottom: 0;
+    }
+
+    .sort-as{
+      background-color: rgba(200,210,236, 0.2);
+    }
   }
 
 }

@@ -8,7 +8,7 @@
             "name": "beskrivning",
             "type": "wysiwyg",
             "instructions": "",
-            "required": 1,
+            "required": 0,
             "conditional_logic": 0,
             "wrapper": {
                 "width": "",
@@ -46,5 +46,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1477576896
+    "modified": 1481555583
 }

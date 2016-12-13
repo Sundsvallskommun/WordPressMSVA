@@ -32,34 +32,45 @@ if ( isset( $_GET['search_wasteguide'] ) && ! empty( $_GET['search_wasteguide'] 
 							<h3 class="card-title"><?php echo $post->post_title; ?></h3>
 						</div>
 						<div class="card-block">
-							<div class="row">
-								<div class="col-md-3">
-									<p><?php _e( 'Sorteras som:', 'msva' ); ?></p>
+							<?php if ( ! empty( $post->post_content ) ) : ?>
+								<div class="card-inner">
+									<div class="material-content">
+										<?php echo apply_filters( 'the_content', $post->post_content ); ?>
+									</div>
 								</div>
-								<div class="col-md-9">
-									<?php foreach ( $sorting_terms as $term ) : ?>
-										<strong><?php echo $term->name; ?></strong>
-										<?php echo get_field( 'beskrivning', $term ); ?>
-									<?php endforeach; ?>
+							<?php endif; ?>
+							<div class="card-inner sort-as">
+								<div class="row">
+									<div class="col-md-3">
+										<p><?php _e( 'Sorteras som:', 'msva' ); ?></p>
+									</div>
+									<div class="col-md-9">
+										<?php foreach ( $sorting_terms as $term ) : ?>
+											<strong><?php echo $term->name; ?></strong>
+											<?php echo get_field( 'beskrivning', $term ); ?>
+										<?php endforeach; ?>
+									</div>
 								</div>
 							</div>
 
+
 							<?php if ( ! empty( $leave_terms ) ) : ?>
-								<?php foreach ( $leave_terms as $key => $term ) : ?>
-									<div class="row">
-										<div class="col-md-3">
-											<p><?php $key === 0 ? _e( 'Lämnas till:', 'msva' ) : _e( '...eller till:', 'msva' ); ?></p>
+								<div class="card-inner">
+									<?php foreach ( $leave_terms as $key => $term ) : ?>
+
+										<div class="row">
+											<div class="col-md-3">
+												<p><?php $key === 0 ? _e( 'Lämnas till:', 'msva' ) : _e( '...eller till:', 'msva' ); ?></p>
+											</div>
+											<div class="col-md-9">
+												<strong><?php echo $term->name; ?></strong>
+												<?php echo get_field( 'beskrivning', $term ); ?>
+											</div>
 										</div>
-										<div class="col-md-9">
-											<strong><?php echo $term->name; ?></strong>
-											<?php echo get_field( 'beskrivning', $term ); ?>
-										</div>
-									</div>
-								<?php endforeach; ?>
+
+									<?php endforeach; ?>
+								</div>
 							<?php endif; ?>
-							<div class="material-content">
-								<?php echo apply_filters( 'the_content', $post->post_content );; ?>
-							</div>
 						</div><!-- .card-block -->
 					</div><!-- .card -->
 				<?php endforeach; // end post loop ?>
