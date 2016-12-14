@@ -1,3 +1,7 @@
-.operation-message-form .operation-message-section-header .acf-label label {
-    font-size: 24px;
+#operation-message-form .form-group {
+    margin-bottom: 20px;
+}
+
+.datepicker.dropdown-menu {
+    width: 200px;
 }

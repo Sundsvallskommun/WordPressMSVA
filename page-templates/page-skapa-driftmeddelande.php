@@ -37,14 +37,24 @@
                         <form id="operation-message-form" method="post" action="">
 
                             <input type="hidden" value="<?php echo wp_create_nonce( 'sk-operation-messages' ); ?>" name="nonce" />
-							<?php
-							acf_form(
-								array(
-									'field_groups' => array( '597' ),
-									'form'         => false
-								)
-							);
-							?>
+
+                            <div class="form-group">
+
+                                <h3><?php _e( 'Händelse', 'msva' ); ?></h3>
+
+                                <select class="form-control" name="operation_message[event]">
+                                    <option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
+                                    <option value="Vattenläcka"><?php _e( 'Vattenläcka', 'msva' ); ?></option>
+                                    <option value="Vattenavstängning"><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
+                                    <option value="Spolning av avloppsledningar"><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
+                                    <option value="Spolning av vattenledningar"><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
+                                    <option value="Vattenläcka åtgärdad"><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
+                                    <option value="1"><?php _e( 'Egen händelse', 'msva' ); ?></option>
+                                </select>
+
+
+                            </div>
+
                             <button type="button" id="operation-message-form-submit"
                                     class="btn btn-secondary float-xs-right"><?php _e( 'Spara driftmeddelande', 'msva' ); ?></button>
 

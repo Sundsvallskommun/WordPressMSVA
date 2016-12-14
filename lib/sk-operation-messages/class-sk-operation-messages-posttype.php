@@ -82,4 +82,160 @@ class SK_Operation_Messages_Posttype {
 
 	}
 
+
+	public function add_meta_boxes() {
+
+		add_meta_box( 'operation_messages_meta', __( 'Sparad information', 'msva' ), array( $this, 'metabox_callback' ), 'operation_message' );
+
+	}
+
+
+	public function metabox_callback() {
+		?>
+		<div class="operation-message-metabox-wrapper">
+
+			<div class="operation-message-metabox-section">
+
+				<h3><?php _e( 'Händelse' ); ?></h3>
+				<hr />
+
+				<select name="operation_message[event]">
+					<option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
+					<option value="Vattenläcka"><?php _e( 'Vattenläcka', 'msva' ); ?></option>
+					<option value="Vattenavstängning"><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
+					<option value="Spolning av avloppsledningar"><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
+					<option value="Spolning av vattenledningar"><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
+					<option value="Vattenläcka åtgärdad"><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
+					<option value="1"><?php _e( 'Egen händelse', 'msva' ); ?></option>
+				</select>
+
+				<label><?php _e( 'Egen händelse', 'msva' ); ?>
+					<input type="text" name="operation_message[custom_event]" />
+				</label>
+
+			</div>
+
+			<div class="operation-message-metabox-information-section">
+
+				<h3><?php _e( 'Information och område', 'msva' ); ?></h3>
+				<hr />
+
+				<label><?php _e( 'Information del 1', 'msva' ); ?></label>
+				<?php
+					$wp_editor_args = array (
+						'tinymce' => false,
+						'quicktags' => true,
+						'media_buttons' => false,
+						'textarea_rows' => 6,
+
+					);
+					wp_editor( '', 'operation_message[information_part_1]', $wp_editor_args );
+				?>
+
+				<label for="area_street"><?php _e( 'Område/Gata', 'msva' ); ?></label><br />
+				<input type="text" id="area_street" name="operation_message[area_street]" />
+				<br />
+
+				<label><?php _e( 'Information del 2', 'msva' ); ?></label>
+				<?php wp_editor( '', 'operation_message[information_part_2]', $wp_editor_args ); ?>
+
+				<label><?php _e( 'Avslut', 'msva' ); ?></label>
+				<?php wp_editor( '', 'operation_message[ending]', $wp_editor_args ); ?>
+
+			</div>
+
+			<div class="operation-message-metabox-publishing-section">
+
+				<h3><?php _e( 'Publicering och Arkivering', 'msva' ); ?></h3>
+				<hr />
+
+				<label><?php _e( 'Publicering', 'msva' ); ?></label>
+				<input type="text" name="operation_message[publish_at_date]" />
+
+                <select name="operation_message[publish_at_hour]">
+                    <option value="00">00</option>
+                    <option value="00">01</option>
+                    <option value="00">02</option>
+                    <option value="00">03</option>
+                    <option value="00">04</option>
+                    <option value="00">05</option>
+                    <option value="00">06</option>
+                    <option value="00">07</option>
+                    <option value="00">08</option>
+                    <option value="00">09</option>
+                    <option value="00">10</option>
+                    <option value="00">11</option>
+                    <option value="00">12</option>
+                    <option value="00">13</option>
+                    <option value="00">14</option>
+                    <option value="00">15</option>
+                    <option value="00">16</option>
+                    <option value="00">17</option>
+                    <option value="00">18</option>
+                    <option value="00">19</option>
+                    <option value="00">20</option>
+                    <option value="00">21</option>
+                    <option value="00">22</option>
+                    <option value="00">23</option>
+                </select>
+
+                <select name="operation_message[publish_at_minute]">
+                    <option value="00">00</option>
+                    <option value="00">10</option>
+                    <option value="00">20</option>
+                    <option value="00">30</option>
+                    <option value="00">40</option>
+                    <option value="00">50</option>
+                </select>
+				<br />
+
+				<label><?php _e( 'Arkivering', 'msva' ); ?></label>
+                <input type="text" name="operation_message[archive_at_date]" />
+
+                <select name="operation_message[archive_at_hour]">
+                    <option value="00">00</option>
+                    <option value="00">01</option>
+                    <option value="00">02</option>
+                    <option value="00">03</option>
+                    <option value="00">04</option>
+                    <option value="00">05</option>
+                    <option value="00">06</option>
+                    <option value="00">07</option>
+                    <option value="00">08</option>
+                    <option value="00">09</option>
+                    <option value="00">10</option>
+                    <option value="00">11</option>
+                    <option value="00">12</option>
+                    <option value="00">13</option>
+                    <option value="00">14</option>
+                    <option value="00">15</option>
+                    <option value="00">16</option>
+                    <option value="00">17</option>
+                    <option value="00">18</option>
+                    <option value="00">19</option>
+                    <option value="00">20</option>
+                    <option value="00">21</option>
+                    <option value="00">22</option>
+                    <option value="00">23</option>
+                </select>
+
+                <select name="operation_message[archive_at_minute]">
+                    <option value="00">00</option>
+                    <option value="00">10</option>
+                    <option value="00">20</option>
+                    <option value="00">30</option>
+                    <option value="00">40</option>
+                    <option value="00">50</option>
+                </select>
+				<br />
+
+
+			</div>
+
+
+
+		</div>
+		<?php
+	}
+
 }

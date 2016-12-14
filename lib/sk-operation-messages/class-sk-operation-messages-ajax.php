@@ -6,8 +6,6 @@ class SK_Operation_Messages_Ajax {
 
 	public function callback() {
 
-		//echo '<pre>' . print_r( $_POST, true ) . '</pre>';
-
 		$params = array();
 		parse_str( $_POST['form_data'], $params );
 
@@ -17,7 +15,7 @@ class SK_Operation_Messages_Ajax {
 			die( 'Hey hey, stop messing around!!!' );
 		}
 
-		if( $this->save_message( $params, $errand_text ) ) {
+		if ( $this->save_message( $params, $errand_text ) ) {
 
 			wp_send_json_success(
 				'tjohoooo!!!!!'
@@ -33,33 +31,37 @@ class SK_Operation_Messages_Ajax {
 	function save_message( $params, $errand_text ) {
 
 		// Initialize the page ID to -1. This indicates no action has been taken.
-		$post_id = -1;
+		$post_id = - 1;
 
 		// Setup the author, slug, and title for the post
 		$author_id = 1;
-		$slug = 'example-post';
+		$slug      = 'example-post';
 
 		// If the alternative errand is set, than use that.
 		// Otherwise use the regular errand text.
 		// Only use for the title. Not the actual ACF field.
 		$title = $this->get_form_value( 'om_alt_handelse', $params['acf'] );
-		if( empty( $title ) ) $title = $errand_text;
+		if ( empty( $title ) ) {
+			$title = $errand_text;
+		}
+		$street = $this->get_form_value( 'om_omradegata', $params['acf'] );
+		if ( ! empty( $street ) ) {
+			$title .=  ' - ' . $street;
+		}
 
 
 		// If the page doesn't already exist, then create it
 		// Set the post ID so that we know the post was created successfully
-
 		$post_id = wp_insert_post(
 
 			array(
-				'comment_status'	=>	'closed',
-				'ping_status'		=>	'closed',
-				'post_author'		=>	$author_id,
-				'post_name'		    =>	sanitize_title( $title ),
-				'post_title'		=>	$title,
-				//'post_content'      =>  '',
-				'post_status'		=>	'publish',
-				'post_type'		    =>	'operation_message'
+				'comment_status' => 'closed',
+				'ping_status'    => 'closed',
+				'post_author'    => $author_id,
+				'post_name'      => sanitize_title( $title ),
+				'post_title'     => $title,
+				'post_status'    => 'publish',
+				'post_type'      => 'operation_message'
 			),
 			true // return error on failure
 		);
@@ -69,7 +71,7 @@ class SK_Operation_Messages_Ajax {
 
 			if ( count( $params ) > 0 && is_array( $params ) ) {
 
-				foreach( $params['acf'] as $key => $value ) {
+				foreach ( $params['acf'] as $key => $value ) {
 
 					update_field( $key, $value, $post_id );
 
@@ -107,28 +109,8 @@ class SK_Operation_Messages_Ajax {
 			'om_arkivering'         => 'field_584ff0cee2f5f'
 		);
 
-		return ! empty( $all[$key] ) ? $all[$key] : null;
+		return ! empty( $all[ $key ] ) ? $all[ $key ] : null;
 
 	}
-
-
-	private function acf_field_key_translations( $key ) {
-
-		$all = array(
-			'field_584fe4b23b9cc' => 'om_handelse',
-			'field_584fe50f3b9cd' => 'om_alt_handelse',
-			'field_584fea99bc910' => 'om_kommun',
-			'field_584feafdbc911' => 'om_alt_kommun_fritext',
-			'field_584fec9dcad6a' => 'om_information',
-			'field_584fecf6cad6b' => 'om_omradegata',
-			'field_584fefb2e2f5c' => 'om_avslut',
-			'field_584ff04be2f5e' => 'om_publicering',
-			'field_584ff0cee2f5f' => 'om_arkivering'
-		);
-
-		return ! empty( $all[$key] ) ? $all[$key] : null;
-
-	}
-
 
 }
