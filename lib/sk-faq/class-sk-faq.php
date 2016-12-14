@@ -113,7 +113,7 @@ class SK_FAQ {
 
 		$args = array(
 			'post_type'       => 'faq',
-			'number_of_posts' => - 1
+			'numberofposts' => - 1
 		);
 
 		// Filter in category by the category names given
