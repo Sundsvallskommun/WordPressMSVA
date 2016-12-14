@@ -4,61 +4,64 @@
 
 <?php while ( have_posts() ) : the_post(); ?>
 
-	<?php if( SK_Municipality_Adaptation::page_access( get_the_ID() ) ) : ?>
+	<?php if ( SK_Municipality_Adaptation::page_access( get_the_ID() ) ) : ?>
 
-		<div class="container-fluid">
+        <div class="container-fluid">
 
-			<div class="single-post__row">
+            <div class="single-post__row">
 
-				<aside class="sk-sidebar single-post__sidebar">
+                <aside class="sk-sidebar single-post__sidebar">
 
-					<a href="#post-content" class="focus-only"><?php _e('Hoppa över sidomeny', 'sk_tivoli'); ?></a>
+                    <a href="#post-content" class="focus-only"><?php _e( 'Hoppa över sidomeny', 'sk_tivoli' ); ?></a>
 
-					<?php do_action('sk_page_helpmenu'); ?>
+					<?php do_action( 'sk_page_helpmenu' ); ?>
 
-				</aside>
+                </aside>
 
-				<div class="single-post__content" id="post-content">
+                <div class="single-post__content" id="post-content">
 
-					<?php do_action('sk_before_page_title'); ?>
+					<?php do_action( 'sk_before_page_title' ); ?>
 
-					<h1 class="single-post__title"><?php the_title(); ?></h1>
+                    <h1 class="single-post__title"><?php the_title(); ?></h1>
 
-					<?php do_action('sk_after_page_title'); ?>
+					<?php do_action( 'sk_after_page_title' ); ?>
 
-					<?php do_action('sk_before_page_content'); ?>
+					<?php do_action( 'sk_before_page_content' ); ?>
 
 					<?php the_content(); ?>
 
-					<div class="clearfix"></div>
+                    <div class="clearfix"></div>
 
-					<div class="row">
+                    <div class="row">
 
-						<form class="operation-message-form" method="post">
-						<?php
+                        <form id="operation-message-form" method="post" action="">
+
+                            <input type="hidden" value="<?php echo wp_create_nonce( 'sk-operation-messages' ); ?>" name="nonce" />
+							<?php
 							acf_form(
 								array(
 									'field_groups' => array( '597' ),
-									'form' => false
+									'form'         => false
 								)
 							);
-						?>
-						</form>
+							?>
+                            <button type="button" id="operation-message-form-submit"
+                                    class="btn btn-secondary float-xs-right"><?php _e( 'Spara driftmeddelande', 'msva' ); ?></button>
 
-					</div>
-					<div class="row">
-						<input type="submit" value="<?php _e( 'Spara driftmeddelande', 'msva' ); ?>" class="btn btn-secondary float-xs-right" />
-					</div>
-					<div class="clearfix"></div>
+                        </form>
 
-					<?php do_action('sk_after_page_content'); ?>
+                    </div>
+
+                    <div class="clearfix"></div>
+
+					<?php do_action( 'sk_after_page_content' ); ?>
 
 
-				</div>
+                </div>
 
-			</div> <?php //.row ?>
+            </div> <?php //.row ?>
 
-		</div> <?php //.container-fluid ?>
+        </div> <?php //.container-fluid ?>
 
 	<?php else : ?>
 

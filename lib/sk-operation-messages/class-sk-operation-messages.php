@@ -1,6 +1,7 @@
 <?php
 
 require_once locate_template( 'lib/sk-operation-messages/class-sk-operation-messages-posttype.php' );
+require_once locate_template( 'lib/sk-operation-messages/class-sk-operation-messages-ajax.php' );
 
 class SK_Operation_Messages {
 
@@ -8,19 +9,17 @@ class SK_Operation_Messages {
 	public function __construct() {
 
 		$post_type = new SK_Operation_Messages_Posttype();
+		$ajax = new SK_Operation_Messages_Ajax();
 
+		// Register the post type for operation messages
 		add_action( 'init', array( $post_type, 'register_posttype' ) );
-		add_action( 'wp_enqueue_scripts', array( 'register_scripts_and_styles' ) );
 
+		// Register script and style if page uses the correct template
 		add_filter( 'template_include', array( $this, 'enqueue_scripts_and_styles' ), 99 );
 
-	}
-
-
-	public function register_scripts_and_styles() {
-
-		wp_register_style( 'sk-operation-messages-css', get_stylesheet_directory_uri() . '/lib/sk-operation-messages/assets/css/sk-operation-messages.css' );
-
+		// Setup ajax callbacks
+		add_action( 'wp_ajax_new_message', array( $ajax, 'callback' ) );
+		add_action( 'wp_ajax_nopriv_new_message', array( $ajax, 'callback' ) );
 
 	}
 
@@ -37,6 +36,7 @@ class SK_Operation_Messages {
 		if ( $file_name = 'page-skapa-driftmeddelande.php' ) {
 
 			wp_enqueue_style( 'sk-operation-messages-css', get_stylesheet_directory_uri() . '/lib/sk-operation-messages/assets/css/sk-operation-messages.css' );
+			wp_enqueue_script( 'sk-operation-messages-js', get_stylesheet_directory_uri() . '/lib/sk-operation-messages/assets/js/sk-operation-messages.js', array( 'jquery' ) );
 
 		}
 
