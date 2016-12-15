@@ -89,7 +89,7 @@ class SK_Operation_Messages_Ajax {
 			$title .=  ' - ' . $street;
 		}
 
-		return $title;
+		return sanitize_text_field( $title );
 
 	}
 
