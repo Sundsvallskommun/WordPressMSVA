@@ -29,9 +29,6 @@ class SK_Operation_Messages_Ajax {
 
 	private function save_message( $params, $errand_text ) {
 
-		// Initialize the page ID to -1. This indicates no action has been taken.
-		$post_id = - 1;
-
 		// Setup the author, slug, and title for the post
 		$author_id = 1;
 		$slug      = 'example-post';
