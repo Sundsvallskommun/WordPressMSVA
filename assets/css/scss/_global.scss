@@ -23,3 +23,22 @@ h1, h2, h3, h4, h5, h6,
 .archive-post .media-left{
   padding: 0;
 }
+
+
+.page-template-template-startpage{
+  .page-widgets{
+    display: none;
+  }
+
+}
+
+.news{
+
+  h3{
+    color: $msva_blue !important;
+  }
+
+  .widget-latest-news{
+    margin-top: 2em;
+  }
+}
