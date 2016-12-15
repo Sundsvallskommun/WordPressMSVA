@@ -34,7 +34,7 @@ class SK_Operation_Message_Shortcode {
                     </select>
 
                     <label><?php _e( 'Egen händelse', 'msva' ); ?></label>
-                    <input type="text" name="operation_message[om_custom_event]" class="form-control" />
+                    <input type="text" name="operation_message[om_custom_event]" class="form-control" id="operation-message-custom-event" />
 
                 </div>
                 <!-- End Event section -->
@@ -196,6 +196,53 @@ class SK_Operation_Message_Shortcode {
                         class="btn btn-secondary float-xs-right"><?php _e( 'Spara driftmeddelande', 'msva' ); ?></button>
 
             </form>
+
+        <div class="row operation-message-loader">
+            <div class="card card-block">
+                <div class="operation-message-loader-header">
+                    <h4 class="card-title"><?php _e( 'Sparar driftmeddelande', 'msva' ); ?></h4>
+                </div>
+                <div class="sk-circle">
+                    <div class="sk-circle1 sk-child"></div>
+                    <div class="sk-circle2 sk-child"></div>
+                    <div class="sk-circle3 sk-child"></div>
+                    <div class="sk-circle4 sk-child"></div>
+                    <div class="sk-circle5 sk-child"></div>
+                    <div class="sk-circle6 sk-child"></div>
+                    <div class="sk-circle7 sk-child"></div>
+                    <div class="sk-circle8 sk-child"></div>
+                    <div class="sk-circle9 sk-child"></div>
+                    <div class="sk-circle10 sk-child"></div>
+                    <div class="sk-circle11 sk-child"></div>
+                    <div class="sk-circle12 sk-child"></div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row operation-message-response-success">
+            <div class="card card-block">
+                <div class="operation-message-loader-header">
+                    <h4 class="card-title"><?php _e( 'Driftmeddelande sparat!', 'msva' ); ?></h4>
+                </div>
+                <div class="card-text">
+                    <button type="button" class="btn btn-secondary operation-message-new-message"><?php _e( 'Nytt driftmeddelande', 'msva' ); ?></button>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row operation-message-response-failure">
+            <div class="card card-block">
+                <div class="operation-message-loader-header">
+                    <h4 class="card-title"><?php _e( 'Ett fel inträffade. Driftmeddelande kunde ej sparas!', 'msva' ); ?></h4>
+                </div>
+                <div class="card-text">
+                    <button type="button" class="btn btn-secondary operation-message-new-message"><?php _e( 'Nytt driftmeddelande', 'msva' ); ?></button>
+                </div>
+            </div>
+        </div>
+
 
 
 		<?php

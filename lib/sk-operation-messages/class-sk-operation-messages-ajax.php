@@ -14,7 +14,7 @@ class SK_Operation_Messages_Ajax {
 		}
 
 		// Check OK. Save the message.
-		if ( $this->save_message( $params, $errand_text ) ) {
+		if ( $this->save_message( $params ) ) {
 
 			wp_send_json_success(
 				'Worked!'
@@ -27,7 +27,7 @@ class SK_Operation_Messages_Ajax {
 	}
 
 
-	private function save_message( $params, $errand_text ) {
+	private function save_message( $params ) {
 
 		// Setup the author, slug, and title for the post
 		$author_id = get_current_user_id();
