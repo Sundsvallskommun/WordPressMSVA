@@ -23,7 +23,7 @@ class SK_Operation_Message_Shortcode {
 
                     <h3><?php _e( 'Händelse', 'msva' ); ?></h3>
 
-                    <select class="form-control" name="operation_message[om_event]">
+                    <select class="form-control" name="operation_message[om_event]" id="operation-message-event">
                         <option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
                         <option value="Vattenläcka"><?php _e( 'Vattenläcka', 'msva' ); ?></option>
                         <option value="Vattenavstängning"><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
@@ -52,7 +52,7 @@ class SK_Operation_Message_Shortcode {
                         'quicktags' => true,
                         'media_buttons' => false,
                         'textarea_rows' => 6,
-                        'editor_class' => 'form-control'
+                        'editor_class' => 'form-control operation-message-information-1'
                     );
                     wp_editor( '', 'operation_message[om_information_part_1]', $wp_editor_args );
                     ?>
@@ -61,10 +61,29 @@ class SK_Operation_Message_Shortcode {
                     <input type="text" id="area_street" name="operation_message[om_area_street]" class="form-control" />
 
                     <label><?php _e( 'Information del 2', 'msva' ); ?></label>
+                    <?php
+                    $wp_editor_args = array (
+	                    'tinymce' => false,
+	                    'quicktags' => true,
+	                    'media_buttons' => false,
+	                    'textarea_rows' => 6,
+	                    'editor_class' => 'form-control operation-message-information-2'
+                    );
+                    ?>
                     <?php wp_editor( '', 'operation_message[om_information_part_2]', $wp_editor_args ); ?>
 
                     <label><?php _e( 'Avslut', 'msva' ); ?></label>
-                    <?php wp_editor( '', 'operation_message[om_ending]', $wp_editor_args ); ?>
+                    <?php $default_ending_text = __( 'För ytterligare information kontakta vår Felanmälan på telefon 060-192070.', 'msva' ); ?>
+                    <?php
+                    $wp_editor_args = array (
+                        'tinymce' => false,
+                        'quicktags' => true,
+                        'media_buttons' => false,
+                        'textarea_rows' => 6,
+                        'editor_class' => 'form-control operation-message-ending'
+                    );
+                    ?>
+                    <?php wp_editor( $default_ending_text, 'operation_message[om_ending]', $wp_editor_args ); ?>
 
                 </div>
                 <!-- End information and location section -->

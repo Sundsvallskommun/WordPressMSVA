@@ -62,7 +62,6 @@ class SK_Operation_Messages_Ajax {
 
 				foreach ( $params['operation_message'] as $key => $value ) {
 
-					//update_field( $key, $value, $post_id );
 					update_post_meta( $post_id, $key, $value );
 
 				}
