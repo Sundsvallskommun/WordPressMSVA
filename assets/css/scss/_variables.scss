@@ -1,3 +1,9 @@
+$msva_blue: #2b7fbf;
+$msva_green: #5bab62;
+$msva_purple: #327fb5;
+
+$msva_border_color: #c8d2ec;
+
 $msva-base-color: #1370b8;
 //$msva-base-button-inactive: #ffffff;
 //$msva-base-button-passive: $msva-base-button-inactive;
@@ -12,7 +18,7 @@ $msva-base-button-active-border: #1370b8;
 
 $btn-secondary-color:            #0e85c5 !default;
 $btn-secondary-bg:               #fff !default;
-$btn-secondary-border:           #c8d2ec;
+$btn-secondary-border:           $msva_border_color;
 
 
 $font-family-large:          'Lato', sans-serif;
@@ -24,3 +30,5 @@ $headings-font-family:       $font-family-large;
 $headings-font-weight:       400 !default;
 $headings-line-height:       1.1 !default;
 $headings-color:             inherit !default;
+
+

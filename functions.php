@@ -89,3 +89,7 @@ $sk_ongoing_projects = new SK_Ongoing_Projects();
 /* SK FAQ */
 require_once locate_template( 'lib/sk-faq/class-sk-faq.php' );
 $sk_faq = new SK_FAQ();
+
+/* SK (MSVA) Blocks */
+require_once locate_template( 'lib/sk-blocks/class-sk-blocks.php' );
+$sk_blocks = new SK_Blocks();
