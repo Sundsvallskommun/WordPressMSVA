@@ -93,3 +93,7 @@ $sk_faq = new SK_FAQ();
 /* SK (MSVA) Blocks */
 require_once locate_template( 'lib/sk-blocks/class-sk-blocks.php' );
 $sk_blocks = new SK_Blocks();
+
+/* SK Operation Messages */
+require_once locate_template( 'lib/sk-operation-messages/class-sk-operation-messages.php' );
+$sk_operation_messages = new SK_Operation_Messages();
