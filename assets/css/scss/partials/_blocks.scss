@@ -4,10 +4,14 @@
   //margin-bottom: 2em;
 
 }
+
+.row.blocks:first-child{
+  margin-top: 4em;
+}
 .row.blocks > [class*='col-'] {
   display: flex;
   flex-direction: column;
-  margin-bottom: 2em;
+  margin-bottom: 6em;
 }
 
 /*
@@ -112,8 +116,37 @@
         max-width: 100%;
       }
     }
+
+
+
+
   }
 }
 
+.block-footer__content {
+
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+}
+
+.block-link-list {
+
+  h3{
+    font-size: 140%;
+    color: #023b5b;
+    margin-top: -1.5em;
+  }
+
+  &__title {
+    color: #809dad;
+    font-size: 70%;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    padding: 1em 0 1.5em 0;
+  }
+
+}
 
 

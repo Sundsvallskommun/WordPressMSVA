@@ -3,7 +3,24 @@
     "title": "Block - l\u00e4nka block",
     "fields": [
         {
-            "key": "field_58526dc24bf03",
+            "key": "field_5852b263062df__trashed",
+            "label": "",
+            "name": "",
+            "type": "message",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Om det b\u00e5de finns intern och extern l\u00e4nk kopplad till blocket s\u00e5 \u00e4r den interna l\u00e4nken prioriterad.",
+            "new_lines": "wpautop",
+            "esc_html": 0
+        },
+        {
+            "key": "field_58526dc24bf03__trashed",
             "label": "Intern l\u00e4nk",
             "name": "",
             "type": "tab",
@@ -19,7 +36,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_58526e0b4bf04",
+            "key": "field_58526e0b4bf04__trashed",
             "label": "V\u00e4lj en intern l\u00e4nk",
             "name": "sk-block-link-internal",
             "type": "page_link",
@@ -42,7 +59,7 @@
             "multiple": 0
         },
         {
-            "key": "field_58526e364bf05",
+            "key": "field_58526e364bf05__trashed",
             "label": "Extern l\u00e4nk",
             "name": "",
             "type": "tab",
@@ -58,7 +75,7 @@
             "endpoint": 0
         },
         {
-            "key": "field_58526e484bf06",
+            "key": "field_58526e484bf06__trashed",
             "label": "Ange extern l\u00e4nk",
             "name": "sk-block-link-external",
             "type": "url",
@@ -99,5 +116,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1481804867
+    "modified": 1481833653
 }

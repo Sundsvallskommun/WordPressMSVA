@@ -77,6 +77,10 @@ class SK_Blocks_Public {
 				echo self::get_block_image_with_text( $block_id );
 				break;
 
+			case 'lanklista':
+				echo self::get_block_link_list( $block_id );
+				break;
+
 			default:
 				echo "något har gått fel";
 		}
@@ -151,6 +155,40 @@ class SK_Blocks_Public {
 					<div class="block-footer__link"><a href="<?php echo $link; ?>"><?php _e( 'Läs mer', 'sk-tivoli' );?><?php material_icon( 'keyboard arrow right', array('size' => '1.3em' ) ); ?></a></div>
 				<?php endif; ?>
 			</div>
+
+		</div>
+
+		<?php
+		$block = ob_get_clean();
+
+		return $block;
+
+	}
+
+
+	private static function get_block_link_list( $block_id = '' ){
+
+		$title = get_field( 'sk_block_link_list_title', $block_id );
+		$groups = get_field( 'sk_block_link_list', $block_id );
+		$markup  = '<a class="eservice-link" href="%s" title="%3$s"><span><span class="eservice-link__icon">%s</span><span class="eservice-link__name">%s</span></span></a>';
+		ob_start();
+		?>
+
+		<div class="block block-link-list">
+			<?php if(!empty( $title )) : ?>
+				<h3><?php echo $title; ?></h3>
+			<?php endif; ?>
+			<?php foreach( $groups as $group ) : ?>
+				<div class="block-link-list__title"><?php echo $group['rubrik']; ?></div>
+				<ul>
+				<?php foreach( $group['link'] as $link ) : ?>
+					<li>
+						<?php echo sprintf($markup, $link['linklist_url'], get_icon('arrow-right'), $link['linklist_title']) ?>
+					</li>
+				<?php endforeach; ?>
+				</ul>
+			<?php endforeach; ?>
+
 
 		</div>
 

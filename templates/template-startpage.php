@@ -47,8 +47,11 @@ $sections = SK_Blocks::get_sections();
 			</div>
 			</div>
 
-		<div class="col-md-6 block-grid-border">[klistrad nyhet]</div>
-	</div>
+		<div class="col-md-6 block-grid-border">klistrad nyhet ...
+			</div>
+
+		</div>
+
 
 </div>
 <!--

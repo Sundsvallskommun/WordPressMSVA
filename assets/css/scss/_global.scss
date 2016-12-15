@@ -42,3 +42,27 @@ h1, h2, h3, h4, h5, h6,
     margin-top: 2em;
   }
 }
+
+.site-header .navbar {
+  padding-top: 1.25rem;
+  margin-bottom: 1.25rem;
+
+
+    .region-select{
+      span{
+        text-transform: uppercase;
+        font-weight: 400;
+        letter-spacing: 1px;
+        padding-right: 10px;
+      }
+
+      .icon{
+        margin-left: 1em;
+        padding-bottom: 10px;
+      }
+
+    }
+
+
+}
+
