@@ -13,7 +13,6 @@ class SK_Operation_Message_Shortcode {
 
 		ob_start();
 		?>
-        <div class="row">
 
             <form id="operation-message-form" method="post" action="">
 
@@ -24,7 +23,7 @@ class SK_Operation_Message_Shortcode {
 
                     <h3><?php _e( 'Händelse', 'msva' ); ?></h3>
 
-                    <select class="form-control" name="operation_message[event]">
+                    <select class="form-control" name="operation_message[om_event]">
                         <option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
                         <option value="Vattenläcka"><?php _e( 'Vattenläcka', 'msva' ); ?></option>
                         <option value="Vattenavstängning"><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
@@ -35,7 +34,7 @@ class SK_Operation_Message_Shortcode {
                     </select>
 
                     <label><?php _e( 'Egen händelse', 'msva' ); ?></label>
-                    <input type="text" name="operation_message[custom_event]" class="form-control" />
+                    <input type="text" name="operation_message[om_custom_event]" class="form-control" />
 
                 </div>
                 <!-- End Event section -->
@@ -53,19 +52,19 @@ class SK_Operation_Message_Shortcode {
                         'quicktags' => true,
                         'media_buttons' => false,
                         'textarea_rows' => 6,
-
+                        'editor_class' => 'form-control'
                     );
-                    wp_editor( '', 'operation_message[information_part_1]', $wp_editor_args );
+                    wp_editor( '', 'operation_message[om_information_part_1]', $wp_editor_args );
                     ?>
 
                     <label for="area_street"><?php _e( 'Område/Gata', 'msva' ); ?></label>
-                    <input type="text" id="area_street" name="operation_message[area_street]" class="form-control" />
+                    <input type="text" id="area_street" name="operation_message[om_area_street]" class="form-control" />
 
                     <label><?php _e( 'Information del 2', 'msva' ); ?></label>
-                    <?php wp_editor( '', 'operation_message[information_part_2]', $wp_editor_args ); ?>
+                    <?php wp_editor( '', 'operation_message[om_information_part_2]', $wp_editor_args ); ?>
 
                     <label><?php _e( 'Avslut', 'msva' ); ?></label>
-                    <?php wp_editor( '', 'operation_message[ending]', $wp_editor_args ); ?>
+                    <?php wp_editor( '', 'operation_message[om_ending]', $wp_editor_args ); ?>
 
                 </div>
                 <!-- End information and location section -->
@@ -79,46 +78,46 @@ class SK_Operation_Message_Shortcode {
                     <div class="row">
 
                         <div class="col-xs-4">
-                            <input type="text" name="operation_message[publish_at_date]" class="form-control datepicker" data-date-format="yyyy-mm-dd" placeholder="<?php _e( 'Publiceringsdatum' ); ?>" />
+                            <input type="text" name="operation_message[om_publish_at_date]" class="form-control datepicker" data-date-format="yyyy-mm-dd" placeholder="<?php _e( 'Publiceringsdatum' ); ?>" />
                         </div>
 
                         <div class="col-xs-2">
-                            <select name="operation_message[publish_at_hour]" class="form-control">
+                            <select name="operation_message[om_publish_at_hour]" class="form-control">
                                 <option value="00">00</option>
-                                <option value="00">01</option>
-                                <option value="00">02</option>
-                                <option value="00">03</option>
-                                <option value="00">04</option>
-                                <option value="00">05</option>
-                                <option value="00">06</option>
-                                <option value="00">07</option>
-                                <option value="00">08</option>
-                                <option value="00">09</option>
-                                <option value="00">10</option>
-                                <option value="00">11</option>
-                                <option value="00">12</option>
-                                <option value="00">13</option>
-                                <option value="00">14</option>
-                                <option value="00">15</option>
-                                <option value="00">16</option>
-                                <option value="00">17</option>
-                                <option value="00">18</option>
-                                <option value="00">19</option>
-                                <option value="00">20</option>
-                                <option value="00">21</option>
-                                <option value="00">22</option>
-                                <option value="00">23</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
                             </select>
                         </div>
 
                         <div class="col-xs-2">
-                            <select name="operation_message[publish_at_minute]" class="form-control">
+                            <select name="operation_message[om_publish_at_minute]" class="form-control">
                                 <option value="00">00</option>
-                                <option value="00">10</option>
-                                <option value="00">20</option>
-                                <option value="00">30</option>
-                                <option value="00">40</option>
-                                <option value="00">50</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
                             </select>
                         </div>
                     </div>
@@ -126,46 +125,46 @@ class SK_Operation_Message_Shortcode {
                     <div class="row">
 
                         <div class="col-xs-4">
-                            <input type="text" name="operation_message[archive_at_date]" class="form-control datepicker" data-date-format="yyyy-mm-dd" placeholder="<?php _e( 'Arkiveringsdatum' ); ?>"/>
+                            <input type="text" name="operation_message[om_archive_at_date]" class="form-control datepicker" data-date-format="yyyy-mm-dd" placeholder="<?php _e( 'Arkiveringsdatum' ); ?>"/>
                         </div>
 
                         <div class="col-xs-2">
-                            <select name="operation_message[archive_at_hour]" class="form-control">
+                            <select name="operation_message[om_archive_at_hour]" class="form-control">
                                 <option value="00">00</option>
-                                <option value="00">01</option>
-                                <option value="00">02</option>
-                                <option value="00">03</option>
-                                <option value="00">04</option>
-                                <option value="00">05</option>
-                                <option value="00">06</option>
-                                <option value="00">07</option>
-                                <option value="00">08</option>
-                                <option value="00">09</option>
-                                <option value="00">10</option>
-                                <option value="00">11</option>
-                                <option value="00">12</option>
-                                <option value="00">13</option>
-                                <option value="00">14</option>
-                                <option value="00">15</option>
-                                <option value="00">16</option>
-                                <option value="00">17</option>
-                                <option value="00">18</option>
-                                <option value="00">19</option>
-                                <option value="00">20</option>
-                                <option value="00">21</option>
-                                <option value="00">22</option>
-                                <option value="00">23</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                                <option value="23">23</option>
                             </select>
                         </div>
 
                         <div class="col-xs-2">
-                            <select name="operation_message[archive_at_minute]" class="form-control">
+                            <select name="operation_message[om_archive_at_minute]" class="form-control">
                                 <option value="00">00</option>
-                                <option value="00">10</option>
-                                <option value="00">20</option>
-                                <option value="00">30</option>
-                                <option value="00">40</option>
-                                <option value="00">50</option>
+                                <option value="10">10</option>
+                                <option value="20">20</option>
+                                <option value="30">30</option>
+                                <option value="40">40</option>
+                                <option value="50">50</option>
                             </select>
                         </div>
 
@@ -179,7 +178,6 @@ class SK_Operation_Message_Shortcode {
 
             </form>
 
-        </div>
 
 		<?php
 		return ob_get_clean();

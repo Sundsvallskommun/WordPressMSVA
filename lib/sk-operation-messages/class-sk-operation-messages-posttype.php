@@ -90,7 +90,24 @@ class SK_Operation_Messages_Posttype {
 	}
 
 
-	public function metabox_callback() {
+	public function metabox_callback( $post ) {
+
+	    // Load and setup meta data for the message
+	    $meta = get_post_custom( $post->ID );
+	    $event = $meta['om_event'][0];
+	    $custom_event = $meta['om_custom_event'][0];
+	    $info_1 = $meta['om_information_part_1'][0];
+		$info_2 = $meta['om_information_part_2'][0];
+		$street = $meta['om_area_street'][0];
+		$ending = $meta['om_ending'][0];
+		$publish_at_date = $meta['om_publish_at_date'][0];
+		$publish_at_hour = $meta['om_publish_at_hour'][0];
+		$publish_at_minute = $meta['om_publish_at_minute'][0];
+		$archive_at_date = $meta['om_archive_at_date'][0];
+		$archive_at_hour = $meta['om_archive_at_hour'][0];
+		$archive_at_minute = $meta['om_archive_at_minute'][0];
+		
+
 		?>
 		<div class="operation-message-metabox-wrapper">
 
@@ -101,16 +118,16 @@ class SK_Operation_Messages_Posttype {
 
 				<select name="operation_message[event]">
 					<option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
-					<option value="Vattenläcka"><?php _e( 'Vattenläcka', 'msva' ); ?></option>
-					<option value="Vattenavstängning"><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
-					<option value="Spolning av avloppsledningar"><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
-					<option value="Spolning av vattenledningar"><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
-					<option value="Vattenläcka åtgärdad"><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
-					<option value="1"><?php _e( 'Egen händelse', 'msva' ); ?></option>
+					<option value="Vattenläcka" <?php selected( $event, 'Vattenläcka' ); ?>><?php _e( 'Vattenläcka', 'msva' ); ?></option>
+					<option value="Vattenavstängning" <?php selected( $event, 'Vattenavstängning' ); ?>><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
+					<option value="Spolning av avloppsledningar" <?php selected( $event, 'Sploning av avloppsledningar' ); ?>><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
+					<option value="Spolning av vattenledningar" <?php selected( $event, 'Sploning av vattenledningar' ); ?>><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
+					<option value="Vattenläcka åtgärdad" <?php selected( $event, 'Vattenläcka åtgärdad' ); ?>><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
+					<option value="1" <?php selected( $event, 1 ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
 				</select>
 
 				<label><?php _e( 'Egen händelse', 'msva' ); ?>
-					<input type="text" name="operation_message[custom_event]" />
+					<input type="text" name="operation_message[custom_event]" value="<?php echo $custom_event; ?>"/>
 				</label>
 
 			</div>
@@ -129,18 +146,18 @@ class SK_Operation_Messages_Posttype {
 						'textarea_rows' => 6,
 
 					);
-					wp_editor( '', 'operation_message[information_part_1]', $wp_editor_args );
+					wp_editor( $info_1, 'operation_message[information_part_1]', $wp_editor_args );
 				?>
 
 				<label for="area_street"><?php _e( 'Område/Gata', 'msva' ); ?></label><br />
-				<input type="text" id="area_street" name="operation_message[area_street]" />
+				<input type="text" id="area_street" name="operation_message[area_street]" value="<?php echo $street; ?>" />
 				<br />
 
 				<label><?php _e( 'Information del 2', 'msva' ); ?></label>
-				<?php wp_editor( '', 'operation_message[information_part_2]', $wp_editor_args ); ?>
+				<?php wp_editor( $info_2, 'operation_message[information_part_2]', $wp_editor_args ); ?>
 
 				<label><?php _e( 'Avslut', 'msva' ); ?></label>
-				<?php wp_editor( '', 'operation_message[ending]', $wp_editor_args ); ?>
+				<?php wp_editor( $ending, 'operation_message[ending]', $wp_editor_args ); ?>
 
 			</div>
 
@@ -150,82 +167,82 @@ class SK_Operation_Messages_Posttype {
 				<hr />
 
 				<label><?php _e( 'Publicering', 'msva' ); ?></label>
-				<input type="text" name="operation_message[publish_at_date]" />
+				<input type="text" name="operation_message[publish_at_date]" value="<?php echo $publish_at_date; ?>" />
 
                 <select name="operation_message[publish_at_hour]">
-                    <option value="00">00</option>
-                    <option value="00">01</option>
-                    <option value="00">02</option>
-                    <option value="00">03</option>
-                    <option value="00">04</option>
-                    <option value="00">05</option>
-                    <option value="00">06</option>
-                    <option value="00">07</option>
-                    <option value="00">08</option>
-                    <option value="00">09</option>
-                    <option value="00">10</option>
-                    <option value="00">11</option>
-                    <option value="00">12</option>
-                    <option value="00">13</option>
-                    <option value="00">14</option>
-                    <option value="00">15</option>
-                    <option value="00">16</option>
-                    <option value="00">17</option>
-                    <option value="00">18</option>
-                    <option value="00">19</option>
-                    <option value="00">20</option>
-                    <option value="00">21</option>
-                    <option value="00">22</option>
-                    <option value="00">23</option>
+                    <option value="00" <?php selected( $publish_at_hour, '00' ); ?>>00</option>
+                    <option value="01" <?php selected( $publish_at_hour, '01' ); ?>>01</option>
+                    <option value="02" <?php selected( $publish_at_hour, '02' ); ?>>02</option>
+                    <option value="03" <?php selected( $publish_at_hour, '03' ); ?>>03</option>
+                    <option value="04" <?php selected( $publish_at_hour, '04' ); ?>>04</option>
+                    <option value="05" <?php selected( $publish_at_hour, '05' ); ?>>05</option>
+                    <option value="06" <?php selected( $publish_at_hour, '06' ); ?>>06</option>
+                    <option value="07" <?php selected( $publish_at_hour, '07' ); ?>>07</option>
+                    <option value="08" <?php selected( $publish_at_hour, '08' ); ?>>08</option>
+                    <option value="09" <?php selected( $publish_at_hour, '09' ); ?>>09</option>
+                    <option value="10" <?php selected( $publish_at_hour, '10' ); ?>>10</option>
+                    <option value="11" <?php selected( $publish_at_hour, '11' ); ?>>11</option>
+                    <option value="12" <?php selected( $publish_at_hour, '12' ); ?>>12</option>
+                    <option value="13" <?php selected( $publish_at_hour, '13' ); ?>>13</option>
+                    <option value="14" <?php selected( $publish_at_hour, '14' ); ?>>14</option>
+                    <option value="15" <?php selected( $publish_at_hour, '15' ); ?>>15</option>
+                    <option value="16" <?php selected( $publish_at_hour, '16' ); ?>>16</option>
+                    <option value="17" <?php selected( $publish_at_hour, '17' ); ?>>17</option>
+                    <option value="18" <?php selected( $publish_at_hour, '18' ); ?>>18</option>
+                    <option value="19" <?php selected( $publish_at_hour, '19' ); ?>>19</option>
+                    <option value="20" <?php selected( $publish_at_hour, '20' ); ?>>20</option>
+                    <option value="21" <?php selected( $publish_at_hour, '21' ); ?>>21</option>
+                    <option value="22" <?php selected( $publish_at_hour, '22' ); ?>>22</option>
+                    <option value="23" <?php selected( $publish_at_hour, '23' ); ?>>23</option>
                 </select>
 
                 <select name="operation_message[publish_at_minute]">
-                    <option value="00">00</option>
-                    <option value="00">10</option>
-                    <option value="00">20</option>
-                    <option value="00">30</option>
-                    <option value="00">40</option>
-                    <option value="00">50</option>
+                    <option value="00" <?php selected( $publish_at_minute, '00' ); ?>>00</option>
+                    <option value="10" <?php selected( $publish_at_minute, '10' ); ?>>10</option>
+                    <option value="20" <?php selected( $publish_at_minute, '20' ); ?>>20</option>
+                    <option value="30" <?php selected( $publish_at_minute, '30' ); ?>>30</option>
+                    <option value="40" <?php selected( $publish_at_minute, '40' ); ?>>40</option>
+                    <option value="50" <?php selected( $publish_at_minute, '50' ); ?>>50</option>
                 </select>
 				<br />
 
 				<label><?php _e( 'Arkivering', 'msva' ); ?></label>
-                <input type="text" name="operation_message[archive_at_date]" />
+                <input type="text" name="operation_message[archive_at_date]" value="<?php echo $archive_at_date; ?>" />
 
                 <select name="operation_message[archive_at_hour]">
-                    <option value="00">00</option>
-                    <option value="00">01</option>
-                    <option value="00">02</option>
-                    <option value="00">03</option>
-                    <option value="00">04</option>
-                    <option value="00">05</option>
-                    <option value="00">06</option>
-                    <option value="00">07</option>
-                    <option value="00">08</option>
-                    <option value="00">09</option>
-                    <option value="00">10</option>
-                    <option value="00">11</option>
-                    <option value="00">12</option>
-                    <option value="00">13</option>
-                    <option value="00">14</option>
-                    <option value="00">15</option>
-                    <option value="00">16</option>
-                    <option value="00">17</option>
-                    <option value="00">18</option>
-                    <option value="00">19</option>
-                    <option value="00">20</option>
-                    <option value="00">21</option>
-                    <option value="00">22</option>
-                    <option value="00">23</option>
+                    <option value="00" <?php selected( $archive_at_hour, '00' ); ?>>00</option>
+                    <option value="01" <?php selected( $archive_at_hour, '01' ); ?>>01</option>
+                    <option value="02" <?php selected( $archive_at_hour, '02' ); ?>>02</option>
+                    <option value="03" <?php selected( $archive_at_hour, '03' ); ?>>03</option>
+                    <option value="04" <?php selected( $archive_at_hour, '04' ); ?>>04</option>
+                    <option value="05" <?php selected( $archive_at_hour, '05' ); ?>>05</option>
+                    <option value="06" <?php selected( $archive_at_hour, '06' ); ?>>06</option>
+                    <option value="07" <?php selected( $archive_at_hour, '07' ); ?>>07</option>
+                    <option value="08" <?php selected( $archive_at_hour, '08' ); ?>>08</option>
+                    <option value="09" <?php selected( $archive_at_hour, '09' ); ?>>09</option>
+                    <option value="10" <?php selected( $archive_at_hour, '10' ); ?>>10</option>
+                    <option value="11" <?php selected( $archive_at_hour, '11' ); ?>>11</option>
+                    <option value="12" <?php selected( $archive_at_hour, '12' ); ?>>12</option>
+                    <option value="13" <?php selected( $archive_at_hour, '13' ); ?>>13</option>
+                    <option value="14" <?php selected( $archive_at_hour, '14' ); ?>>14</option>
+                    <option value="15" <?php selected( $archive_at_hour, '15' ); ?>>15</option>
+                    <option value="16" <?php selected( $archive_at_hour, '16' ); ?>>16</option>
+                    <option value="17" <?php selected( $archive_at_hour, '17' ); ?>>17</option>
+                    <option value="18" <?php selected( $archive_at_hour, '18' ); ?>>18</option>
+                    <option value="19" <?php selected( $archive_at_hour, '19' ); ?>>19</option>
+                    <option value="20" <?php selected( $archive_at_hour, '20' ); ?>>20</option>
+                    <option value="21" <?php selected( $archive_at_hour, '21' ); ?>>21</option>
+                    <option value="22" <?php selected( $archive_at_hour, '22' ); ?>>22</option>
+                    <option value="23" <?php selected( $archive_at_hour, '23' ); ?>>23</option>
                 </select>
 
                 <select name="operation_message[archive_at_minute]">
-                    <option value="00">00</option>
-                    <option value="00">10</option>
-                    <option value="00">20</option>
-                    <option value="00">30</option>
-                    <option value="00">40</option>
-                    <option value="00">50</option>
+                    <option value="00" <?php selected( $archive_at_minute, '00' ); ?>>00</option>
+                    <option value="10" <?php selected( $archive_at_minute, '10' ); ?>>10</option>
+                    <option value="20" <?php selected( $archive_at_minute, '20' ); ?>>20</option>
+                    <option value="30" <?php selected( $archive_at_minute, '30' ); ?>>30</option>
+                    <option value="40" <?php selected( $archive_at_minute, '40' ); ?>>40</option>
+                    <option value="50" <?php selected( $archive_at_minute, '50' ); ?>>50</option>
                 </select>
 				<br />
 
