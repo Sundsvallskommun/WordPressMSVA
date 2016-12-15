@@ -120,8 +120,8 @@ class SK_Operation_Messages_Posttype {
 					<option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
 					<option value="Vattenläcka" <?php selected( $event, 'Vattenläcka' ); ?>><?php _e( 'Vattenläcka', 'msva' ); ?></option>
 					<option value="Vattenavstängning" <?php selected( $event, 'Vattenavstängning' ); ?>><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
-					<option value="Spolning av avloppsledningar" <?php selected( $event, 'Sploning av avloppsledningar' ); ?>><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
-					<option value="Spolning av vattenledningar" <?php selected( $event, 'Sploning av vattenledningar' ); ?>><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
+					<option value="Spolning av avloppsledningar" <?php selected( $event, 'Spolning av avloppsledningar' ); ?>><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
+					<option value="Spolning av vattenledningar" <?php selected( $event, 'Spolning av vattenledningar' ); ?>><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
 					<option value="Vattenläcka åtgärdad" <?php selected( $event, 'Vattenläcka åtgärdad' ); ?>><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
 					<option value="1" <?php selected( $event, 1 ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
 				</select>
