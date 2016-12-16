@@ -45,6 +45,9 @@ class SK_Operation_Messages {
 
 		add_shortcode( 'operation_message_form', array( $shortcode, 'callback' ) );
 
+		// Add the single operation message template to the template list
+		add_filter( 'template_include', array( $this, 'add_single_template' ) );
+
 
 	}
 
@@ -151,5 +154,34 @@ class SK_Operation_Messages {
 
 	}
 
+
+	/**
+	 * Include the single template if this is
+	 * a operation message post type.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 * @param string    the template
+	 *
+	 * @return string   the template to use
+	 */
+	public function add_single_template( $template ) {
+		global $wp;
+
+		if ( isset( $wp->query_vars['post_type'] ) && $wp->query_vars['post_type'] == 'operation_message' ) {
+
+			$template_filename = 'single-operation_message.php';
+			if ( file_exists( get_stylesheet_directory() . '/lib/sk-operation-messages/assets/templates/' . $template_filename ) ) {
+
+				return get_stylesheet_directory() . '/lib/sk-operation-messages/assets/templates/' . $template_filename;
+
+			}
+
+		}
+
+		return $template;
+
+	}
 
 }
