@@ -28,7 +28,7 @@
 
   li {
 
-    padding: 0.3em 0;
+    padding: 0.3em 0 0.3em 0.35em;
 
     &.active {
       color: #cc2e2b
@@ -38,5 +38,11 @@
     &.done {
       color: #48804e;
     }
+    @include media-breakpoint-up(md) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
   }
 }

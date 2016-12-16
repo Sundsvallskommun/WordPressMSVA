@@ -5,40 +5,10 @@
  */
 
 get_header();
-
 $sections = SK_Blocks::get_sections();
 ?>
 
-<?php // Mobile only ?>
-<?php //get_template_part('partials/boxes'); ?>
-<?php //$temp = SK_Operation_Messages::messages( array( 'publish' ), true );
-
-//util::Debug( $temp );
-?>
-<div class="operation-messages">
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-8">
-
-				<div class="operation-messages-list">
-					<ul>
-						<li class="active"><?php material_icon( 'error', array( 'size' => '2em' ) ); ?> Driftstörning: Hela vårt vatten och avloppsnät och närliggande områden ...</li>
-						<li class="done"><?php material_icon( 'error', array( 'size' => '2em' ) ); ?> Vi har för
-							närvarande inga driftstörningar
-						</li>
-					</ul>
-				</div><!-- .operation-messages-list -->
-			</div>
-			<div class="col-md-4">
-				<div class="operation-messages__button">
-					<a class="btn btn-secondary btn-rounded btn-rounded" href="#"><?php _e( 'Gå till alla driftmeddelanden', 'sk_tivoli' );?></a>
-				</div>
-			</div>
-		</div><!-- .row -->
-	</div><!-- .container-fluid -->
-</div><!-- .operation-messages -->
-
-
+<?php get_template_part( 'partials/front-page/operation-messages'); ?>
 <div class="container-fluid sections">
 
 
