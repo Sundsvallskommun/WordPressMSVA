@@ -42,6 +42,7 @@ class SK_Operation_Messages {
 
 		// Add meta data fields to the post type edit page
 		add_action( 'add_meta_boxes', array( $post_type, 'add_meta_boxes' ) );
+		add_action( 'save_post', array( $post_type, 'save' ) );
 
 		add_shortcode( 'operation_message_form', array( $shortcode, 'callback' ) );
 
