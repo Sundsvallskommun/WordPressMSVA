@@ -88,14 +88,20 @@ class SK_Operation_Messages_Ajax {
 
 	private function create_title( $params ) {
 
-		$title = ! empty( $params['om_custom_event'] ) ? $params['om_custom_event'] : '';
-		if ( empty( $title ) ) {
-			$title = $params['om_event'];
-		}
+		$title = ! empty( $params['om_title'] ) ? $params['om_title'] : '';
 
-		$street = ! empty( $params['om_area_street'] ) ? $params['om_area_street'] : '';
-		if ( ! empty( $street ) ) {
-			$title .=  ' - ' . $street;
+		if ( empty( $title ) ) {
+
+			$title = ! empty( $params['om_custom_event'] ) ? $params['om_custom_event'] : '';
+			if ( empty( $title ) ) {
+				$title = $params['om_event'];
+			}
+
+			$street = ! empty( $params['om_area_street'] ) ? $params['om_area_street'] : '';
+			if ( ! empty( $street ) ) {
+				$title .=  ' - ' . $street;
+			}
+
 		}
 
 		return sanitize_text_field( $title );

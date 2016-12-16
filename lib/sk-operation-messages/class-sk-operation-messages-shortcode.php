@@ -23,6 +23,11 @@ class SK_Operation_Message_Shortcode {
 
                     <h3><?php _e( 'Händelse', 'msva' ); ?></h3>
 
+
+                    <label><?php _e('Titel', 'msva'); ?></label>
+                    <input type="text" name="operation_message[om_title]" class="form-control" id="operation-message-title" />
+
+
                     <select class="form-control" name="operation_message[om_event]" id="operation-message-event">
                         <option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
                         <option value="Vattenläcka"><?php _e( 'Vattenläcka', 'msva' ); ?></option>

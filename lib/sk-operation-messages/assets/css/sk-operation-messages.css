@@ -2,6 +2,10 @@
     margin-bottom: 20px;
 }
 
+#operation-message-form #operation-message-title {
+    margin-bottom: 10px;
+}
+
 .datepicker.dropdown-menu {
     width: 200px;
 }
