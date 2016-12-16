@@ -83,6 +83,12 @@ class SK_Operation_Messages_Ajax {
 
 		}
 
+		if ( empty( $params['operation_message']['om_archive_at_date'] ) ) {
+
+			$tomorrow = date_i18n( 'Y-m-d', strtotime( '+1 days' ) );
+
+		}
+
 		// If the page doesn't already exist, then create it
 		// Set the post ID so that we know the post was created successfully
 		$post_id = wp_insert_post(
@@ -98,6 +104,13 @@ class SK_Operation_Messages_Ajax {
 				foreach ( $params['operation_message'] as $key => $value ) {
 
 					update_post_meta( $post_id, $key, sanitize_text_field( $value ) );
+					if ( isset( $tomorrow ) ) {
+
+						update_post_meta( $post_id, 'om_archive_at_date', $tomorrow );
+						update_post_meta( $post_id, 'om_archive_at_hour', '16' );
+						update_post_meta( $post_id, 'om_archive_at_minute', '00' );
+
+					}
 
 				}
 

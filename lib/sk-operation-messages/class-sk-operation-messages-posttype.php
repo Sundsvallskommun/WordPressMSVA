@@ -90,27 +90,27 @@ class SK_Operation_Messages_Posttype {
 	 * @access   public
 	 *
 	 */
-	public function save( $post_id ){
+	public function save( $post_id ) {
 		global $post;
 
-		if ($post->post_type != 'operation_message') {
+		if ( $post->post_type != 'operation_message' ) {
 			return;
 		}
 
 		// If this is a revision, get real post ID
 		if ( $parent_id = wp_is_post_revision( $post_id ) ) {
-		    $post_id = $parent_id;
+			$post_id = $parent_id;
 		}
 
-		if( isset( $_POST['operation_message'] ) && is_array( $_POST['operation_message'] ) ) {
+		if ( isset( $_POST['operation_message'] ) && is_array( $_POST['operation_message'] ) ) {
 
-		    foreach( $_POST['operation_message'] as $key => $value ) {
+			foreach ( $_POST['operation_message'] as $key => $value ) {
 
-		        update_post_meta( $post_id, $key, sanitize_text_field( $value ) );
+				update_post_meta( $post_id, $key, sanitize_text_field( $value ) );
 
-            }
+			}
 
-        }
+		}
 
 	}
 
@@ -145,19 +145,21 @@ class SK_Operation_Messages_Posttype {
 	public function metabox_callback( $post ) {
 
 		// Load and setup meta data for the message
-		$meta              = get_post_custom( $post->ID );
-		$event             = $meta['om_event'][0];
-		$custom_event      = $meta['om_custom_event'][0];
-		$info_1            = $meta['om_information_part_1'][0];
-		$info_2            = $meta['om_information_part_2'][0];
-		$street            = $meta['om_area_street'][0];
-		$ending            = $meta['om_ending'][0];
-		$publish_at_date   = $meta['om_publish_at_date'][0];
-		$publish_at_hour   = $meta['om_publish_at_hour'][0];
-		$publish_at_minute = $meta['om_publish_at_minute'][0];
-		$archive_at_date   = $meta['om_archive_at_date'][0];
-		$archive_at_hour   = $meta['om_archive_at_hour'][0];
-		$archive_at_minute = $meta['om_archive_at_minute'][0];
+		$meta                = get_post_custom( $post->ID );
+		$event               = $meta['om_event'][0];
+		$custom_event        = $meta['om_custom_event'][0];
+		$municipality        = $meta['om_municipality'][0];
+		$custom_municipality = $meta['om_custom_municipality'][0];
+		$info_1              = $meta['om_information_part_1'][0];
+		$info_2              = $meta['om_information_part_2'][0];
+		$street              = $meta['om_area_street'][0];
+		$ending              = $meta['om_ending'][0];
+		$publish_at_date     = $meta['om_publish_at_date'][0];
+		$publish_at_hour     = $meta['om_publish_at_hour'][0];
+		$publish_at_minute   = $meta['om_publish_at_minute'][0];
+		$archive_at_date     = $meta['om_archive_at_date'][0];
+		$archive_at_hour     = $meta['om_archive_at_hour'][0];
+		$archive_at_minute   = $meta['om_archive_at_minute'][0];
 
 
 		?>
@@ -181,6 +183,22 @@ class SK_Operation_Messages_Posttype {
                 <label><?php _e( 'Egen händelse', 'msva' ); ?>
                     <input type="text" name="operation_message[om_custom_event]" value="<?php echo $custom_event; ?>"/>
                 </label>
+
+            </div>
+
+            <div class="operation-message-metabox-municipality-section">
+
+                <h3><?php _e( 'Kommun' ); ?></h3>
+
+                <select name="operation_message[om_municipality]">
+                    <option value="Sundsvall" <?php selected( $municipality, 'Sundsvall' ); ?>>Sundsvall</option>
+                    <option value="Timrå" <?php selected( $municipality, 'Timrå' ); ?>>Timrå</option>
+                    <option value="Nordanstig" <?php selected( $municipality, 'Nordanstig' ); ?>>Nordanstig</option>
+                </select>
+
+                <label><?php _e( 'Alt. fri text', 'msva' ); ?></label>
+                <input type="text" name="operation_message[om_custom_municipality]"
+                       value="<?php echo $custom_municipality; ?>"/>
 
             </div>
 
@@ -220,7 +238,8 @@ class SK_Operation_Messages_Posttype {
                 <hr/>
 
                 <label><?php _e( 'Publicering', 'msva' ); ?></label>
-                <input type="text" name="operation_message[om_publish_at_date]" value="<?php echo $publish_at_date; ?>"/>
+                <input type="text" name="operation_message[om_publish_at_date]"
+                       value="<?php echo $publish_at_date; ?>"/>
 
                 <select name="operation_message[om_publish_at_hour]">
                     <option value="00" <?php selected( $publish_at_hour, '00' ); ?>>00</option>
@@ -260,7 +279,8 @@ class SK_Operation_Messages_Posttype {
                 <br/>
 
                 <label><?php _e( 'Arkivering', 'msva' ); ?></label>
-                <input type="text" name="operation_message[om_archive_at_date]" value="<?php echo $archive_at_date; ?>"/>
+                <input type="text" name="operation_message[om_archive_at_date]"
+                       value="<?php echo $archive_at_date; ?>"/>
 
                 <select name="operation_message[om_archive_at_hour]">
                     <option value="00" <?php selected( $archive_at_hour, '00' ); ?>>00</option>

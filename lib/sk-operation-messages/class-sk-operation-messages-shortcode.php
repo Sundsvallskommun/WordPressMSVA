@@ -60,6 +60,20 @@ class SK_Operation_Message_Shortcode {
             </div>
             <!-- End Event section -->
 
+            <div class="form-group">
+
+                <h3><?php _e( 'Kommun', 'msva' ); ?></h3>
+
+                <select name="operation_message[om_municipality]" class="form-control">
+                    <option value="Sundsvall">Sundsvall</option>
+                    <option value="Timrå">Timrå</option>
+                    <option value="Nordanstig">Nordanstig</option>
+                </select>
+
+                <label><?php _e( 'Alt. fri text', 'msva' ); ?></label>
+                <input type="text" name="operation_message[om_custom_municipality]" class="form-control" />
+
+            </div>
 
             <!-- Information and location section -->
             <div class="form-group">
