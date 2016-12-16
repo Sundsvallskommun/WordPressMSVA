@@ -1,0 +1,42 @@
+.operation-messages{
+
+  &__button{
+    margin-bottom: 2em;
+    float:right;
+
+    @include media-breakpoint-down(md) {
+      float:left;
+    }
+
+  }
+
+  border-bottom: 1px solid $msva_border_color;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: 2em;
+  }
+
+  ul{
+    list-style: none;
+    padding: 0;
+  }
+
+  .icon{
+    margin-right: 1em;
+    padding-bottom: 0.7em;
+  }
+
+  li {
+
+    padding: 0.3em 0;
+
+    &.active {
+      color: #cc2e2b
+
+    }
+
+    &.done {
+      color: #48804e;
+    }
+  }
+}

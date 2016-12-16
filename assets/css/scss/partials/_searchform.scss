@@ -1,0 +1,46 @@
+.search-container {
+  //display: none;
+  @include make-col();
+  @include media-breakpoint-up(md) {
+    width: 50%;
+    padding-left: 3.25em;
+    padding-top: 0.5em;
+  }
+
+  @include media-breakpoint-down(sm) {
+    overflow: hidden;
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 0;
+    height: 85px;
+    float: none;
+    background: white;
+    padding-left: 5em;
+
+
+    .input-group{
+      margin-top: 1.5em;
+    }
+  }
+
+
+
+  .form-control {
+    height: auto;
+  }
+
+
+
+  &.active {
+    display: block;
+  }
+
+  z-index: 4;
+
+  form {
+    @include media-breakpoint-up(md) {
+      margin-top: 1.6em;
+    }
+  }
+}
