@@ -83,91 +83,112 @@ class SK_Operation_Messages_Posttype {
 	}
 
 
+	/**
+	 * Add a new metabox to the post type admin page.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 */
 	public function add_meta_boxes() {
 
-		add_meta_box( 'operation_messages_meta', __( 'Sparad information', 'msva' ), array( $this, 'metabox_callback' ), 'operation_message' );
+		add_meta_box( 'operation_messages_meta', __( 'Sparad information', 'msva' ), array(
+			$this,
+			'metabox_callback'
+		), 'operation_message' );
 
 	}
 
 
+	/**
+	 * Callback function to output the html
+	 * for the metabox on the admin page for the
+	 * custom post type.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 * @return string    the html output
+	 */
 	public function metabox_callback( $post ) {
 
-	    // Load and setup meta data for the message
-	    $meta = get_post_custom( $post->ID );
-	    $event = $meta['om_event'][0];
-	    $custom_event = $meta['om_custom_event'][0];
-	    $info_1 = $meta['om_information_part_1'][0];
-		$info_2 = $meta['om_information_part_2'][0];
-		$street = $meta['om_area_street'][0];
-		$ending = $meta['om_ending'][0];
-		$publish_at_date = $meta['om_publish_at_date'][0];
-		$publish_at_hour = $meta['om_publish_at_hour'][0];
+		// Load and setup meta data for the message
+		$meta              = get_post_custom( $post->ID );
+		$event             = $meta['om_event'][0];
+		$custom_event      = $meta['om_custom_event'][0];
+		$info_1            = $meta['om_information_part_1'][0];
+		$info_2            = $meta['om_information_part_2'][0];
+		$street            = $meta['om_area_street'][0];
+		$ending            = $meta['om_ending'][0];
+		$publish_at_date   = $meta['om_publish_at_date'][0];
+		$publish_at_hour   = $meta['om_publish_at_hour'][0];
 		$publish_at_minute = $meta['om_publish_at_minute'][0];
-		$archive_at_date = $meta['om_archive_at_date'][0];
-		$archive_at_hour = $meta['om_archive_at_hour'][0];
+		$archive_at_date   = $meta['om_archive_at_date'][0];
+		$archive_at_hour   = $meta['om_archive_at_hour'][0];
 		$archive_at_minute = $meta['om_archive_at_minute'][0];
-		
+
 
 		?>
-		<div class="operation-message-metabox-wrapper">
+        <div class="operation-message-metabox-wrapper">
 
-			<div class="operation-message-metabox-section">
+            <div class="operation-message-metabox-section">
 
-				<h3><?php _e( 'Händelse' ); ?></h3>
-				<hr />
+                <h3><?php _e( 'Händelse' ); ?></h3>
+                <hr/>
 
-				<select name="operation_message[event]">
-					<option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
-					<option value="Vattenläcka" <?php selected( $event, 'Vattenläcka' ); ?>><?php _e( 'Vattenläcka', 'msva' ); ?></option>
-					<option value="Vattenavstängning" <?php selected( $event, 'Vattenavstängning' ); ?>><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
-					<option value="Spolning av avloppsledningar" <?php selected( $event, 'Spolning av avloppsledningar' ); ?>><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
-					<option value="Spolning av vattenledningar" <?php selected( $event, 'Spolning av vattenledningar' ); ?>><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
-					<option value="Vattenläcka åtgärdad" <?php selected( $event, 'Vattenläcka åtgärdad' ); ?>><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
-					<option value="1" <?php selected( $event, 1 ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
-				</select>
+                <select name="operation_message[event]">
+                    <option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
+                    <option value="Vattenläcka" <?php selected( $event, 'Vattenläcka' ); ?>><?php _e( 'Vattenläcka', 'msva' ); ?></option>
+                    <option value="Vattenavstängning" <?php selected( $event, 'Vattenavstängning' ); ?>><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
+                    <option value="Spolning av avloppsledningar" <?php selected( $event, 'Spolning av avloppsledningar' ); ?>><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
+                    <option value="Spolning av vattenledningar" <?php selected( $event, 'Spolning av vattenledningar' ); ?>><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
+                    <option value="Vattenläcka åtgärdad" <?php selected( $event, 'Vattenläcka åtgärdad' ); ?>><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
+                    <option value="1" <?php selected( $event, 1 ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
+                </select>
 
-				<label><?php _e( 'Egen händelse', 'msva' ); ?>
-					<input type="text" name="operation_message[custom_event]" value="<?php echo $custom_event; ?>"/>
-				</label>
+                <label><?php _e( 'Egen händelse', 'msva' ); ?>
+                    <input type="text" name="operation_message[custom_event]" value="<?php echo $custom_event; ?>"/>
+                </label>
 
-			</div>
+            </div>
 
-			<div class="operation-message-metabox-information-section">
+            <div class="operation-message-metabox-information-section">
 
-				<h3><?php _e( 'Information och område', 'msva' ); ?></h3>
-				<hr />
+                <h3><?php _e( 'Information och område', 'msva' ); ?></h3>
+                <hr/>
 
-				<label><?php _e( 'Information del 1', 'msva' ); ?></label>
+                <label><?php _e( 'Information del 1', 'msva' ); ?></label>
 				<?php
-					$wp_editor_args = array (
-						'tinymce' => false,
-						'quicktags' => true,
-						'media_buttons' => false,
-						'textarea_rows' => 6,
+				$wp_editor_args = array(
+					'tinymce'       => false,
+					'quicktags'     => true,
+					'media_buttons' => false,
+					'textarea_rows' => 6,
 
-					);
-					wp_editor( $info_1, 'operation_message[information_part_1]', $wp_editor_args );
+				);
+				wp_editor( $info_1, 'operation_message[information_part_1]', $wp_editor_args );
 				?>
 
-				<label for="area_street"><?php _e( 'Område/Gata', 'msva' ); ?></label><br />
-				<input type="text" id="area_street" name="operation_message[area_street]" value="<?php echo $street; ?>" />
-				<br />
+                <label for="area_street"><?php _e( 'Område/Gata', 'msva' ); ?></label><br/>
+                <input type="text" id="area_street" name="operation_message[area_street]"
+                       value="<?php echo $street; ?>"/>
+                <br/>
 
-				<label><?php _e( 'Information del 2', 'msva' ); ?></label>
+                <label><?php _e( 'Information del 2', 'msva' ); ?></label>
 				<?php wp_editor( $info_2, 'operation_message[information_part_2]', $wp_editor_args ); ?>
 
-				<label><?php _e( 'Avslut', 'msva' ); ?></label>
+                <label><?php _e( 'Avslut', 'msva' ); ?></label>
 				<?php wp_editor( $ending, 'operation_message[ending]', $wp_editor_args ); ?>
 
-			</div>
+            </div>
 
-			<div class="operation-message-metabox-publishing-section">
+            <div class="operation-message-metabox-publishing-section">
 
-				<h3><?php _e( 'Publicering och Arkivering', 'msva' ); ?></h3>
-				<hr />
+                <h3><?php _e( 'Publicering och Arkivering', 'msva' ); ?></h3>
+                <hr/>
 
-				<label><?php _e( 'Publicering', 'msva' ); ?></label>
-				<input type="text" name="operation_message[publish_at_date]" value="<?php echo $publish_at_date; ?>" />
+                <label><?php _e( 'Publicering', 'msva' ); ?></label>
+                <input type="text" name="operation_message[publish_at_date]" value="<?php echo $publish_at_date; ?>"/>
 
                 <select name="operation_message[publish_at_hour]">
                     <option value="00" <?php selected( $publish_at_hour, '00' ); ?>>00</option>
@@ -204,10 +225,10 @@ class SK_Operation_Messages_Posttype {
                     <option value="40" <?php selected( $publish_at_minute, '40' ); ?>>40</option>
                     <option value="50" <?php selected( $publish_at_minute, '50' ); ?>>50</option>
                 </select>
-				<br />
+                <br/>
 
-				<label><?php _e( 'Arkivering', 'msva' ); ?></label>
-                <input type="text" name="operation_message[archive_at_date]" value="<?php echo $archive_at_date; ?>" />
+                <label><?php _e( 'Arkivering', 'msva' ); ?></label>
+                <input type="text" name="operation_message[archive_at_date]" value="<?php echo $archive_at_date; ?>"/>
 
                 <select name="operation_message[archive_at_hour]">
                     <option value="00" <?php selected( $archive_at_hour, '00' ); ?>>00</option>
@@ -244,14 +265,10 @@ class SK_Operation_Messages_Posttype {
                     <option value="40" <?php selected( $archive_at_minute, '40' ); ?>>40</option>
                     <option value="50" <?php selected( $archive_at_minute, '50' ); ?>>50</option>
                 </select>
-				<br />
+                <br/>
 
-
-			</div>
-
-
-
-		</div>
+            </div>
+        </div>
 		<?php
 	}
 

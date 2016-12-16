@@ -1,9 +1,21 @@
 <?php
 
-
+/**
+ * Ajax handler class for the frontend form.
+ *
+ * @package    SK_Operation_Messages
+ * @author     Andreas Färnstrand <andreas.farnstrand@cybercom.com>
+ */
 class SK_Operation_Messages_Ajax {
 
 
+	/**
+	 * The callback function when posting the form via ajax.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 */
 	public function callback() {
 
 		$params = array();
@@ -27,11 +39,25 @@ class SK_Operation_Messages_Ajax {
 	}
 
 
+	/**
+	 * Setup data and save an new post of the
+	 * post type operation_message. Also saves the meta data
+	 * connected to the post.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 *
+	 * @param array     the form data
+	 *
+	 * @return boolean  the result
+	 */
 	private function save_message( $params ) {
 
 		// Setup the author, slug, and title for the post
 		$author_id = get_current_user_id();
-		if( $author_id == 0 ) return false; // Not logged in
+		if ( $author_id == 0 ) {
+			return false;
+		} // Not logged in
 
 		$title = $this->create_title( $params['operation_message'] );
 
@@ -47,12 +73,12 @@ class SK_Operation_Messages_Ajax {
 
 		if ( ! empty( $params['operation_message']['om_publish_at_date'] ) ) {
 
-			$string_time = $params['operation_message']['om_publish_at_date'] . ' ' . $params['operation_message']['om_publish_at_hour'] . ':' . $params['operation_message']['om_publish_at_minute'];
-			$publish_time = strtotime( $string_time );
-			$publish_time = date_i18n( 'Y-m-d H:i:s', $publish_time );
+			$string_time      = $params['operation_message']['om_publish_at_date'] . ' ' . $params['operation_message']['om_publish_at_hour'] . ':' . $params['operation_message']['om_publish_at_minute'];
+			$publish_time     = strtotime( $string_time );
+			$publish_time     = date_i18n( 'Y-m-d H:i:s', $publish_time );
 			$publish_time_gmt = date_i18n( 'Y-m-d H:i:s', strtotime( $string_time . ' -1 hours' ) );
 
-			$args['post_date'] = $publish_time;
+			$args['post_date']     = $publish_time;
 			$args['post_date_gmt'] = $publish_time_gmt;
 
 		}
@@ -86,6 +112,17 @@ class SK_Operation_Messages_Ajax {
 	}
 
 
+	/**
+	 * Creates the post title from different
+	 * form field values.
+	 *
+	 * @since    1.0.0
+	 * @access   private
+	 *
+	 * @param array     the form data
+	 *
+	 * @return string   the post title
+	 */
 	private function create_title( $params ) {
 
 		$title = ! empty( $params['om_title'] ) ? $params['om_title'] : '';
@@ -99,7 +136,7 @@ class SK_Operation_Messages_Ajax {
 
 			$street = ! empty( $params['om_area_street'] ) ? $params['om_area_street'] : '';
 			if ( ! empty( $street ) ) {
-				$title .=  ' - ' . $street;
+				$title .= ' - ' . $street;
 			}
 
 		}
