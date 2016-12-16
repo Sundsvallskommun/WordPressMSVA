@@ -49,7 +49,8 @@ class SK_Wasteguide_Search {
 		ob_start();
 
 		$a = shortcode_atts( array(
-			'title' => false
+			'title'     => false,
+			'text'   => false
 		), $atts );
 
 		$waste_guide_id = get_field('msva_wasteguide_search_result', 'options');
@@ -61,7 +62,12 @@ class SK_Wasteguide_Search {
 		<h3><?php echo $a['title']; ?></h3>
 		<?php endif; ?>
 
+		<?php if( $a['text'] ) : ?>
+			<div class="widget-wasteguide__text"><?php echo $a['text']; ?></div>
+		<?php endif; ?>
+
 		<form method="get" action="<?php echo get_permalink( $waste_guide_id ); ?>">
+
 			<label for="sorting-material"><?php _e( 'Vad vill du återvinna?', 'msva' ); ?></label>
 			<div class="input-group">
 				<input type="text" class="form-control" id="sorting-material"
