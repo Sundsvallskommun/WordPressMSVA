@@ -1,11 +1,13 @@
 .operation-messages{
 
   &__button{
-    margin-bottom: 2em;
-    float:right;
 
+    float:right;
+    margin-top: -0.45em;
     @include media-breakpoint-down(md) {
       float:left;
+      margin-bottom: 2em;
+
     }
 
   }
