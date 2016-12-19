@@ -297,18 +297,21 @@ class SK_Operation_Message_Shortcode {
             </div>
         </div>
 
+        <div class="clearfix"></div>
 
+        <div class="operation-messages-list">
         <?php
-        echo do_shortcode(
-            sprintf(
-            '[utfallbar tag="h2" title="%s"]%s[/utfallbar]',
-            __( 'Sparade Driftmeddelanden' ),
-            $this->messages_list()
-            )
-        );
+
+            echo do_shortcode(
+                sprintf(
+                '[utfallbar tag="h2" title="%s"]%s[/utfallbar]',
+                __( 'Sparade Driftmeddelanden' ),
+                $this->messages_list()
+                )
+            );
 
         ?>
-
+        </div>
 		<?php
 		return ob_get_clean();
 
