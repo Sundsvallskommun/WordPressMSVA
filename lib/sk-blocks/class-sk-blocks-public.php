@@ -127,7 +127,7 @@ class SK_Blocks_Public {
 		*/
 
 		$image_id = get_field( 'sk-block-image-and-text', $block_id );
-		$image    = wp_get_attachment_image_src( $image_id, 'full' );
+		$image    = wp_get_attachment_image_src( $image_id, 'content-full' );
 		$title    = get_field( 'sk-block-image-and-text-title', $block_id );
 		$content  = get_field( 'sk-block-image-and-text-content', $block_id );
 		$theme    = get_field( 'sk-block-image-and-text-theme', $block_id );
