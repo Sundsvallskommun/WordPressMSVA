@@ -190,11 +190,11 @@ class SK_Operation_Messages_Posttype {
 
                 <h3><?php _e( 'Kommun' ); ?></h3>
 
-                <select name="operation_message[om_municipality]">
+                <!--<select name="operation_message[om_municipality]">
                     <option value="Sundsvall" <?php selected( $municipality, 'Sundsvall' ); ?>>Sundsvall</option>
                     <option value="Timrå" <?php selected( $municipality, 'Timrå' ); ?>>Timrå</option>
                     <option value="Nordanstig" <?php selected( $municipality, 'Nordanstig' ); ?>>Nordanstig</option>
-                </select>
+                </select>-->
 
                 <label><?php _e( 'Alt. fri text', 'msva' ); ?></label>
                 <input type="text" name="operation_message[om_custom_municipality]"

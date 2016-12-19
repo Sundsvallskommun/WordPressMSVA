@@ -10,7 +10,7 @@
  */
 class SK_Operation_Messages_Post {
 
-	private $post;
+	public $post;
 
 	/**
 	 * Set the private variables.
@@ -24,6 +24,21 @@ class SK_Operation_Messages_Post {
 		$this->post = $post;
 
 	}
+
+
+	public function title() {
+
+		return $this->post->post_title;
+
+	}
+
+
+	public function created_at() {
+
+		return $this->post->post_date;
+
+	}
+
 
 
 	/**

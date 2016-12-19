@@ -26,12 +26,23 @@ class SK_Operation_Message_Shortcode {
 		wp_enqueue_script( 'sk-operation-messages-datepicker-locale' );
 		wp_enqueue_style( 'sk-operation-messages-css' );
 
+		$message = null;
+		if ( isset( $_GET['edit'] ) ) {
+
+			$post    = get_post( absint( $_GET['edit'] ) );
+			$message = SK_Operation_Messages_Post::fromId( $post->ID );
+
+		}
+
 		ob_start();
 		?>
 
         <form id="operation-message-form" method="post" action="">
 
             <input type="hidden" value="<?php echo wp_create_nonce( 'sk-operation-messages' ); ?>" name="nonce"/>
+            <?php if ( isset( $message ) ) : ?>
+                <input type="hidden" value="<?php echo $post->ID ?>" name="om_message_id" />
+            <?php endif; ?>
 
             <!-- Event section -->
             <div class="form-group">
@@ -40,22 +51,22 @@ class SK_Operation_Message_Shortcode {
 
                 <label><?php _e( 'Titel', 'msva' ); ?></label>
                 <input type="text" name="operation_message[om_title]" class="form-control"
-                       id="operation-message-title"/>
+                       id="operation-message-title" value="<?php echo isset( $message ) ? $message->title() : ''; ?>" />
 
 
                 <select class="form-control" name="operation_message[om_event]" id="operation-message-event">
-                    <option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
-                    <option value="Vattenläcka"><?php _e( 'Vattenläcka', 'msva' ); ?></option>
-                    <option value="Vattenavstängning"><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
-                    <option value="Spolning av avloppsledningar"><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
-                    <option value="Spolning av vattenledningar"><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
-                    <option value="Vattenläcka åtgärdad"><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
-                    <option value="1"><?php _e( 'Egen händelse', 'msva' ); ?></option>
+                    <option value="0" <?php selected( $message->post->meta['om_event'], '0' ); ?>><?php _e( 'Välj händelse...', 'msva' ); ?></option>
+                    <option value="Vattenläcka" <?php selected( $message->post->meta['om_event'], 'Vattenläcka' ); ?>><?php _e( 'Vattenläcka', 'msva' ); ?></option>
+                    <option value="Vattenavstängning" <?php selected( $message->post->meta['om_event'], 'Vattenavstängning' ); ?>><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
+                    <option value="Spolning av avloppsledningar" <?php selected( $message->post->meta['om_event'], 'Spolning av avloppsledningar' ); ?>><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
+                    <option value="Spolning av vattenledningar" <?php selected( $message->post->meta['om_event'], 'Spolning av vattenledningar' ); ?>><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
+                    <option value="Vattenläcka åtgärdad" <?php selected( $message->post->meta['om_event'], 'Vattenläcka åtgärdad' ); ?>><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
+                    <option value="1" <?php selected( $message->post->meta['om_event'], '1' ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
                 </select>
 
                 <label><?php _e( 'Egen händelse', 'msva' ); ?></label>
                 <input type="text" name="operation_message[om_custom_event]" class="form-control"
-                       id="operation-message-custom-event"/>
+                       id="operation-message-custom-event" value="<?php echo $message->post->meta['om_custom_event']; ?>" />
 
             </div>
             <!-- End Event section -->
@@ -65,13 +76,13 @@ class SK_Operation_Message_Shortcode {
                 <h3><?php _e( 'Kommun', 'msva' ); ?></h3>
 
                 <select name="operation_message[om_municipality]" class="form-control">
-                    <option value="Sundsvall">Sundsvall</option>
-                    <option value="Timrå">Timrå</option>
-                    <option value="Nordanstig">Nordanstig</option>
+                    <option value="Sundsvall" <?php selected( $message->post->meta['om_municipality'], 'Sundsvall' ); ?>>Sundsvall</option>
+                    <option value="Timrå" <?php selected( $message->post->meta['om_municipality'], 'Timrå' ); ?>>Timrå</option>
+                    <option value="Nordanstig" <?php selected( $message->post->meta['om_municipality'], 'Timrå' ); ?>>Nordanstig</option>
                 </select>
 
                 <label><?php _e( 'Alt. fri text', 'msva' ); ?></label>
-                <input type="text" name="operation_message[om_custom_municipality]" class="form-control" />
+                <input type="text" name="operation_message[om_custom_municipality]" class="form-control" value="<?php echo $message->post->meta['om_custom_municipality']; ?>" />
 
             </div>
 
@@ -89,11 +100,11 @@ class SK_Operation_Message_Shortcode {
 					'textarea_rows' => 6,
 					'editor_class'  => 'form-control operation-message-information-1'
 				);
-				wp_editor( '', 'operation_message[om_information_part_1]', $wp_editor_args );
+				wp_editor( isset( $message ) ? $message->info_1() : '', 'operation_message[om_information_part_1]', $wp_editor_args );
 				?>
 
                 <label for="area_street"><?php _e( 'Område/Gata', 'msva' ); ?></label>
-                <input type="text" id="area_street" name="operation_message[om_area_street]" class="form-control"/>
+                <input type="text" id="area_street" name="operation_message[om_area_street]" class="form-control" value="<?php echo isset( $message ) ? $message->street() : ''; ?>" />
 
                 <label><?php _e( 'Information del 2', 'msva' ); ?></label>
 				<?php
@@ -105,11 +116,15 @@ class SK_Operation_Message_Shortcode {
 					'editor_class'  => 'form-control operation-message-information-2'
 				);
 				?>
-				<?php wp_editor( '', 'operation_message[om_information_part_2]', $wp_editor_args ); ?>
+				<?php wp_editor( isset( $message ) ? $message->info_2() : '', 'operation_message[om_information_part_2]', $wp_editor_args ); ?>
 
                 <label><?php _e( 'Avslut', 'msva' ); ?></label>
-				<?php $default_ending_text = __( 'För ytterligare information kontakta vår Felanmälan på telefon 060-192070.', 'msva' ); ?>
 				<?php
+
+                $default_ending_text = __( 'För ytterligare information kontakta vår Felanmälan på telefon 060-192070.', 'msva' );
+                if ( isset( $message ) ) {
+                    $default_ending_text = $message->ending();
+                }
 				$wp_editor_args = array(
 					'tinymce'       => false,
 					'quicktags'     => true,
@@ -133,46 +148,46 @@ class SK_Operation_Message_Shortcode {
 
                     <div class="col-xs-4">
                         <input type="text" name="operation_message[om_publish_at_date]" class="form-control datepicker"
-                               data-date-format="yyyy-mm-dd" placeholder="<?php _e( 'Publiceringsdatum' ); ?>"/>
+                               data-date-format="yyyy-mm-dd" placeholder="<?php _e( 'Publiceringsdatum' ); ?>" value="<?php echo $message->post->meta['om_publish_at_date']?>" />
                     </div>
 
                     <div class="col-xs-2">
                         <select name="operation_message[om_publish_at_hour]" class="form-control">
-                            <option value="00">00</option>
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                            <option value="04">04</option>
-                            <option value="05">05</option>
-                            <option value="06">06</option>
-                            <option value="07">07</option>
-                            <option value="08">08</option>
-                            <option value="09">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
+                            <option value="00" <?php selected($message->post->meta['om_publish_at_hour'], '00'); ?>>00</option>
+                            <option value="01" <?php selected($message->post->meta['om_publish_at_hour'], '01'); ?>>01</option>
+                            <option value="02" <?php selected($message->post->meta['om_publish_at_hour'], '02'); ?>>02</option>
+                            <option value="03" <?php selected($message->post->meta['om_publish_at_hour'], '03'); ?>>03</option>
+                            <option value="04" <?php selected($message->post->meta['om_publish_at_hour'], '04'); ?>>04</option>
+                            <option value="05" <?php selected($message->post->meta['om_publish_at_hour'], '05'); ?>>05</option>
+                            <option value="06" <?php selected($message->post->meta['om_publish_at_hour'], '06'); ?>>06</option>
+                            <option value="07" <?php selected($message->post->meta['om_publish_at_hour'], '07'); ?>>07</option>
+                            <option value="08" <?php selected($message->post->meta['om_publish_at_hour'], '08'); ?>>08</option>
+                            <option value="09" <?php selected($message->post->meta['om_publish_at_hour'], '09'); ?>>09</option>
+                            <option value="10" <?php selected($message->post->meta['om_publish_at_hour'], '10'); ?>>10</option>
+                            <option value="11" <?php selected($message->post->meta['om_publish_at_hour'], '11'); ?>>11</option>
+                            <option value="12" <?php selected($message->post->meta['om_publish_at_hour'], '12'); ?>>12</option>
+                            <option value="13" <?php selected($message->post->meta['om_publish_at_hour'], '13'); ?>>13</option>
+                            <option value="14" <?php selected($message->post->meta['om_publish_at_hour'], '14'); ?>>14</option>
+                            <option value="15" <?php selected($message->post->meta['om_publish_at_hour'], '15'); ?>>15</option>
+                            <option value="16" <?php selected($message->post->meta['om_publish_at_hour'], '16'); ?>>16</option>
+                            <option value="17" <?php selected($message->post->meta['om_publish_at_hour'], '17'); ?>>17</option>
+                            <option value="18" <?php selected($message->post->meta['om_publish_at_hour'], '18'); ?>>18</option>
+                            <option value="19" <?php selected($message->post->meta['om_publish_at_hour'], '19'); ?>>19</option>
+                            <option value="20" <?php selected($message->post->meta['om_publish_at_hour'], '20'); ?>>20</option>
+                            <option value="21" <?php selected($message->post->meta['om_publish_at_hour'], '21'); ?>>21</option>
+                            <option value="22" <?php selected($message->post->meta['om_publish_at_hour'], '22'); ?>>22</option>
+                            <option value="23" <?php selected($message->post->meta['om_publish_at_hour'], '23'); ?>>23</option>
                         </select>
                     </div>
 
                     <div class="col-xs-2">
                         <select name="operation_message[om_publish_at_minute]" class="form-control">
-                            <option value="00">00</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
+                            <option value="00" <?php selected($message->post->meta['om_publish_at_minute'], '00'); ?>>00</option>
+                            <option value="10" <?php selected($message->post->meta['om_publish_at_minute'], '10'); ?>>10</option>
+                            <option value="20" <?php selected($message->post->meta['om_publish_at_minute'], '20'); ?>>20</option>
+                            <option value="30" <?php selected($message->post->meta['om_publish_at_minute'], '30'); ?>>30</option>
+                            <option value="40" <?php selected($message->post->meta['om_publish_at_minute'], '40'); ?>>40</option>
+                            <option value="50" <?php selected($message->post->meta['om_publish_at_minute'], '50'); ?>>50</option>
                         </select>
                     </div>
                 </div>
@@ -181,46 +196,46 @@ class SK_Operation_Message_Shortcode {
 
                     <div class="col-xs-4">
                         <input type="text" name="operation_message[om_archive_at_date]" class="form-control datepicker"
-                               data-date-format="yyyy-mm-dd" placeholder="<?php _e( 'Arkiveringsdatum' ); ?>"/>
+                               data-date-format="yyyy-mm-dd" placeholder="<?php _e( 'Arkiveringsdatum' ); ?>" value="<?php echo $message->post->meta['om_archive_at_date']?>" />
                     </div>
 
                     <div class="col-xs-2">
                         <select name="operation_message[om_archive_at_hour]" class="form-control">
-                            <option value="00">00</option>
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                            <option value="04">04</option>
-                            <option value="05">05</option>
-                            <option value="06">06</option>
-                            <option value="07">07</option>
-                            <option value="08">08</option>
-                            <option value="09">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
-                            <option value="13">13</option>
-                            <option value="14">14</option>
-                            <option value="15">15</option>
-                            <option value="16">16</option>
-                            <option value="17">17</option>
-                            <option value="18">18</option>
-                            <option value="19">19</option>
-                            <option value="20">20</option>
-                            <option value="21">21</option>
-                            <option value="22">22</option>
-                            <option value="23">23</option>
+                            <option value="00" <?php selected($message->post->meta['om_archive_at_hour'], '00'); ?>>00</option>
+                            <option value="01" <?php selected($message->post->meta['om_archive_at_hour'], '01'); ?>>01</option>
+                            <option value="02" <?php selected($message->post->meta['om_archive_at_hour'], '02'); ?>>02</option>
+                            <option value="03" <?php selected($message->post->meta['om_archive_at_hour'], '03'); ?>>03</option>
+                            <option value="04" <?php selected($message->post->meta['om_archive_at_hour'], '04'); ?>>04</option>
+                            <option value="05" <?php selected($message->post->meta['om_archive_at_hour'], '05'); ?>>05</option>
+                            <option value="06" <?php selected($message->post->meta['om_archive_at_hour'], '06'); ?>>06</option>
+                            <option value="07" <?php selected($message->post->meta['om_archive_at_hour'], '07'); ?>>07</option>
+                            <option value="08" <?php selected($message->post->meta['om_archive_at_hour'], '08'); ?>>08</option>
+                            <option value="09" <?php selected($message->post->meta['om_archive_at_hour'], '09'); ?>>09</option>
+                            <option value="10" <?php selected($message->post->meta['om_archive_at_hour'], '10'); ?>>10</option>
+                            <option value="11" <?php selected($message->post->meta['om_archive_at_hour'], '11'); ?>>11</option>
+                            <option value="12" <?php selected($message->post->meta['om_archive_at_hour'], '12'); ?>>12</option>
+                            <option value="13" <?php selected($message->post->meta['om_archive_at_hour'], '13'); ?>>13</option>
+                            <option value="14" <?php selected($message->post->meta['om_archive_at_hour'], '14'); ?>>14</option>
+                            <option value="15" <?php selected($message->post->meta['om_archive_at_hour'], '15'); ?>>15</option>
+                            <option value="16" <?php selected($message->post->meta['om_archive_at_hour'], '16'); ?>>16</option>
+                            <option value="17" <?php selected($message->post->meta['om_archive_at_hour'], '17'); ?>>17</option>
+                            <option value="18" <?php selected($message->post->meta['om_archive_at_hour'], '18'); ?>>18</option>
+                            <option value="19" <?php selected($message->post->meta['om_archive_at_hour'], '19'); ?>>19</option>
+                            <option value="20" <?php selected($message->post->meta['om_archive_at_hour'], '20'); ?>>20</option>
+                            <option value="21" <?php selected($message->post->meta['om_archive_at_hour'], '21'); ?>>21</option>
+                            <option value="22" <?php selected($message->post->meta['om_archive_at_hour'], '22'); ?>>22</option>
+                            <option value="23" <?php selected($message->post->meta['om_archive_at_hour'], '23'); ?>>23</option>
                         </select>
                     </div>
 
                     <div class="col-xs-2">
                         <select name="operation_message[om_archive_at_minute]" class="form-control">
-                            <option value="00">00</option>
-                            <option value="10">10</option>
-                            <option value="20">20</option>
-                            <option value="30">30</option>
-                            <option value="40">40</option>
-                            <option value="50">50</option>
+                            <option value="00" <?php selected($message->post->meta['om_archive_at_minute'], '00'); ?>>00</option>
+                            <option value="10" <?php selected($message->post->meta['om_archive_at_minute'], '10'); ?>>10</option>
+                            <option value="20" <?php selected($message->post->meta['om_archive_at_minute'], '20'); ?>>20</option>
+                            <option value="30" <?php selected($message->post->meta['om_archive_at_minute'], '30'); ?>>30</option>
+                            <option value="40" <?php selected($message->post->meta['om_archive_at_minute'], '40'); ?>>40</option>
+                            <option value="50" <?php selected($message->post->meta['om_archive_at_minute'], '50'); ?>>50</option>
                         </select>
                     </div>
 
@@ -282,9 +297,65 @@ class SK_Operation_Message_Shortcode {
             </div>
         </div>
 
+
+        <?php
+        echo do_shortcode(
+            sprintf(
+            '[utfallbar tag="h2" title="%s"]%s[/utfallbar]',
+            __( 'Sparade Driftmeddelanden' ),
+            $this->messages_list()
+            )
+        );
+
+        ?>
+
 		<?php
 		return ob_get_clean();
 
 	}
+
+
+	public function messages_list( $atts = array() ) {
+	    $messages = SK_Operation_Messages::messages( array( 'publish', 'future' ) );
+        ob_start();
+	    ?>
+        <div class="operation-messages-list">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Titel</th>
+                    <th>Typ</th>
+                    <th>Skapad</th>
+                    <th>Åtgärdad?</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php foreach ( $messages as $post ) : ?>
+	                <?php $message = SK_Operation_Messages_Post::fromId( $post->ID ) ?>
+                    <tr>
+
+                        <td>
+	                        <?php echo $message->event_title(); ?>
+                        </td>
+                        <td>
+                            <?php echo $message->title(); ?>
+                        </td>
+                        <td>
+                            <?php echo $message->created_at() ?>
+                        </td>
+                        <td>
+                            <a href="?edit=<?php echo $post->ID; ?>"><?php _e( 'Redigera', 'msva' ); ?></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+
+                </tbody>
+            </table>
+
+        </div>
+        <?php
+        return ob_get_clean();
+    }
 
 }
