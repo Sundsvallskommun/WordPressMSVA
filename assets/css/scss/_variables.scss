@@ -2,6 +2,8 @@ $msva_blue: #286aa6;
 $msva_green: #5bab62;
 $msva_purple: #327fb5;
 
+$msva_light: #e7f0f7;
+
 $msva-font-base-color: #023b5b;
 
 $sk-linklist-bg: #ffffff;
@@ -30,7 +32,7 @@ $btn-secondary-border:           $msva_border_color;
 
 $font-family-large:          'Lato', sans-serif;
 $font-family-sans-serif:     'Lato', sans-serif;
-$font-family-base:           $font-family-sans-serif !default;
+$font-family-base:           $font-family-sans-serif !important;
 
 $headings-margin-bottom:     .5em;
 $headings-font-family:       $font-family-large;

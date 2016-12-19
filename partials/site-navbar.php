@@ -21,7 +21,7 @@ ob_start();
 
 		<div class="nav navbar-nav pull-xs-left region-select">
 
-			<a class="btn btn-secondary btn-rounded btn-rounded" href="#"><span>Vald region</span> Sundsvall <?php material_icon( 'swap vert', array('size' => '2em') ); ?></a>
+			<a class="btn btn-secondary btn-rounded btn-rounded" href="#" id="a-select-region"><span>Vald region</span> Sundsvall <?php material_icon( 'swap vert', array('size' => '2em') ); ?></a>
 
 		</div>
 
