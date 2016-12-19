@@ -42,6 +42,22 @@ class SK_Municipality_Adaptation {
 
 	}
 
+	public static function get_start_page_id() {
+		if( SK_Municipality_Adaptation_Cookie::value() === 'nordanstig'){
+			return get_field('msva_start_page_nordanstig', 'options');
+		}
+
+		if( SK_Municipality_Adaptation_Cookie::value() === 'timra'){
+
+			return get_field('msva_start_page_timra', 'options');
+		}
+
+		return false;
+
+
+	}
+
+
 
 	/**
 	 * Check if the given post id and it's connected
