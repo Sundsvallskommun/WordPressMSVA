@@ -11,6 +11,7 @@ require_once locate_template( 'lib/sk-operation-messages/class-sk-operation-mess
 require_once locate_template( 'lib/sk-operation-messages/class-sk-operation-messages-ajax.php' );
 require_once locate_template( 'lib/sk-operation-messages/class-sk-operation-messages-shortcode.php' );
 require_once locate_template( 'lib/sk-operation-messages/class-sk-operation-messages-cron.php' );
+require_once locate_template( 'lib/sk-operation-messages/class-sk-operation-messages-post.php' );
 
 class SK_Operation_Messages {
 
