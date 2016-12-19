@@ -40,6 +40,40 @@ class SK_Municipality_Adaptation_Cookie {
 
 	}
 
+	/**
+	 * Nice name print for cookie value
+	 *
+	 * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+	 *
+	 * @return string
+	 */
+	public static function print_value() {
+
+		$nice_name = '';
+
+		if( self::exists() ){
+
+			switch ( strtolower( $_COOKIE['municipality_adaptation'] ) ) {
+				case 'sundsvall':
+					$nice_name = 'Sundsvall';
+					break;
+				case 'nordanstig':
+					$nice_name = 'Nordanstig';
+					break;
+				case 'timra':
+					$nice_name = 'Timrå';
+					break;
+			}
+
+		}else{
+			$nice_name = 'N/A';
+		}
+
+		return $nice_name;
+
+
+	}
+
 
 	/**
 	 * Check if cookie value matches value on posts's

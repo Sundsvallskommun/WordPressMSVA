@@ -13,9 +13,9 @@
 					<div class="content"><p><?php echo $region_selector['content']; ?></p></div>
 					<div class="actions">
 						<ul>
-							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded" data-region="sundsvall" href="#">Sundsvall</a></li>
-							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded" data-region="nordanstig" href="#">Nordanstig</a></li>
-							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded" data-region="timra" href="#">Timrå</a></li>
+							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded" data-region="sundsvall" data-url="<?php echo get_permalink(); ?>" href="#">Sundsvall</a></li>
+							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded" data-region="nordanstig" data-url="<?php echo get_permalink(); ?>" href="#">Nordanstig</a></li>
+							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded" data-region="timra" data-url="<?php echo get_permalink(); ?>" href="#">Timrå</a></li>
 						</ul>
 					</div><!-- .actions -->
 

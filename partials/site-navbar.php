@@ -6,11 +6,12 @@
  */
 //$cached_navbar = get_transient( 'site_navbar' );
 
-if( $cached_navbar ):
-	echo $cached_navbar;
-else:
+//if( $cached_navbar ):
+//	echo $cached_navbar;
+//else:
+//ob_start();
 
-ob_start();
+$region = SK_Municipality_Adaptation_Cookie::print_value();
 
 ?>
 
@@ -21,7 +22,7 @@ ob_start();
 
 		<div class="nav navbar-nav pull-xs-left region-select">
 
-			<a class="btn btn-secondary btn-rounded btn-rounded" href="#" id="a-select-region"><span>Vald region</span> Sundsvall <?php material_icon( 'swap vert', array('size' => '2em') ); ?></a>
+			<a class="btn btn-secondary btn-rounded btn-rounded" href="#" id="a-select-region"><span>Vald region</span> <?php echo  !empty( $region ) ? $region : ''; ?><?php material_icon( 'swap vert', array('size' => '2em') ); ?></a>
 
 		</div>
 
@@ -105,12 +106,12 @@ ob_start();
 
 <?php 
 
-$navbar = ob_get_clean();
+//$navbar = ob_get_clean();
 
-set_transient( 'site_navbar', $navbar, HOUR_IN_SECONDS );
+//set_transient( 'site_navbar', $navbar, HOUR_IN_SECONDS );
 
-echo $navbar;
+//echo $navbar;
 
-endif;
+//endif;
 
 ?>
