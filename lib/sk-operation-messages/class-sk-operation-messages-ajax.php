@@ -89,6 +89,17 @@ class SK_Operation_Messages_Ajax {
 
 		}
 
+		if ( empty( $params['operation_message']['om_custom_municipality'] ) ) {
+
+			if ( in_array( 'operation_message', SK_Municipality_Adaptation_Settings::valid_post_types() ) ) {
+
+				$municipality = sanitize_title( $params['operation_message']['om_municipality'] );
+				$municipality = strtolower( $municipality );
+
+			}
+
+		}
+
 		// If the page doesn't already exist, then create it
 		// Set the post ID so that we know the post was created successfully
 		$post_id = wp_insert_post(
@@ -103,12 +114,19 @@ class SK_Operation_Messages_Ajax {
 
 				foreach ( $params['operation_message'] as $key => $value ) {
 
+
 					update_post_meta( $post_id, $key, sanitize_text_field( $value ) );
 					if ( isset( $tomorrow ) ) {
 
 						update_post_meta( $post_id, 'om_archive_at_date', $tomorrow );
 						update_post_meta( $post_id, 'om_archive_at_hour', '16' );
 						update_post_meta( $post_id, 'om_archive_at_minute', '00' );
+
+					}
+
+					if ( isset( $municipality ) ) {
+
+						update_post_meta( $post_id, 'municipality_adaptation', $municipality );
 
 					}
 

@@ -46,7 +46,7 @@ class SK_Municipality_Adaptation_Admin {
 	 * @access   public
 	 */
 	public function meta_boxes() {
-		$valid_post_types = array( 'post', 'page' );
+        $valid_post_types = SK_Municipality_Adaptation_Settings::valid_post_types();
 
 		add_meta_box(
 			'municipality',
