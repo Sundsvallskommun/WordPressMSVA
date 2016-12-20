@@ -47,8 +47,8 @@ class SK_Operation_Messages {
 
 		add_shortcode( 'operation_message_form', array( $shortcode, 'callback' ) );
 
-		// Add the single operation message template to the template list
-		add_filter( 'template_include', array( $this, 'add_single_template' ) );
+		// Add the single operation message template and archive to the template list
+		add_filter( 'template_include', array( $this, 'add_templates' ) );
 
 
 	}
@@ -168,16 +168,23 @@ class SK_Operation_Messages {
 	 *
 	 * @return string   the template to use
 	 */
-	public function add_single_template( $template ) {
+	public function add_templates( $template ) {
 		global $wp;
 
 		if ( isset( $wp->query_vars['post_type'] ) && $wp->query_vars['post_type'] == 'operation_message' ) {
 
-			$template_filename = 'single-operation_message.php';
-			if ( file_exists( get_stylesheet_directory() . '/lib/sk-operation-messages/assets/templates/' . $template_filename ) ) {
+			if(is_single()) {
+				$template_filename = 'single-operation_message.php';
+				if ( file_exists( get_stylesheet_directory() . '/lib/sk-operation-messages/assets/templates/' . $template_filename ) ) {
+					return get_stylesheet_directory() . '/lib/sk-operation-messages/assets/templates/' . $template_filename;
+				}
+			}
 
-				return get_stylesheet_directory() . '/lib/sk-operation-messages/assets/templates/' . $template_filename;
-
+			elseif(is_archive() ) {
+				$template_filename = 'archive-operation_message.php';
+				if ( file_exists( get_stylesheet_directory() . '/lib/sk-operation-messages/assets/templates/' . $template_filename ) ) {
+					return get_stylesheet_directory() . '/lib/sk-operation-messages/assets/templates/' . $template_filename;
+				}
 			}
 
 		}
