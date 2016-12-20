@@ -46,12 +46,18 @@ class SK_Municipality_Adaptation_Query {
 			$query->set(
 				'meta_query',
 				array(
+					'relation' => 'OR',
 					array(
 						'key' => 'municipality_adaptation',
 						'value' => SK_Municipality_Adaptation_Cookie::value(),
 						'compare' => 'LIKE'
+					),
+					array(
+						'key' => 'municipality_adaptation',
+						'compare' => 'NOT EXISTS'
 					)
 				)
+
 			);
 		}
 
