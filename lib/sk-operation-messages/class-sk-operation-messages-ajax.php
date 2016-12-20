@@ -96,12 +96,6 @@ class SK_Operation_Messages_Ajax {
 
 		}
 
-		/*if ( empty( $params['operation_message']['om_archive_at_date'] ) ) {
-
-			$tomorrow = date_i18n( 'Y-m-d', strtotime( '+1 days' ) );
-
-		}*/
-
 		if ( empty( $params['operation_message']['om_custom_municipality'] ) ) {
 
 			if ( in_array( 'operation_message', SK_Municipality_Adaptation_Settings::valid_post_types() ) ) {
@@ -123,14 +117,7 @@ class SK_Operation_Messages_Ajax {
 
 				foreach ( $params['operation_message'] as $key => $value ) {
 
-					update_post_meta( $post_id, $key, sanitize_text_field( $value ) );
-					/*if ( isset( $tomorrow ) ) {
-
-						update_post_meta( $post_id, 'om_archive_at_date', $tomorrow );
-						update_post_meta( $post_id, 'om_archive_at_hour', '16' );
-						update_post_meta( $post_id, 'om_archive_at_minute', '00' );
-
-					}*/
+					update_post_meta( $post_id, $key, strip_tags( $value, '<p><b><strong>' ) );
 
 					if ( isset( $municipality ) ) {
 
@@ -227,7 +214,7 @@ class SK_Operation_Messages_Ajax {
 				foreach ( $params['operation_message'] as $key => $value ) {
 
 
-					update_post_meta( $post_id, $key, sanitize_text_field( $value ) );
+					update_post_meta( $post_id, $key, strip_tags( $value, '<p><b><strong>' ) );
 					if ( isset( $tomorrow ) ) {
 
 						update_post_meta( $post_id, 'om_archive_at_date', $tomorrow );

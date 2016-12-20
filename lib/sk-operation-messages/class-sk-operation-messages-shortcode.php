@@ -109,7 +109,7 @@ class SK_Operation_Message_Shortcode {
 				<?php
 				$wp_editor_args = array(
 					'tinymce'       => false,
-					'quicktags'     => true,
+					'quicktags'     => false,
 					'media_buttons' => false,
 					'textarea_rows' => 6,
 					'editor_class'  => 'form-control operation-message-information-1'
@@ -124,7 +124,7 @@ class SK_Operation_Message_Shortcode {
 				<?php
 				$wp_editor_args = array(
 					'tinymce'       => false,
-					'quicktags'     => true,
+					'quicktags'     => false,
 					'media_buttons' => false,
 					'textarea_rows' => 6,
 					'editor_class'  => 'form-control operation-message-information-2'
@@ -141,7 +141,7 @@ class SK_Operation_Message_Shortcode {
                 }
 				$wp_editor_args = array(
 					'tinymce'       => false,
-					'quicktags'     => true,
+					'quicktags'     => false,
 					'media_buttons' => false,
 					'textarea_rows' => 6,
 					'editor_class'  => 'form-control operation-message-ending'
