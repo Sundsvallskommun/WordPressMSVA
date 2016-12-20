@@ -22,6 +22,27 @@ class SK_Municipality_Adaptation_Query {
 
 		// Add filter for querys
 		add_action( 'pre_get_posts', array( $this, 'modify_query' ) );
+		add_action( 'wp', array( $this, 'modify_single_query' ) );
+
+	}
+
+
+	public function modify_single_query() {
+		global $post, $wp_query;
+
+		if ( is_object( $post ) ) {
+
+			$municipality = get_post_meta( $post->ID, 'municipality_adaptation', true );
+			$municipality = ! empty( $municipality ) ? explode( ',', $municipality ) : '';
+
+			if ( ! SK_Municipality_Adaptation_Cookie::match( $municipality ) ) {
+
+				$wp_query->set_404();
+				status_header( 404 );
+
+			}
+
+		}
 
 	}
 
