@@ -27,15 +27,20 @@ class SK_Municipality_Adaptation_Query {
 	}
 
 
+	/**
+	 * Check to see if a visitor has access to a certain post.
+	 * Redirect to 404 if not.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 */
 	public function modify_single_query() {
 		global $post, $wp_query;
 
 		if ( is_object( $post ) ) {
 
-			$municipality = get_post_meta( $post->ID, 'municipality_adaptation', true );
-			$municipality = ! empty( $municipality ) ? explode( ',', $municipality ) : '';
-
-			if ( ! SK_Municipality_Adaptation_Cookie::match( $municipality ) ) {
+			if ( ! SK_Municipality_Adaptation::page_access( $post->ID ) ) {
 
 				$wp_query->set_404();
 				status_header( 404 );
