@@ -19,6 +19,20 @@ class SK_Operation_Message_Shortcode {
 	 *
 	 */
 	public function callback( $atts = array() ) {
+        global $wp_query;
+
+		$author_id = get_current_user_id();
+		if ( $author_id == 0 || ! current_user_can( 'edit_post' ) ) {
+            ob_start();
+            ?>
+
+            <div class="panel panel-warning operation-message-warning">
+                <h4><?php _e( 'Du saknar behörighet för att administrera driftmeddelanden.', 'msva' ); ?></h4>
+            </div>
+            
+            <?php
+            return ob_get_clean();
+		}
 
 		wp_enqueue_script( 'sk-operation-messages-js' );
 		wp_enqueue_style( 'sk-operation-messages-datepicker' );

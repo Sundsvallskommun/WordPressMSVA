@@ -67,7 +67,7 @@ class SK_Operation_Messages_Ajax {
 
 		// Setup the author, slug, and title for the post
 		$author_id = get_current_user_id();
-		if ( $author_id == 0 ) {
+		if ( $author_id == 0 || ! current_user_can( 'edit_posts' ) ) {
 			return false;
 		} // Not logged in
 
@@ -116,7 +116,7 @@ class SK_Operation_Messages_Ajax {
 
 		// Update the post
 		$post_id = wp_update_post( $args );
-
+		
 		if ( ! is_wp_error( $post_id ) ) {
 
 			if ( count( $params ) > 0 && is_array( $params ) ) {
@@ -167,7 +167,7 @@ class SK_Operation_Messages_Ajax {
 
 		// Setup the author, slug, and title for the post
 		$author_id = get_current_user_id();
-		if ( $author_id == 0 ) {
+		if ( $author_id == 0 || ! current_user_can( 'edit_posts' ) ) {
 			return false;
 		} // Not logged in
 
