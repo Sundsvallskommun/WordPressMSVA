@@ -105,17 +105,25 @@ class SK_Municipality_Adaptation_Query {
 	 */
 	private function query_has_valid_post_type( $post_type ) {
 
+		$result = true;
 		if( is_array( $post_type ) ) {
 			foreach( $post_type as $type ) {
 
-				if ( in_array( $type, SK_Municipality_Adaptation_Settings::valid_post_types() ) ) return true;
+				if ( ! in_array( $type, SK_Municipality_Adaptation_Settings::valid_post_types() ) ) {
+					$result = false;
+				}
 
+			}
+		} else {
+
+			if ( in_array( $post_type, SK_Municipality_Adaptation_Settings::valid_post_types() ) ) {
+				$result = true;
+			} else {
+				$result = false;
 			}
 		}
 
-		if ( in_array( $post_type, SK_Municipality_Adaptation_Settings::valid_post_types() ) ) return true;
-
-		return false;
+		return $result;
 
 	}
 
