@@ -85,6 +85,36 @@ class SK_Municipality_Adaptation_Query {
 				)
 
 			);
+
+		} else {
+
+			if ( is_object( $query ) ) {
+
+				$post_type = $query->query['post_type'];
+
+				if ( defined('DOING_AJAX') && DOING_AJAX && isset( $post_type ) && $this->query_has_valid_post_type( $post_type ) && SK_Municipality_Adaptation_Cookie::exists() ) {
+
+					$query->set(
+						'meta_query',
+						array(
+							'relation' => 'OR',
+							array(
+								'key' => 'municipality_adaptation',
+								'value' => SK_Municipality_Adaptation_Cookie::value(),
+								'compare' => 'LIKE'
+							),
+							array(
+								'key' => 'municipality_adaptation',
+								'compare' => 'NOT EXISTS'
+							)
+						)
+
+					);
+
+				}
+
+			}
+
 		}
 
 		return $query;
