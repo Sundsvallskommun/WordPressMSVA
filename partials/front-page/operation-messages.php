@@ -32,7 +32,7 @@
 			</div>
 			<div class="col-md-3">
 				<div class="operation-messages__button">
-					<a class="btn btn-secondary btn-rounded btn-rounded" href="#"><?php _e( 'Gå till alla driftmeddelanden', 'sk_tivoli' );?></a>
+					<a class="btn btn-secondary btn-rounded btn-rounded" href="<?php echo get_bloginfo('url') . '/driftstorningar/';?>"><?php _e( 'Gå till alla driftmeddelanden', 'sk_tivoli' );?></a>
 				</div>
 			</div>
 		</div><!-- .row -->
