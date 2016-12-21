@@ -22,7 +22,7 @@ $region = SK_Municipality_Adaptation_Cookie::print_value();
 
 		<div class="nav navbar-nav pull-xs-left region-select">
 
-			<a class="btn btn-secondary btn-rounded btn-rounded" href="#" id="a-select-region"><span>Vald region</span> <?php echo  !empty( $region ) ? $region : ''; ?><?php material_icon( 'swap vert', array('size' => '2em') ); ?></a>
+			<a class="btn btn-secondary btn-rounded btn-rounded" href="#" id="a-select-region"><span><?php _e('Vald kommun', 'msva');?></span> <?php echo  !empty( $region ) ? $region : ''; ?><?php material_icon( 'swap vert', array('size' => '2em') ); ?></a>
 
 		</div>
 

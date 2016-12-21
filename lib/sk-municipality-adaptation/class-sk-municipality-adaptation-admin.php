@@ -36,7 +36,78 @@ class SK_Municipality_Adaptation_Admin {
 		add_action( 'add_meta_boxes', array( $this, 'meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save' ), 10, 3 );
 
+		// Add extra columns for certain post types
+        // in post types list page.
+		add_action( 'manage_pages_custom_column', array( $this, 'add_extra_column_content' ), 10, 2  );
+		add_filter( 'manage_pages_columns', array( $this, 'add_extra_column' ));
+		add_action( 'manage_posts_custom_column', array( $this, 'add_extra_column_content' ), 10, 2  );
+		add_filter( 'manage_posts_columns', array( $this, 'add_extra_column' ));
+
+        // Set the column width of the municipality column
+		add_action( 'admin_print_styles-edit.php', array( $this, 'limit_municipality_column_width' ) );
+
 	}
+
+
+	/**
+	 * Set width of the municipality column
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
+	public function limit_municipality_column_width() {
+
+		echo '<style> .column-kommun { width: 200px; }</style>';
+
+    }
+
+
+	/**
+	 * Add the extra municipality column
+	 *
+	 * @since    1.0.0
+	 * @access   public
+     *
+     * @param array     the columns
+     *
+     * @return array    the filtered columns
+	 */
+	public function add_extra_column( $columns ) {
+        global $post_type;
+
+        $valid_post_types = SK_Municipality_Adaptation_Settings::valid_post_types();
+
+        if( in_array( $post_type, $valid_post_types ) ) {
+
+            if ( is_array( $columns ) && ! isset( $columns['kommun'] ) ) {
+
+                $columns['kommun'] = __( 'Kommun' );
+
+            }
+
+        }
+
+		return $columns;
+
+    }
+
+
+	/**
+	 * Add municipality column content
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 */
+    public function add_extra_column_content( $column_name, $post_id ) {
+
+	    if ( $column_name == 'kommun') {
+
+		    echo get_post_meta( $post_id, 'municipality_adaptation', true );
+
+        }
+
+
+    }
 
 
 	/**
