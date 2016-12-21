@@ -38,6 +38,8 @@ class SK_Municipality_Adaptation_Admin {
 
 		// Add extra columns for certain post types
         // in post types list page.
+		add_action( 'manage_pages_custom_column', array( $this, 'add_extra_column_content' ), 10, 2  );
+		add_filter( 'manage_pages_columns', array( $this, 'add_extra_column' ));
 		add_action( 'manage_posts_custom_column', array( $this, 'add_extra_column_content' ), 10, 2  );
 		add_filter( 'manage_posts_columns', array( $this, 'add_extra_column' ));
 
