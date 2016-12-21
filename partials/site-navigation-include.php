@@ -9,6 +9,10 @@ if ( ! class_exists( 'Menu_Icons_Walker' ) ) {
 			// Save color and icon to global array.
 			add_global_section_theme( $item );
 
+			// check if page is activated for current municipality.
+			if( ! SK_Municipality_Adaptation::page_access( $item->object_id ) )
+				return false;
+
 			$keyword = get_section_class_name( $item );
 
 			if ( is_array( $item->classes ) ) {
@@ -44,19 +48,13 @@ if ( ! class_exists( 'Menu_Icons_Walker' ) ) {
 <?php
 if ( has_nav_menu( 'main-menu' ) ) {
 
-	$menu = SK_Municipality_Adaptation_Cookie::value();
-	if ( empty( SK_Municipality_Adaptation_Cookie::value() ) ) {
-		$menu = 'sundsvall';
-	}
-
 	$nav_args = array(
-		'menu'       => $menu,
-		'container'  => false,
-		'menu_class' => 'menu-container list-inline',
-		'items_wrap' => '<nav id="%1$s" class="%2$s">%3$s</nav>',
-		'walker'     => new Menu_Icons_Walker()
+		'theme_location'  => 'main-menu',
+		'container'       => false,
+		'menu_class'      => 'menu-container list-inline',
+		'items_wrap'      => '<nav id="%1$s" class="%2$s">%3$s</nav>',
+		'walker'          => new Menu_Icons_Walker()
 	);
-
 	wp_nav_menu( $nav_args );
 
 }

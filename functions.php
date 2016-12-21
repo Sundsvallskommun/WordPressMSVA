@@ -101,3 +101,11 @@ $sk_blocks = new SK_Blocks();
 /* SK Operation Messages */
 require_once locate_template( 'lib/sk-operation-messages/class-sk-operation-messages.php' );
 $sk_operation_messages = new SK_Operation_Messages();
+
+/* SK My Pages */
+require_once locate_template( 'lib/sk-my-pages/class-sk-my-pages.php' );
+$sk_my_pages = new SK_My_Pages();
+
+/* SK Custom News Feed */
+require_once locate_template( 'lib/sk-news-feed/class-sk-news-feed.php' );
+$sk_news_feed = new SK_News_Feed();

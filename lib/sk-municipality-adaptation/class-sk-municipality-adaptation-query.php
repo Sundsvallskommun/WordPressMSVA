@@ -90,7 +90,7 @@ class SK_Municipality_Adaptation_Query {
 
 			if ( is_object( $query ) ) {
 
-				$post_type = $query->query['post_type'];
+				$post_type = isset( $query->query['post_type'] ) ? $query->query['post_type'] : null;
 
 				if ( defined('DOING_AJAX') && DOING_AJAX && isset( $post_type ) && $this->query_has_valid_post_type( $post_type ) && SK_Municipality_Adaptation_Cookie::exists() ) {
 
