@@ -3,6 +3,26 @@ body{
   color: $msva-font-base-color;
 }
 
+.contentwrapper-inner{
+
+    a{
+      color: $msva_blue;
+
+      &:hover{
+        color: $msva_blue;
+      }
+    }
+  
+    .sk-sidebar a{
+      color: inherit;
+    }
+
+    .sk-collapse h2 a{
+      color:inherit;
+    }
+
+}
+
 .site-header {
   font-family: $font-family-base;
 }
