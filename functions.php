@@ -82,6 +82,10 @@ $sk_municipality_adaptation = new SK_Municipality_Adaptation();
 require_once locate_template( 'lib/sk-connection-fee/class-sk-connection-fee.php' );
 $sk_connection_fee = new SK_Connection_Fee();
 
+/* SK Garbage Scheme */
+require_once locate_template( 'lib/sk-garbage-scheme/class-sk-garbage-scheme.php' );
+$sk_garbage_scheme = new SK_Garbage_Scheme();
+
 /* SK Ongoing projects */
 require_once locate_template( 'lib/sk-ongoing-projects/class-sk-ongoing-projects.php' );
 $sk_ongoing_projects = new SK_Ongoing_Projects();
