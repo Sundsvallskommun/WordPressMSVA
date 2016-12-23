@@ -25,7 +25,18 @@
     }
   }
 
+  .ajax-loader{
+
+    background-image: url('../../../../../wp-includes/images/spinner.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 25px;
+    display: inline-block;
+
+  }
+
   .widget-garbage-scheme{
+
 
     &__text{
       margin: 1em 0;

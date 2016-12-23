@@ -66,7 +66,7 @@ class SK_Garbage_Scheme_Public {
 					<input type="text" data-provide="typeahead" class="form-control" autocomplete="off" id="garbage-scheme-address"
 					       placeholder="<?php _e( 'Ange din gatuadress', 'msva' ); ?>" name="">
 					<span class="input-group-btn">
-                    <button class="btn btn-secondary" id="garbage-search-btn" type="submit">Sök</button>
+                    <button class="btn btn-secondary" id="garbage-search-btn" type="submit"><span>Sök</span></button>
                 </span>
 				</div>
 

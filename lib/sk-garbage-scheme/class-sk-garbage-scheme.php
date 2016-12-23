@@ -79,15 +79,22 @@ class SK_Garbage_Scheme {
 
 
 		if(empty( $address ))
-			return 'Något har gått fel med ...';
+			return false;
+
 
 		$results = self::get_item_by_address( $address );
 
 		?>
+
+
 			<div class="widget-garbage-scheme__response-close"><a href="#"><?php material_icon( 'cancel', array('size' => '1.5em') ); ?></a></div>
+		<?php if(!empty( $results )) : ?>
 		<?php foreach ( $results as $result ) : ?>
 			<div><?php material_icon( 'local shipping', array('size' => '1.5em') ); ?><?php _e('Nästa gång sopbilen kommer till din adress är ', 'msva');?> <span class="run-date"><?php echo $result->run_list_name; ?></span></div>
 		<?php endforeach; ?>
+			<?php else : ?>
+			<div><?php material_icon( 'local shipping', array('size' => '1.5em') ); ?><?php _e('Hittar ingen tid i ditt område', 'msva');?></div>
+			<?php endif; ?>
 
 		<?php
 

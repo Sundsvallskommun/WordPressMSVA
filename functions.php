@@ -31,12 +31,6 @@ function sk_childtheme_enqueue_styles() {
 
 	wp_enqueue_script( 'main-child', get_stylesheet_directory_uri() . '/assets/js/app.js', [
 		'jquery',
-		'test',
-		'handlebars',
-		'typeahead'
-	] );
-	wp_enqueue_script( 'test', get_stylesheet_directory_uri() . '/assets/js/source/jquery.easy-autocomplete.js', [
-		'jquery',
 		'handlebars',
 		'typeahead'
 	] );

@@ -13,6 +13,9 @@
 			var value = $('#garbage-scheme-address').val();
             var wrapper = $('.widget-garbage-scheme');
 
+            $('#garbage-search-btn span').addClass('ajax-loader').html('&nbsp;');
+
+
             var data = {
                 action: 'garbage_run',
                 address: value,
@@ -23,8 +26,11 @@
 
                 //console.log( response );
 
-                wrapper.find('.widget-garbage-scheme__response').html( response );
-                wrapper.find('.widget-garbage-scheme__response').show();
+                if( response != 0 ) {
+                    wrapper.find('.widget-garbage-scheme__response').html(response);
+                    wrapper.find('.widget-garbage-scheme__response').show();
+                }
+                $('#garbage-search-btn span').removeClass('ajax-loader').html('Sök');
 
                 /*
                 $('.cc-survey').empty();
