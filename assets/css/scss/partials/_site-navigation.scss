@@ -29,3 +29,17 @@
 
 }
 
+.site-header{
+
+	.navbar-nav .nav-item + .nav-item {
+		margin-left: 0.5em;
+	}
+
+	.btn-primary {
+		text-transform: uppercase;
+		font-size: 70%;
+		letter-spacing: 1px;
+	}
+
+}
+
