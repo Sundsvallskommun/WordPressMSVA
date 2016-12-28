@@ -41,8 +41,10 @@ get_header();
 			</div>
 		</div>
 
-		<div class="col-md-6 block-grid-border">klistrad nyhet ...
-		</div>
+
+			<?php get_template_part('partials/sticky-post'); ?>
+
+
 
 	</div>
 
