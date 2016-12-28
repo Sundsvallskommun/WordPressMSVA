@@ -1,0 +1,44 @@
+{
+    "key": "group_585b80914c3bf",
+    "title": "Inst\u00e4llningar f\u00f6r soph\u00e4mtning",
+    "fields": [
+        {
+            "key": "field_585b80a0c001f",
+            "label": "S\u00f6kv\u00e4g till k\u00f6rschema",
+            "name": "msva_garbage_scheme_file",
+            "type": "text",
+            "instructions": "Ange s\u00f6kv\u00e4gen till filen som inneh\u00e5ller data om k\u00f6rschema f\u00f6r sopbilarna.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-msva"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "menu_item_level": "all",
+    "modified": 1482391778
+}

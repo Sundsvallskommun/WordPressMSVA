@@ -1,0 +1,109 @@
+.widget{
+  label{
+    color: #809dad;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 70%;
+  }
+
+  .tt-menu{
+    border: 1px solid $btn-secondary-border;
+  }
+
+  .tt-selectable {
+    cursor: pointer;
+    &:hover, &.tt-cursor {
+      background: $msva_border_color;
+    }
+
+  }
+
+  .tt-dataset{
+    p{
+      margin: 0;
+      padding: 0.5em 1em;
+    }
+  }
+
+  .ajax-loader{
+
+    background-image: url('../../../../../wp-includes/images/spinner.gif');
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 25px;
+    display: inline-block;
+
+  }
+
+
+&.active{
+  &.widget-garbage-scheme{
+    h3{
+      opacity: 0.5;
+    }
+
+    .widget-garbage-scheme__text{
+      opacity: 0.5;
+    }
+
+  }
+}
+
+
+  .widget-garbage-scheme{
+
+    color: red !important;
+
+    &__text{
+      margin: 1em 0;
+    }
+
+
+    &__response{
+      position:absolute;
+      bottom: 35px;
+      width: 100%;
+      background: #f9f9f9;
+      color: $msva-base-color;
+      padding: 2em;
+      border: 1px solid $msva_border_color;
+      border-bottom: 0;
+
+      -webkit-border-top-left-radius: 0.25em;
+      -webkit-border-top-right-radius: 0.25em;
+      -moz-border-radius-topleft: 0.25em;
+      -moz-border-radius-topright: 0.25em;
+      border-top-left-radius: 0.25em;
+      border-top-right-radius: 0.25em;
+
+      .run-date{
+        font-weight: 500;
+      }
+
+      .icon{
+        padding-bottom: 0.7em;
+        margin-right: 0.5em;
+      }
+      //font-size: 90%;
+    }
+
+
+    &__response-close{
+      a{
+        color: #cccccc;
+      }
+
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+  }
+
+
+
+
+
+}
+
+

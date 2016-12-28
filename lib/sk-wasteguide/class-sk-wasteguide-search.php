@@ -56,7 +56,7 @@ class SK_Wasteguide_Search {
 		$waste_guide_id = get_field('msva_wasteguide_search_result', 'options');
 
 		?>
-		<div class="widget-wasteguide">
+		<div class="widget widget-wasteguide">
 
 		<?php if( $a['title'] ) : ?>
 		<h3><?php echo $a['title']; ?></h3>
