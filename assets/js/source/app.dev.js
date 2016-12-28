@@ -1,7 +1,7 @@
 (function($) {
 	"use strict";
 	$(document).ready(function() {
-
+		$('.dropdown-toggle').dropdown()
 		if( $('.widget-garbage-scheme').length > 0 ) {
 
 			$('#garbage-scheme-address').keypress(function (e) {
