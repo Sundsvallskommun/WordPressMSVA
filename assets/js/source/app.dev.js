@@ -5,6 +5,7 @@
 
         $('.widget-garbage-scheme__response-close a').live('click', function(){
             $(this).closest('.widget-garbage-scheme__response').hide();
+            $(this).closest('.widget-garbage-scheme').removeClass('active');
             return false;
         });
 
@@ -27,6 +28,7 @@
                 //console.log( response );
 
                 if( response != 0 ) {
+                    wrapper.addClass('active');
                     wrapper.find('.widget-garbage-scheme__response').html(response);
                     wrapper.find('.widget-garbage-scheme__response').show();
                 }
