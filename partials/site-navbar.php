@@ -36,13 +36,15 @@ $region = SK_Municipality_Adaptation_Cookie::print_value();
 					if( 'simple_link_internal' == $type || 'simple_link_external' == $type ):
 				?>
 
-					<a class="nav-item nav-link btn btn-primary btn-sm" href="<?php the_sub_field( 'link_url' )?>" <?php theme_color( array('background', 'border-color'), 2); ?>>
+					<a class="nav-item nav-link btn btn-primary btn-sm" href="<?php the_sub_field( 'link_url' )?>">
 						<?php the_sub_field( 'link_text' ); ?>
 					</a>
 
 				<?php endif; // simple link ?>
 
 				<?php if( 'google_translate' == $type || 'link_list' == $type ): ?>
+
+
 
 					<div class="nav-item dropdown">
 
