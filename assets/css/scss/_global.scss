@@ -37,7 +37,20 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .mobile-header{
-  display: none;
+  border:none;
+
+
+  @include media-breakpoint-down(sm) {
+    border-top: 3px solid $msva_border_color;
+    .site-logo {
+      .custom-logo {
+        max-height: 4em;
+        max-width: 7.75em;
+      }
+    }
+
+
+  }
 }
 
 
@@ -85,4 +98,29 @@ h1, h2, h3, h4, h5, h6,
     }
 
 
+}
+
+.site-footer{
+  .site-footer__column:first-child{
+    width: 25%;
+  }
+  .site-footer__column:last-child{
+    width: 70%;
+    float:right;
+    padding-top: 3.5em;
+    text-align: right;
+  }
+
+  @include media-breakpoint-down(md) {
+    .site-footer__column:first-child{
+      width: 100%;
+    }
+
+    .site-footer__column:last-child{
+      float:left;
+      padding-top: 1em;
+      width: 100%;
+      text-align: left;
+    }
+  }
 }

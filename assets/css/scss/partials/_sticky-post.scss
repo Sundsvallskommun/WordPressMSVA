@@ -11,6 +11,10 @@
     background: rgba(70, 96, 116, 0.85 );
     padding: 4em 4em 4em 9em;
 
+    @include media-breakpoint-down(md) {
+      padding: 1em;
+    }
+
     &__title{
       font-size: 140%;
       line-height: 140%;

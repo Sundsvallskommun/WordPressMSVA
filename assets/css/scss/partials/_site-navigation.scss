@@ -41,5 +41,25 @@
 		letter-spacing: 1px;
 	}
 
+
+	.dropdown-menu {
+		box-shadow: none;
+		font-family: inherit;
+		left: auto;
+		padding-bottom: 1em;
+		padding-top: 1em;
+		right: 0;
+		border: 1px solid $msva_border_color;
+		border-radius: 0.25rem;
+		font-size: 80%;
+		font-weight: 300;
+		min-width: 100%;
+
+		a{
+			font-weight: 400;
+		}
+
+	}
+
 }
 
