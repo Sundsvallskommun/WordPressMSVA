@@ -1,5 +1,10 @@
 <?php sk_header(); ?>
+<?php
 
+require_once locate_template( 'lib/sk-operation-messages/class-sk-operation-messages-post.php' );
+$message = SK_Operation_Messages_Post::fromId( get_the_ID() );
+
+?>
 <?php while ( have_posts() ) : the_post(); ?>
 
     <div class="container-fluid">
@@ -18,39 +23,35 @@
 
 				<?php do_action( 'sk_before_page_title' ); ?>
 
-                <h1 class="single-post__title"><?php the_title(); ?></h1>
+                <h1 class="single-post__title"><?php echo $message->event_title(); ?>, <?php echo $message->street(); ?></h1>
 
 				<?php do_action( 'sk_after_page_title' ); ?>
 
 				<?php do_action( 'sk_before_page_content' ); ?>
 
-				<?php
 
-				require_once locate_template( 'lib/sk-operation-messages/class-sk-operation-messages-post.php' );
-				$message = SK_Operation_Messages_Post::fromId( get_the_ID() );
-
-				?>
 
                 <div class="operation-message-wrapper">
 
                     <div class="om-event">
-                        <h3><?php _e( 'Typ av driftstörning:', 'msva' ); ?></h3>
-						<?php echo $message->event_title(); ?>
+                        <?php _e( 'Typ av driftstörning: ', 'msva' ); ?>
+						<span class="info-text"><?php echo $message->event_title(); ?></span>
+                    </div>
+
+                    <div id="om-street" class="om-info">
+                        <?php _e( 'Berörda gator/område: ', 'msva' ); ?>
+                        <span class="info-text"><?php echo $message->street(); ?></span>
                     </div>
 
                     <div class="om-info-wrapper">
 
                         <h3><?php _e( 'Information', 'msva' ); ?></h3>
                         <div id="om-info-1" class="om-info">
-							<?php echo $message->info_1(); ?>
-                        </div>
-
-                        <div id="om-street" class="om-info">
-							<?php echo $message->street(); ?>
+							<p><?php echo $message->info_1(); ?></p>
                         </div>
 
                         <div id="om-info-2" class="om-info">
-							<?php echo $message->info_2(); ?>
+							<p><?php echo wpautop( $message->info_2() ); ?></p>
                         </div>
 
                         <div id="om-ending" class="om-info">
