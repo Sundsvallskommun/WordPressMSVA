@@ -13,21 +13,32 @@
 
     &__title{
       font-size: 140%;
+      line-height: 140%;
+      font-weight: 500;
+    }
+
+    &__content{
+      padding-top: 1.5em;
+      font-size: 90%;
+      font-weight: 300;
     }
 
     &__link{
+      padding-top: 2em;
       a{
         color: #ffffff;
       }
+
+      .btn-secondary{
+        background-color: transparent;
+        border-color: $msva_border_color;
+        font-weight: 300;
+        padding-left: 4em;
+        padding-right: 4em;
+      }
     }
 
-    .btn-secondary{
-      background-color: transparent;
-      border-color: $msva_border_color;
-      font-weight: 400;
-      padding-left: 4em;
-      padding-right: 4em;
-    }
+
 
   }
 
