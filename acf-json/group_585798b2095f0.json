@@ -62,6 +62,25 @@
             "maxlength": "",
             "rows": "",
             "new_lines": "wpautop"
+        },
+        {
+            "key": "field_5865146ee99d6",
+            "label": "Sidfotstext",
+            "name": "msva_region_selector_footer",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "wpautop"
         }
     ],
     "location": [
@@ -82,5 +101,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1482135955
+    "modified": 1483019452
 }

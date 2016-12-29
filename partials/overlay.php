@@ -1,7 +1,8 @@
 <?php
-	$region_selector['title'] = get_field( 'msva_region_selector_title', 'options');
-	$region_selector['content'] = get_field( 'msva_region_selector_content', 'options');
-	$has_logo = function_exists( 'the_custom_logo' ) && has_custom_logo();
+$region_selector['title']   = get_field( 'msva_region_selector_title', 'options' );
+$region_selector['content'] = get_field( 'msva_region_selector_content', 'options' );
+$region_selector['footer']  = get_field( 'msva_region_selector_footer', 'options' );
+$has_logo                   = function_exists( 'the_custom_logo' ) && has_custom_logo();
 ?>
 <div id="set-region" class="overlay">
 	<div class="container">
@@ -13,18 +14,29 @@
 					<div class="content"><p><?php echo $region_selector['content']; ?></p></div>
 					<div class="actions">
 						<ul>
-							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded" data-region="sundsvall" data-url="<?php echo get_permalink(); ?>" href="#">Sundsvall</a></li>
-							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded" data-region="nordanstig" data-url="<?php echo get_permalink(); ?>" href="#">Nordanstig</a></li>
-							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded" data-region="timra" data-url="<?php echo get_permalink(); ?>" href="#">Timrå</a></li>
+							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded"
+							       data-region="sundsvall" data-url="<?php echo get_permalink(); ?>"
+							       href="#">Sundsvall</a></li>
+							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded"
+							       data-region="nordanstig" data-url="<?php echo get_permalink(); ?>" href="#">Nordanstig</a>
+							</li>
+							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded" data-region="timra"
+							       data-url="<?php echo get_permalink(); ?>" href="#">Timrå</a></li>
 						</ul>
 					</div><!-- .actions -->
+
+					<?php if ( ! empty( $region_selector['footer'] ) ) : ?>
+						<div class="region-selector__footer">
+							<p><?php echo $region_selector['footer']; ?></p>
+						</div>
+					<?php endif; ?>
 
 					<div class="logotype">
 						<?php
 						if ( $has_logo ) {
 							the_custom_logo();
 						} else {
-							echo '<a href="'.get_bloginfo('url').'">';
+							echo '<a href="' . get_bloginfo( 'url' ) . '">';
 							printf( '<span class="site-title">%s</span>', get_bloginfo( 'name' ) );
 							echo '</a>';
 						}
@@ -39,7 +51,7 @@
 <script>
 	function openNav() {
 		document.getElementById("set-region").style.height = "100%";
-		document.getElementsByTagName('body')[0].className+=' overlay-popup';
+		document.getElementsByTagName('body')[0].className += ' overlay-popup';
 	}
 
 	function closeNav() {
