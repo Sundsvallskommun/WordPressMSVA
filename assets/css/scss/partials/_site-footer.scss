@@ -3,8 +3,16 @@ $footer_background: #286AA6;
 .site-footer {
 
 	background-color: $footer_background !important;
-	color: #fff;
+	color: #ffffff;
 
+	a, a:visited, a:active, a:hover{
+		color: #ffffff;
+		text-decoration: none;
+	}
+
+	a:hover{
+		text-decoration: underline;
+	}
 }
 
 
