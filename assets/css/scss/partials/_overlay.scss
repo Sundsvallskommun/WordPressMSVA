@@ -54,6 +54,10 @@
   padding: 4em;
   margin-top: 2em;
 
+  @include media-breakpoint-down(sm) {
+    padding: 2em;
+  }
+
   ul{
     list-style: none;
     padding: 0;
@@ -64,11 +68,24 @@
     float:left;
     margin-right: 1em;
     margin-bottom: 1em;
+
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+      a{
+        display: block;
+      }
+    }
+
   }
 
   h1{
     color: $msva_purple;
     font-size: 210%;
+
+    @include media-breakpoint-down(sm) {
+      font-size: 160%;
+    }
+
   }
 
   .actions{

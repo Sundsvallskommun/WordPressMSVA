@@ -41,7 +41,8 @@ h1, h2, h3, h4, h5, h6,
 
 
   @include media-breakpoint-down(sm) {
-    border-top: 3px solid $msva_border_color;
+    border-top: 5px solid $msva-base-color !important;
+    border-bottom: 3px solid $msva_border_color;
     .site-logo {
       .custom-logo {
         max-height: 4em;
@@ -83,6 +84,16 @@ h1, h2, h3, h4, h5, h6,
 
 
     .region-select{
+      @include media-breakpoint-down(sm) {
+        width: 100%;
+        padding-left: 1em;
+        padding-right: 1em;
+        .btn{
+         display: block;
+        }
+
+      }
+
       span{
         text-transform: uppercase;
         font-weight: 400;
@@ -123,4 +134,18 @@ h1, h2, h3, h4, h5, h6,
       text-align: left;
     }
   }
+}
+
+
+.container-fluid{
+  @include media-breakpoint-down(sm) {
+    //padding: 0;
+
+    .row.blocks > [class*='col-'] {
+      //padding-left: 1em;
+      //padding-right: 1em;
+    }
+
+  }
+
 }

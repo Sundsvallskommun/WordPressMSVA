@@ -89,6 +89,19 @@
   .block {
     min-height: 100%;
 
+    @include media-breakpoint-down(sm) {
+
+      &.block-image-and-text{
+        //margin-left: -1em;
+        //margin-right: -1em !important;
+        float: left;
+        width: 100%;
+        padding: 1em;
+        border-bottom: 1px solid $msva_border_color;
+      }
+
+    }
+
     .block-footer {
       padding: 2em;
       font-size: 90%;
@@ -102,6 +115,22 @@
           padding-bottom: 10px;
         }
       }
+
+      @include media-breakpoint-down(sm) {
+          padding: 0;
+          height: auto;
+
+
+          .block-footer__title{
+            h3{
+              font-size: 110%;
+            }
+
+          }
+
+      }
+
+
     }
 
     &.blue {
@@ -126,6 +155,10 @@
 
         a, a:hover, a:visited, a:active, a:focus{
           color: $msva_blue !important;
+        }
+
+        @include media-breakpoint-down(sm) {
+          border: 0;
         }
       }
     }
@@ -155,6 +188,7 @@
   h3{
     font-size: 140%;
     color: #023b5b;
+    margin-top: 1em;
     @include media-breakpoint-up(md) {
       margin-top: -1.5em;
     }
@@ -169,5 +203,19 @@
   }
 
 }
+
+
+@include media-breakpoint-down(sm) {
+  .block-block__image {
+    float: left;
+    img {
+      width: 120px;
+      margin-right: 1em;
+    }
+
+  }
+
+}
+
 
 
