@@ -4,7 +4,7 @@
 class SK_News {
 
 	/**
-	 * SK_Garbage_Scheme constructor.
+	 * SK_News constructor.
 	 */
 	function __construct() {
 		add_action( 'after_setup_theme', function () {
@@ -25,7 +25,7 @@ class SK_News {
 
 
 	/**
-	 * HTML output for the search form
+	 * HTML output for the latest news
 	 *
 	 *
 	 * @param $atts
@@ -50,7 +50,6 @@ class SK_News {
 			<div class="mobile-news" id="news">
 				<?php get_template_part('partials/latest-news'); ?>
 			</div>
-			<?php //require_once( get_stylesheet_directory() . '/lib/sk-wasteguide/template.php' ); ?>
 			<div class="clearfix"></div>
 		</div>
 		<?php

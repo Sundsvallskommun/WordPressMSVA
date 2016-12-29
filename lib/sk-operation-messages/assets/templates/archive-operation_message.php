@@ -32,12 +32,11 @@ $messages = SK_Operation_Messages::messages();
 							<?php foreach ( $messages as $message ) : ?>
 								<tr>
 									<td>
-										<a href="<?php echo get_permalink( $message->ID ); ?>"><?php echo $message->meta['om_area_street'][0]; ?></a>
+										<a href="<?php echo get_permalink( $message->ID ); ?>"><?php echo $post->post_title; ?></a>
 									</td>
 									<td><?php echo $message->meta['om_event'][0]; ?></td>
 									<td><?php echo $message->meta['om_custom_municipality'][0]; ?></td>
-									<td><?php echo $message->meta['om_publish_at_date'][0]; ?> <?php echo $message->meta['om_publish_at_hour'][0]; ?>
-										:<?php echo $message->meta['om_publish_at_minute'][0]; ?></td>
+									<td><?php echo $message->meta['om_publish_at_date'][0]; ?> <?php echo $message->meta['om_publish_at_hour'][0]; ?>:<?php echo $message->meta['om_publish_at_minute'][0]; ?></td>
 								</tr>
 
 
