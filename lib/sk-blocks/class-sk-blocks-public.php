@@ -99,14 +99,33 @@ class SK_Blocks_Public {
 		*/
 
 		$image_id = get_field( 'sk-blocks-image', $block_id );
-		$image = wp_get_attachment_image_src( $image_id, 'full' );
+		$image = wp_get_attachment_image_src( $image_id, 'content-full' );
+
+		$links['internal'] = get_field( 'sk-block-link-internal', $block_id );
+		$links['external'] = get_field( 'sk-block-link-external', $block_id );
+
+		$link = $links['internal'];
+
+		if( empty ($link ) ) {
+			$link = $links['external'];
+		}
+
 
 		ob_start();
 
 		?>
 
+
 		<div class="block block-image">
-			<div class="block-block__image"><img src="<?php echo $image[0];?>"></div>
+			<div class="block-block__image">
+				<?php if ( ! empty( $link ) ) : ?>
+				<a href="<?php echo $link; ?>">
+					<?php endif; ?>
+					<img src="<?php echo $image[0]; ?>">
+					<?php if ( ! empty( $link ) ) : ?>
+				</a>
+			<?php endif; ?>
+			</div>
 		</div>
 
 		<?php

@@ -5,11 +5,9 @@
 
 <?php
 		$posts_category = get_field( 'news_category', get_option( 'page_on_front' ) );
-		$sticky = get_option( 'sticky_posts' );
 		$latest_posts = get_posts( array(
 			'posts_per_page' => 3,
-			'category' => $posts_category,
-			'exclude' => $sticky
+			'category' => $posts_category
 		) );
 
 		foreach ($latest_posts as $post) : setup_postdata( $post );

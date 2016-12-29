@@ -59,6 +59,12 @@
     //border: 1px solid $msva_border_color;
     //border-left: 0;
 
+    .block-image{
+      margin-left: -1em;
+      margin-right: -1em;
+    }
+
+
     .sk-grid-border-inner{
       padding: 6em 8em 8em 0;
       h3{
@@ -98,7 +104,19 @@
         width: 100%;
         padding: 1em;
         border-bottom: 1px solid $msva_border_color;
+
+        .block-block__image {
+          float: left;
+          img {
+            width: 120px;
+            margin-right: 1em;
+          }
+
+        }
+
       }
+
+
 
     }
 
@@ -206,14 +224,7 @@
 
 
 @include media-breakpoint-down(sm) {
-  .block-block__image {
-    float: left;
-    img {
-      width: 120px;
-      margin-right: 1em;
-    }
 
-  }
 
 }
 

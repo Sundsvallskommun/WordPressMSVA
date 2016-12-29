@@ -29,24 +29,6 @@ get_header();
 
 		</div>
 	<?php endforeach; ?>
-	<div class="row blocks has-grid">
-		<div class="col-md-6 block-grid-border">
-			<div class="sk-grid-border-inner">
-
-				<div class="mobile-news" id="news">
-					<?php get_template_part('partials/latest-news'); ?>
-				</div>
-
-				<div class="clearfix"></div>
-			</div>
-		</div>
-
-
-			<?php get_template_part('partials/sticky-post'); ?>
-
-
-
-	</div>
 
 
 </div>

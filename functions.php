@@ -119,3 +119,7 @@ $sk_my_pages = new SK_My_Pages();
 /* SK Custom News Feed */
 require_once locate_template( 'lib/sk-news-feed/class-sk-news-feed.php' );
 $sk_news_feed = new SK_News_Feed();
+
+/* SK Custom News Feed */
+require_once locate_template( 'lib/sk-news/class-sk-news.php' );
+$sk_news = new SK_News();

@@ -154,13 +154,15 @@ class SK_Blocks_Admin {
 				'name' => 'Bild',
 			),
 			array(
-				'name' => 'Text',
-			),
-			array(
 				'name' => 'Bild och Text',
 			),
 			array(
 				'name' => 'Länklista',
+			),
+
+			/*
+			array(
+				'name' => 'Text',
 			),
 			array(
 				'name' => 'Senaste inläggen',
@@ -171,6 +173,7 @@ class SK_Blocks_Admin {
 			array(
 				'name' => 'Kontaktkort',
 			)
+			*/
 		);
 
 		$block_types = apply_filters( 'sk_default_block_types', $block_types );
