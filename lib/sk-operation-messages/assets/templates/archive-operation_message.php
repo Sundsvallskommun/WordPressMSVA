@@ -36,7 +36,7 @@ $messages = SK_Operation_Messages::messages();
 									</td>
 									<td><?php echo $message->meta['om_event'][0]; ?></td>
 									<td><?php echo $message->meta['om_custom_municipality'][0]; ?></td>
-									<td><?php echo $message->meta['om_publish_at_date'][0]; ?> <?php echo $message->meta['om_publish_at_hour'][0]; ?>:<?php echo $message->meta['om_publish_at_minute'][0]; ?></td>
+									<td><?php echo $message->meta['om_publish_at_date'][0]; ?> <?php echo $message->meta['om_publish_at_hour'][0]; ?>.<?php echo $message->meta['om_publish_at_minute'][0]; ?></td>
 								</tr>
 
 
