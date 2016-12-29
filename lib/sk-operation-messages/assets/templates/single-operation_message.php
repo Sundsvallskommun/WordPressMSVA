@@ -23,7 +23,7 @@ $message = SK_Operation_Messages_Post::fromId( get_the_ID() );
 
 				<?php do_action( 'sk_before_page_title' ); ?>
 
-                <h1 class="single-post__title"><?php echo $message->event_title(); ?>, <?php echo $message->street(); ?></h1>
+                <h1 class="single-post__title"><?php echo $message->event_title(); ?>, <?php echo $post->post_title; ?></h1>
 
 				<?php do_action( 'sk_after_page_title' ); ?>
 
@@ -47,7 +47,8 @@ $message = SK_Operation_Messages_Post::fromId( get_the_ID() );
 
                         <h3><?php _e( 'Information', 'msva' ); ?></h3>
                         <div id="om-info-1" class="om-info">
-							<p><?php echo $message->info_1(); ?></p>
+							<p><?php echo $message->info_1(); ?><br><b><?php echo $message->street(); ?></b></p>
+
                         </div>
 
                         <div id="om-info-2" class="om-info">

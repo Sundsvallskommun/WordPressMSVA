@@ -124,7 +124,7 @@ class SK_Operation_Messages_Posttype {
 	 */
 	public function add_meta_boxes() {
 
-		add_meta_box( 'operation_messages_meta', __( 'Sparad information', 'msva' ), array(
+		add_meta_box( 'operation_messages_meta', __( 'Driftstörningar information', 'msva' ), array(
 			$this,
 			'metabox_callback'
 		), 'operation_message' );
@@ -166,29 +166,30 @@ class SK_Operation_Messages_Posttype {
         <div class="operation-message-metabox-wrapper">
 
             <div class="operation-message-metabox-section">
-
-                <h3><?php _e( 'Händelse' ); ?></h3>
-                <hr/>
-
-                <select name="operation_message[om_event]">
-                    <option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
-                    <option value="Vattenläcka" <?php selected( $event, 'Vattenläcka' ); ?>><?php _e( 'Vattenläcka', 'msva' ); ?></option>
-                    <option value="Vattenavstängning" <?php selected( $event, 'Vattenavstängning' ); ?>><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
-                    <option value="Spolning av avloppsledningar" <?php selected( $event, 'Spolning av avloppsledningar' ); ?>><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
-                    <option value="Spolning av vattenledningar" <?php selected( $event, 'Spolning av vattenledningar' ); ?>><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
-                    <option value="Vattenläcka åtgärdad" <?php selected( $event, 'Vattenläcka åtgärdad' ); ?>><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
-                    <option value="1" <?php selected( $event, 1 ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
-                </select>
-
-                <label><?php _e( 'Egen händelse', 'msva' ); ?>
-                    <input type="text" name="operation_message[om_custom_event]" value="<?php echo $custom_event; ?>"/>
-                </label>
+	            <div class="row">
+		            <label><?php _e( 'Händelse', 'msva' ); ?></label>
+	                <select name="operation_message[om_event]">
+	                    <option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
+	                    <option value="Vattenläcka" <?php selected( $event, 'Vattenläcka' ); ?>><?php _e( 'Vattenläcka', 'msva' ); ?></option>
+	                    <option value="Vattenavstängning" <?php selected( $event, 'Vattenavstängning' ); ?>><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
+	                    <option value="Spolning av avloppsledningar" <?php selected( $event, 'Spolning av avloppsledningar' ); ?>><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
+	                    <option value="Spolning av vattenledningar" <?php selected( $event, 'Spolning av vattenledningar' ); ?>><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
+	                    <option value="Vattenläcka åtgärdad" <?php selected( $event, 'Vattenläcka åtgärdad' ); ?>><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
+	                    <option value="1" <?php selected( $event, 1 ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
+	                </select>
+	            </div>
+	            <div class="row">
+                    <label><?php _e( 'Egen händelse', 'msva' ); ?></label>
+                    <input type="text" name="operation_message[om_custom_event]" value="<?php echo $custom_event; ?>">
+	            </div>
 
             </div>
 
             <div class="operation-message-metabox-municipality-section">
 
-                <h3><?php _e( 'Kommun' ); ?></h3>
+	            <div class="row">
+                <h4><?php _e( 'Kommun' ); ?></h4>
+		            <p><i><?php _e('Välj kommun i panelen "kommuntillhörighet"', 'msva'); ?></i></p>
 
                 <!--<select name="operation_message[om_municipality]">
                     <option value="Sundsvall" <?php selected( $municipality, 'Sundsvall' ); ?>>Sundsvall</option>
@@ -197,14 +198,15 @@ class SK_Operation_Messages_Posttype {
                 </select>-->
 
                 <label><?php _e( 'Alt. fri text', 'msva' ); ?></label>
-                <input type="text" name="operation_message[om_custom_municipality]"
-                       value="<?php echo $custom_municipality; ?>"/>
+                <input type="text" name="operation_message[om_custom_municipality]" value="<?php echo $custom_municipality; ?>">
+
+	            </div>
 
             </div>
 
             <div class="operation-message-metabox-information-section">
 
-                <h3><?php _e( 'Information och område', 'msva' ); ?></h3>
+                <h4><?php _e( 'Information och område', 'msva' ); ?></h4>
                 <hr/>
 
                 <label><?php _e( 'Information del 1', 'msva' ); ?></label>
@@ -234,7 +236,7 @@ class SK_Operation_Messages_Posttype {
 
             <div class="operation-message-metabox-publishing-section">
 
-                <h3><?php _e( 'Publicering och Arkivering', 'msva' ); ?></h3>
+                <h4><?php _e( 'Publicering och Arkivering', 'msva' ); ?></h4>
                 <hr/>
 
                 <label><?php _e( 'Publicering', 'msva' ); ?></label>

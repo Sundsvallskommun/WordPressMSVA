@@ -58,43 +58,45 @@ class SK_Operation_Message_Shortcode {
                 <input type="hidden" value="<?php echo $post->ID ?>" name="om_message_id" />
             <?php endif; ?>
 
-            <!-- Event section -->
+
+                <h3><?php _e( 'Händelse och område', 'msva' ); ?></h3>
+                <div class="form-group">
+                    <select class="form-control" name="operation_message[om_event]" id="operation-message-event">
+                        <option value="0" <?php selected( $message->post->meta['om_event'], '0' ); ?>><?php _e( 'Välj händelse...', 'msva' ); ?></option>
+                        <option value="Vattenläcka" <?php selected( $message->post->meta['om_event'], 'Vattenläcka' ); ?>><?php _e( 'Vattenläcka', 'msva' ); ?></option>
+                        <option value="Vattenavstängning" <?php selected( $message->post->meta['om_event'], 'Vattenavstängning' ); ?>><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
+                        <option value="Spolning av avloppsledningar" <?php selected( $message->post->meta['om_event'], 'Spolning av avloppsledningar' ); ?>><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
+                        <option value="Spolning av vattenledningar" <?php selected( $message->post->meta['om_event'], 'Spolning av vattenledningar' ); ?>><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
+                        <option value="Vattenläcka åtgärdad" <?php selected( $message->post->meta['om_event'], 'Vattenläcka åtgärdad' ); ?>><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
+                        <option value="1" <?php selected( $message->post->meta['om_event'], '1' ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
+                    </select>
+                </div>
+
             <div class="form-group">
-
-                <h3><?php _e( 'Händelse', 'msva' ); ?></h3>
-
-                <label><?php _e( 'Titel', 'msva' ); ?></label>
-                <input type="text" name="operation_message[om_title]" class="form-control"
-                       id="operation-message-title" value="<?php echo isset( $message ) ? $message->title() : ''; ?>" />
-
-
-                <select class="form-control" name="operation_message[om_event]" id="operation-message-event">
-                    <option value="0" <?php selected( $message->post->meta['om_event'], '0' ); ?>><?php _e( 'Välj händelse...', 'msva' ); ?></option>
-                    <option value="Vattenläcka" <?php selected( $message->post->meta['om_event'], 'Vattenläcka' ); ?>><?php _e( 'Vattenläcka', 'msva' ); ?></option>
-                    <option value="Vattenavstängning" <?php selected( $message->post->meta['om_event'], 'Vattenavstängning' ); ?>><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
-                    <option value="Spolning av avloppsledningar" <?php selected( $message->post->meta['om_event'], 'Spolning av avloppsledningar' ); ?>><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
-                    <option value="Spolning av vattenledningar" <?php selected( $message->post->meta['om_event'], 'Spolning av vattenledningar' ); ?>><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
-                    <option value="Vattenläcka åtgärdad" <?php selected( $message->post->meta['om_event'], 'Vattenläcka åtgärdad' ); ?>><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
-                    <option value="1" <?php selected( $message->post->meta['om_event'], '1' ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
-                </select>
-
                 <label><?php _e( 'Egen händelse', 'msva' ); ?></label>
                 <input type="text" name="operation_message[om_custom_event]" class="form-control"
-                       id="operation-message-custom-event" value="<?php echo $message->post->meta['om_custom_event']; ?>" />
+                       id="operation-message-custom-event" value="<?php echo $message->post->meta['om_custom_event']; ?>">
+                </div>
+            <div class="form-group">
+                <label><?php _e( 'Område', 'msva' ); ?></label>
+                <input type="text" name="operation_message[om_title]" class="form-control"
+                       id="operation-message-title" value="<?php echo isset( $message ) ? $message->title() : ''; ?>">
 
             </div>
-            <!-- End Event section -->
+
 
             <div class="form-group">
 
                 <h3><?php _e( 'Kommun', 'msva' ); ?></h3>
 
+                <label><?php _e( 'Välj kommun', 'msva' ); ?></label>
                 <select name="operation_message[om_municipality]" class="form-control">
                     <option value="Sundsvall" <?php selected( $message->post->meta['om_municipality'], 'Sundsvall' ); ?>>Sundsvall</option>
                     <option value="Timrå" <?php selected( $message->post->meta['om_municipality'], 'Timrå' ); ?>>Timrå</option>
                     <option value="Nordanstig" <?php selected( $message->post->meta['om_municipality'], 'Timrå' ); ?>>Nordanstig</option>
                 </select>
-
+                </div>
+                <div class="form-group">
                 <label><?php _e( 'Alt. fri text', 'msva' ); ?></label>
                 <input type="text" name="operation_message[om_custom_municipality]" class="form-control" value="<?php echo $message->post->meta['om_custom_municipality']; ?>" />
 
@@ -102,7 +104,6 @@ class SK_Operation_Message_Shortcode {
 
             <!-- Information and location section -->
             <div class="form-group">
-
                 <h3><?php _e( 'Information', 'msva' ); ?></h3>
 
                 <label><?php _e( 'Information del 1', 'msva' ); ?></label>
@@ -116,10 +117,12 @@ class SK_Operation_Message_Shortcode {
 				);
 				wp_editor( isset( $message ) ? $message->info_1() : '', 'operation_message[om_information_part_1]', $wp_editor_args );
 				?>
-
+                </div>
+            <div class="form-group">
                 <label for="area_street"><?php _e( 'Område/Gata', 'msva' ); ?></label>
                 <input type="text" id="area_street" name="operation_message[om_area_street]" class="form-control" value="<?php echo isset( $message ) ? $message->street() : ''; ?>" />
-
+</div>
+            <div class="form-group">
                 <label><?php _e( 'Information del 2', 'msva' ); ?></label>
 				<?php
 				$wp_editor_args = array(
@@ -131,7 +134,8 @@ class SK_Operation_Message_Shortcode {
 				);
 				?>
 				<?php wp_editor( isset( $message ) ? $message->info_2() : '', 'operation_message[om_information_part_2]', $wp_editor_args ); ?>
-
+            </div>
+            <div class="form-group">
                 <label><?php _e( 'Avslut', 'msva' ); ?></label>
 				<?php
 
@@ -154,10 +158,10 @@ class SK_Operation_Message_Shortcode {
 
 
             <!-- Publishing Section -->
-            <div class="operation-message-metabox-publishing-section form-group">
+            <div class="operation-message-metabox-publishing-section">
 
                 <h3><?php _e( 'Publicering och Arkivering', 'msva' ); ?></h3>
-
+                <div class="form-group">
                 <div class="row">
 
                     <div class="col-xs-4">
@@ -204,8 +208,10 @@ class SK_Operation_Message_Shortcode {
                             <option value="50" <?php selected($message->post->meta['om_publish_at_minute'], '50'); ?>>50</option>
                         </select>
                     </div>
+                        </div>
                 </div>
 
+                <div class="form-group">
                 <div class="row">
 
                     <div class="col-xs-4">
@@ -254,7 +260,7 @@ class SK_Operation_Message_Shortcode {
                     </div>
 
                 </div>
-
+                </div>
             </div>
             <!-- End publishing section -->
 
