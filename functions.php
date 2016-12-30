@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Adding custom ACF settings page for MSVA.
+ *
+ * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+ *
+ */
 function msva_options_page() {
 	if ( function_exists( 'acf_add_options_page' ) ) {
 		acf_add_options_sub_page( array(
@@ -79,29 +85,40 @@ add_filter( 'acf/settings/load_json', function ( $paths ) {
  *
  * @return string
  */
-function msva_region_selector( $attr ){
-	if( !SK_Municipality_Adaptation_Cookie::exists() )
+function msva_region_selector( $attr ) {
+	if ( ! SK_Municipality_Adaptation_Cookie::exists() ) {
 		return 'onload="openNav();"';
+	}
 }
-add_filter('sk_body_attr', 'msva_region_selector');
+
+add_filter( 'sk_body_attr', 'msva_region_selector' );
 
 
-function msva_ingress_navigation_card(){
+/**
+ * Adding text/ingress to navigation card templates.
+ *
+ * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+ *
+ * @return bool
+ */
+function msva_ingress_navigation_card() {
 	global $post;
 
-	if(basename( get_page_template() ) !== 'page-navigation.php')
+	if ( basename( get_page_template() ) !== 'page-navigation.php' ) {
 		return false;
+	}
 
-	if( empty( $post->post_content) )
+	if ( empty( $post->post_content ) ) {
 		return false;
+	}
 
 	?>
 	<div class="navigation-card-ingress"><p><?php echo $post->post_content; ?></p></div>
-<?php
+	<?php
 
 }
-add_action('sk_after_page_title', 'msva_ingress_navigation_card');
 
+add_action( 'sk_after_page_title', 'msva_ingress_navigation_card' );
 
 
 /**
