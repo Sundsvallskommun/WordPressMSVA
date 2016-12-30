@@ -1,3 +1,4 @@
+.gform_button,
 .btn-primary,
 .btn-secondary {
   background-color: $btn-secondary-bg;
@@ -5,6 +6,7 @@
   color: $btn-secondary-color;
 }
 
+.gform_button:hover,
 .btn-primary:hover,
 .btn-secondary:hover {
   background-color: $msva-base-button-hover-bg;
@@ -12,6 +14,7 @@
   color: $btn-secondary-color;
 }
 
+.gform_button:focus,
 .btn-primary.focus, .btn-primary:focus,
 .btn-secondary.focus, .btn-secondary:focus {
   background-color: $msva-base-button-active-bg;
@@ -19,6 +22,7 @@
   color: $msva-base-button-active-color;
 }
 
+.gform_button:active, .gform_button:active:hover,
 .btn-primary.active, .btn-primary:active, .open > .btn-primary.dropdown-toggle,
 .btn-secondary.active, .btn-secondary:active, .open > .btn-secondary.dropdown-toggle {
   background-color: $msva-base-button-active-bg;
@@ -26,6 +30,7 @@
   border-color: $msva-base-button-active-border;
   color: $msva-base-button-active-color;
 }
+
 
 .btn-primary.active.focus, .btn-primary.active:focus, .btn-primary.active:hover, .btn-primary.focus:active, .btn-primary:active:focus, .btn-primary:active:hover, .open > .btn-primary.dropdown-toggle.focus, .open > .btn-primary.dropdown-toggle:focus, .open > .btn-primary.dropdown-toggle:hover,
 .btn-secondary.active.focus, .btn-secondary.active:focus, .btn-secondary.active:hover, .btn-secondary.focus:active, .btn-secondary:active:focus, .btn-secondary:active:hover, .open > .btn-secondary.dropdown-toggle.focus, .open > .btn-secondary.dropdown-toggle:focus, .open > .btn-secondary.dropdown-toggle:hover {
@@ -50,6 +55,7 @@
   font-family: $font-family-base;
 }
 
+.gform_button,
 .btn-primary {
   border-radius: 2em;
   border-width: 2px;
