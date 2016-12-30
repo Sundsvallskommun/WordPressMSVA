@@ -1,7 +1,7 @@
 <section class="news">
 	<h3 class="front-page__heading"><?php _e('Nyheter', 'sk_tivoli')?></h3>
 	<div class="news-slider">
-	<ul class="list-unstyled widget-latest-news">
+	<ul class="list-unstyled widget-latest-news-msva">
 
 <?php
 		$posts_category = get_field( 'news_category', get_option( 'page_on_front' ) );
@@ -17,20 +17,31 @@
 				<a href="<?php the_permalink(); ?>">
 
 					<div class="media-body">
+						<?php if(has_post_thumbnail()): ?>
+						<div class="media-left small hidden-md-up">
+							<?php the_post_thumbnail('news-thumb-small'); ?>
+						</div>
+						<?php endif; ?>
+
+						<div class="archive-post__date hidden-md-up">
+							<?php printf('%s, %s', get_the_date(), get_the_time()); ?>
+						</div>
+
 						<h4 class="media-heading">
 							<?php the_title(); ?>
 						</h4>
-						<div class="archive-post__date">
+						<div class="archive-post__date hidden-sm-down">
 							<?php printf('%s, %s', get_the_date(), get_the_time()); ?>
 						</div>
-						<div class="archive-post__excerpt hidden-sm-up">
+
+						<div class="archive-post__excerpt hidden-md-up">
 							<?php echo get_the_excerpt(); ?>
 
 						</div>
 					</div>
 
 					<?php if(has_post_thumbnail()): ?>
-						<div class="media-left">
+						<div class="media-left hidden-sm-down">
 							<div class="large">
 								<?php the_post_thumbnail('news-thumb-medium'); ?>
 							</div>
@@ -56,11 +67,12 @@
 		?>
 
 	</ul>
-
+<!--
 	<div class="slider-controls hidden-md-up">
 		<button id="prevslide" class="btn btn-link"><?php the_icon('arrow-right-circle')?></button>
 		<button id="nextslide" class="btn btn-link"><?php the_icon('arrow-right-circle')?></button>
 	</div>
+	-->
 	</div>
 
 <?php
