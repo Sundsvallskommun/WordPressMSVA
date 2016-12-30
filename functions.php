@@ -71,6 +71,40 @@ add_filter( 'acf/settings/load_json', function ( $paths ) {
 
 
 /**
+ * Trigger overlay if no cookie is set.
+ *
+ * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+ *
+ * @param $attr
+ *
+ * @return string
+ */
+function msva_region_selector( $attr ){
+	if( !SK_Municipality_Adaptation_Cookie::exists() )
+		return 'onload="openNav();"';
+}
+add_filter('sk_body_attr', 'msva_region_selector');
+
+
+function msva_ingress_navigation_card(){
+	global $post;
+
+	if(basename( get_page_template() ) !== 'page-navigation.php')
+		return false;
+
+	if( empty( $post->post_content) )
+		return false;
+
+	?>
+	<div class="navigation-card-ingress"><p><?php echo $post->post_content; ?></p></div>
+<?php
+
+}
+add_action('sk_after_page_title', 'msva_ingress_navigation_card');
+
+
+
+/**
  * REQUIRE NAME
  * ============
  *
