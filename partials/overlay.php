@@ -16,12 +16,14 @@ $has_logo                   = function_exists( 'the_custom_logo' ) && has_custom
 						<ul>
 							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded"
 							       data-region="sundsvall" data-url="<?php echo get_permalink(); ?>"
-							       href="#">Sundsvall</a></li>
+							       href="#"><?php _e( 'Sundsvall', 'msva' ); ?></a></li>
 							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded"
-							       data-region="nordanstig" data-url="<?php echo get_permalink(); ?>" href="#">Nordanstig</a>
+							       data-region="nordanstig" data-url="<?php echo get_permalink(); ?>"
+							       href="#"><?php _e( 'Nordanstig', 'msva' ); ?></a>
 							</li>
 							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded" data-region="timra"
-							       data-url="<?php echo get_permalink(); ?>" href="#">Timrå</a></li>
+							       data-url="<?php echo get_permalink(); ?>"
+							       href="#"><?php _e( 'Timrå', 'msva' ); ?></a></li>
 						</ul>
 					</div><!-- .actions -->
 

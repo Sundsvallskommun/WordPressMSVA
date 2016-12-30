@@ -25,8 +25,9 @@ class SK_News {
 
 
 	/**
-	 * HTML output for the latest news
+	 * HTML output for the latest news.
 	 *
+	 * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
 	 *
 	 * @param $atts
 	 * @param $content
@@ -35,20 +36,17 @@ class SK_News {
 	 */
 	public function output( $atts, $content ) {
 
-		//$temp = SK_Garbage_Scheme::get_addresses();
-		//util::debug( $temp );
-
 		ob_start();
 
 		$a = shortcode_atts( array(
-			'title'     => false,
-			'text'   => false
+			'title' => false,
+			'text'  => false
 		), $atts );
 
 		?>
 		<div class="widget widget-latest-news">
 			<div class="mobile-news" id="news">
-				<?php get_template_part('partials/latest-news'); ?>
+				<?php get_template_part( 'partials/latest-news' ); ?>
 			</div>
 			<div class="clearfix"></div>
 		</div>

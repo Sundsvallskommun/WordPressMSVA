@@ -38,7 +38,12 @@ class SK_Municipality_Adaptation_Query {
 	public function modify_single_query() {
 		global $post, $wp_query;
 
+
 		if ( is_object( $post ) ) {
+
+			if( $wp_query->is_posts_page ) {
+				return true;
+			}
 
 			if ( ! SK_Municipality_Adaptation::page_access( $post->ID ) ) {
 
