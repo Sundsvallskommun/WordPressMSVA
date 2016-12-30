@@ -347,7 +347,7 @@ class SK_Operation_Message_Shortcode {
             <table class="table">
                 <thead>
                 <tr>
-                    <th>Titel</th>
+                    <th>Område</th>
                     <th>Typ</th>
                     <th>Skapad</th>
                     <th>Åtgärdad?</th>
@@ -355,14 +355,14 @@ class SK_Operation_Message_Shortcode {
                 </thead>
                 <tbody>
                 <?php foreach ( $messages as $post ) : ?>
-	                <?php $message = SK_Operation_Messages_Post::fromId( $post->ID ) ?>
+	                <?php $message = SK_Operation_Messages_Post::fromId( $post->ID ); ?>
                     <tr>
 
                         <td>
-	                        <?php echo $message->event_title(); ?>
+	                        <?php echo $message->title(); ?>
                         </td>
                         <td>
-                            <?php echo $message->title(); ?>
+                            <?php echo $message->om_event(); ?>
                         </td>
                         <td>
                             <?php echo $message->created_at() ?>

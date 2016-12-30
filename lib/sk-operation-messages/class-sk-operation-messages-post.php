@@ -32,6 +32,12 @@ class SK_Operation_Messages_Post {
 
 	}
 
+	public function om_event() {
+
+		return $this->post->meta['om_event'];
+
+	}
+
 
 	public function created_at() {
 

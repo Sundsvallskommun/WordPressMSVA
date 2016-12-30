@@ -10,14 +10,14 @@
 						<?php if(!empty($messages)) : ?>
 						<?php foreach ($messages as $message ) : ?>
 							<li class="active">
-								<a href="<?php echo get_permalink( $message->ID ); ?>" title="<?php echo !empty( $message->meta['om_event'][0] ) ? $message->meta['om_event'][0]. ', '  : NULL; ?><?php echo !empty( $message->meta['om_area_street'][0] ) ? $message->meta['om_area_street'][0] . ':' : NULL; ?>">
+								<a href="<?php echo get_permalink( $message->ID ); ?>" title="<?php echo !empty( $message->meta['om_event'][0] ) ? $message->meta['om_event'][0]. ', '  : NULL; ?><?php echo !empty( $message->post_title ) ? $message->post_title . ':' : NULL; ?>">
 								<?php //util::Debug( $message ); ?>
 								<?php material_icon( 'error', array( 'size' => '2em' ) ); ?>
 								<span class="operation-messages-list__om-event">
 									<?php echo !empty( $message->meta['om_event'][0] ) ? $message->meta['om_event'][0]. ', '  : NULL; ?>
 								</span>
 								<span class="operation-messages-list__om-area-street">
-									<?php echo !empty( $message->meta['om_area_street'][0] ) ? $message->meta['om_area_street'][0] . ':' : NULL; ?>
+									<?php echo !empty( $message->post_title ) ? $message->post_title . ':' : NULL; ?>
 								</span>
 								<span class="operation-messages-list__om-info">
 									<?php echo !empty( $message->meta['om_information_part_1'][0] ) ? $message->meta['om_information_part_1'][0] : NULL; ?>
