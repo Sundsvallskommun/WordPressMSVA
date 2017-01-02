@@ -24,19 +24,18 @@
 							<?php endif; ?>
 
 							<div class="archive-post__date hidden-md-up">
-								<?php printf( '%s, %s', get_the_date(), get_the_time() ); ?>
+								<?php printf( '%s, %s', get_the_date('l j F'), str_replace( ':', '.', get_the_time() ) ); ?>
 							</div>
 
 							<h4 class="media-heading">
 								<?php the_title(); ?>
 							</h4>
 							<div class="archive-post__date hidden-sm-down">
-								<?php printf( '%s, %s', get_the_date(), get_the_time() ); ?>
+								<?php printf( '%s, %s', get_the_date('l j F'), str_replace( ':', '.', get_the_time() ) ); ?>
 							</div>
 
-							<div class="archive-post__excerpt hidden-md-up">
-								<?php echo get_the_excerpt(); ?>
-
+							<div class="archive-post__excerpt">
+								<?php echo wp_trim_words( get_the_excerpt(), 8, ' ...' ); ?>
 							</div>
 						</div>
 
