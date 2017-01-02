@@ -144,7 +144,7 @@ class SK_Operation_Messages {
 	 * @return string   the archive limit date
 	 *
 	 */
-	private function get_archive_limit_date() {
+	private static function get_archive_limit_date() {
 
 		$date_and_time = current_time( 'Y-m-d H:i' );
 		$splits        = explode( ' ', $date_and_time );
