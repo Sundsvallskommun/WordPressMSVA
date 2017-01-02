@@ -34,7 +34,7 @@ class SK_Blocks_Public {
 		</div><!-- .row -->
 		<?php
 
-		util::debug( $section );
+		//util::debug( $section );
 
 
 	}
