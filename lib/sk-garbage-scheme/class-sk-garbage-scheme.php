@@ -1,6 +1,7 @@
 <?php
 
 require_once 'class-sk-garbage-scheme-public.php';
+
 //require_once 'class-sk-garbage-scheme-admin.php';
 
 class SK_Garbage_Scheme {
@@ -25,15 +26,31 @@ class SK_Garbage_Scheme {
 	 */
 	public function init() {
 		$this->create_db_table();
+		$sk_garbage_scheme_public = new SK_Garbage_Scheme_Public();
 
 		add_action( 'init', array( $this, 'importer' ) );
 		add_action( 'wp_ajax_garbage_run', array( $this, 'ajax_garbage_run' ) );
 		add_action( 'wp_ajax_nopriv_garbage_run', array( $this, 'ajax_garbage_run' ) );
 
-		$sk_garbage_scheme_public = new SK_Garbage_Scheme_Public();
-		$sk_garbage_scheme_public = new SK_Garbage_Scheme_Public();
+		add_action( 'msva_scheduled_import', array( $this, 'msva_scheduled_import' ) );
+
+		// check if already scheduled
+		$timestamp = wp_next_scheduled( 'msva_scheduled_import' );
+		if ( $timestamp == false ) {
+			wp_schedule_event( time(), 'hourly', 'msva_scheduled_import' );
+		}
 
 
+	}
+
+	/**
+	 * Method that runs on scheduled event.
+	 *
+	 * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+	 *
+	 */
+	public function msva_scheduled_import() {
+		self::populate_data();
 	}
 
 	/**
@@ -46,7 +63,6 @@ class SK_Garbage_Scheme {
 		if ( isset( $_GET['importer'] ) && $_GET['importer'] === $this->hash ) {
 			self::populate_data();
 		}
-
 	}
 
 	/**
@@ -238,7 +254,6 @@ class SK_Garbage_Scheme {
 		if ( ! empty( $items ) ) {
 			$query = "TRUNCATE $wpdb->garbage_scheme";
 			$wpdb->query( $query );
-			echo "X";
 			foreach ( $items as $key => $item ) {
 
 				if ( substr( $item[4], 0, 2 ) === 'KP' ) {
@@ -266,10 +281,23 @@ class SK_Garbage_Scheme {
 	 *
 	 * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
 	 *
-	 * @return array
+	 * @return array|bool
 	 */
 	public static function get_data() {
-		$file  = get_field( 'msva_garbage_scheme_file', 'options' );
+		$file = get_field( 'msva_garbage_scheme_file', 'options' );
+
+		if ( ! file_exists( $file ) ) {
+			update_option( 'msva_garbage_scheme_log', 'ERROR: importfil saknas. ' . $file );
+
+			return false;
+		}
+
+		$last_updated = get_option( 'msva_garbage_scheme_log' );
+		if ( date( 'Y-m-d H:i:s', filemtime( $file ) ) === $last_updated ) {
+			return false;
+		}
+
+
 		$lines = file( $file );
 		foreach ( $lines as $line ) {
 			$rows[] = explode( ';', $line );
@@ -284,6 +312,9 @@ class SK_Garbage_Scheme {
 			$data[ $key ][] = $row[4];
 			$data[ $key ][] = utf8_encode( trim( $row[5] ) );
 		}
+
+		// update timestamp for file.
+		update_option( 'msva_garbage_scheme_log', date( 'Y-m-d H:i:s', filemtime( $file ) ) );
 
 		return $data;
 
