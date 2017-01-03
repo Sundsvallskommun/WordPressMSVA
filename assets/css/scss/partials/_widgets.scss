@@ -120,6 +120,10 @@
       font-size: 90%;
     }
 
+    .media-body {
+      padding-right: 1em;
+    }
+
     @include media-breakpoint-down(sm) {
 
 
@@ -151,9 +155,6 @@
 
       }
 
-      .widget-latest-news__post .media-body {
-
-      }
       .widget-latest-news__post .media-left {
         float: left;
         width: 100px;
