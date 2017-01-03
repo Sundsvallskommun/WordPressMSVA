@@ -35,7 +35,7 @@
 							</div>
 
 							<div class="archive-post__excerpt">
-								<?php echo wp_trim_words( get_the_excerpt(), 8, ' ...' ); ?>
+								<?php echo wp_trim_words( get_the_excerpt(), 10, ' ...' ); ?>
 							</div>
 						</div>
 
