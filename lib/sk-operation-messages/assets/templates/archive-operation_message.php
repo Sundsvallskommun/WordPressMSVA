@@ -32,7 +32,7 @@ $messages = SK_Operation_Messages::messages();
 							<?php foreach ( $messages as $message ) : ?>
 								<tr>
 									<td>
-										<a href="<?php echo get_permalink( $message->ID ); ?>"><?php echo $post->post_title; ?></a>
+										<a href="<?php echo get_permalink( $message->ID ); ?>"><?php echo $message->post_title; ?></a>
 									</td>
 									<td><?php echo $message->meta['om_event'][0]; ?></td>
 									<td><?php echo $message->meta['om_custom_municipality'][0]; ?></td>

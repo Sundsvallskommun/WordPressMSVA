@@ -21,7 +21,7 @@ class SK_Municipality_Adaptation_Query {
 	public function __construct() {
 
 		// Add filter for querys
-		add_action( 'pre_get_posts', array( $this, 'modify_query' ) );
+		add_action( 'pre_get_posts', array( $this, 'modify_query' ), 99 );
 		add_action( 'wp', array( $this, 'modify_single_query' ) );
 
 	}
@@ -71,25 +71,27 @@ class SK_Municipality_Adaptation_Query {
 	 */
 	public function modify_query( $query ) {
 
+		$meta_query = $query->get( 'meta_query' );
+
+
 		// Check if on frontend and that this is a post type we should modify results for
-		if( ! is_admin() && isset( $query->query_vars['post_type'] ) && $this->query_has_valid_post_type( $query->query_vars['post_type'] ) && SK_Municipality_Adaptation_Cookie::exists() ) {
+		if ( ! is_admin() && isset( $query->query_vars['post_type'] ) && $this->query_has_valid_post_type( $query->query_vars['post_type'] ) && SK_Municipality_Adaptation_Cookie::exists() ) {
 
-			$query->set(
-				'meta_query',
+			$meta_query[] = array(
+				'relation' => 'OR',
 				array(
-					'relation' => 'OR',
-					array(
-						'key' => 'municipality_adaptation',
-						'value' => SK_Municipality_Adaptation_Cookie::value(),
-						'compare' => 'LIKE'
-					),
-					array(
-						'key' => 'municipality_adaptation',
-						'compare' => 'NOT EXISTS'
-					)
+					'key'     => 'municipality_adaptation',
+					'value'   => SK_Municipality_Adaptation_Cookie::value(),
+					'compare' => 'LIKE'
+				),
+				array(
+					'key'     => 'municipality_adaptation',
+					'compare' => 'NOT EXISTS'
 				)
-
 			);
+
+			$query->set( 'meta_query', $meta_query );
+
 
 		} else {
 
@@ -97,24 +99,22 @@ class SK_Municipality_Adaptation_Query {
 
 				$post_type = isset( $query->query['post_type'] ) ? $query->query['post_type'] : null;
 
-				if ( defined('DOING_AJAX') && DOING_AJAX && isset( $post_type ) && $this->query_has_valid_post_type( $post_type ) && SK_Municipality_Adaptation_Cookie::exists() ) {
+				if ( defined( 'DOING_AJAX' ) && DOING_AJAX && isset( $post_type ) && $this->query_has_valid_post_type( $post_type ) && SK_Municipality_Adaptation_Cookie::exists() ) {
 
-					$query->set(
-						'meta_query',
+					$meta_query[] = array(
+						'relation' => 'OR',
 						array(
-							'relation' => 'OR',
-							array(
-								'key' => 'municipality_adaptation',
-								'value' => SK_Municipality_Adaptation_Cookie::value(),
-								'compare' => 'LIKE'
-							),
-							array(
-								'key' => 'municipality_adaptation',
-								'compare' => 'NOT EXISTS'
-							)
+							'key'     => 'municipality_adaptation',
+							'value'   => SK_Municipality_Adaptation_Cookie::value(),
+							'compare' => 'LIKE'
+						),
+						array(
+							'key'     => 'municipality_adaptation',
+							'compare' => 'NOT EXISTS'
 						)
-
 					);
+
+					$query->set( 'meta_query', $meta_query );
 
 				}
 

@@ -92,7 +92,13 @@ class SK_Operation_Messages {
 		$args = array(
 			'posts_per_page' => - 1,
 			'post_type'      => 'operation_message',
-			'post_status'    => $statuses,
+			'post_status'    => 'publish',
+			'meta_query'     => array(
+				array(
+					'key'     => 'om_archived_at',
+					'compare' => 'NOT EXISTS'
+				),
+			),
 		);
 
 		if ( $archived ) {
@@ -111,7 +117,6 @@ class SK_Operation_Messages {
 		}
 
 		$messages = get_posts( $args );
-
 
 		if ( $with_meta ) {
 
