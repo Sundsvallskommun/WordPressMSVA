@@ -8,7 +8,7 @@
 					<ul>
 						<?php if ( ! empty( $messages ) ) : ?>
 							<?php foreach ( $messages as $message ) : ?>
-								<li class="active"><?php echo $message->meta['om_archived_at'][0] ?>
+								<li class="active">
 									<a href="<?php echo get_permalink( $message->ID ); ?>"
 									   title="<?php echo ! empty( $message->meta['om_event'][0] ) ? $message->meta['om_event'][0] . ', ' : null; ?><?php echo ! empty( $message->post_title ) ? $message->post_title . ':' : null; ?>">
 										<?php material_icon( 'error', array( 'size' => '2em' ) ); ?>
