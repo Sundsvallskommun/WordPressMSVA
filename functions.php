@@ -6,17 +6,23 @@
  * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
  *
  */
-function msva_options_page() {
-	if ( function_exists( 'acf_add_options_page' ) ) {
-		acf_add_options_sub_page( array(
-			'page_title'  => 'Inställningar för MSVA',
-			'menu_title'  => 'MSVA',
-			'parent_slug' => 'general-settings'
-		) );
-	}
-}
 
-add_filter( 'init', 'msva_options_page' );
+
+add_filter( 'sk_acf_options_page', 'msva_options_page', 999, 1 );
+
+function msva_options_page( $subpages ) {
+
+	$subpages[] = array(
+
+		'page_title'  => 'Anpassade inställningar för MSVA',
+		'menu_title'  => 'MSVA',
+		'parent_slug' => 'general-settings',
+
+	);
+
+	return $subpages;
+
+}
 
 
 /**
