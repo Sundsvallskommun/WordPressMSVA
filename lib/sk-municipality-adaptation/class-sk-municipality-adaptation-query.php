@@ -29,7 +29,7 @@ class SK_Municipality_Adaptation_Query {
 
 	/**
 	 * Check to see if a visitor has access to a certain post.
-	 * Redirect to 404 if not.
+	 * Redirect to start page if not.
 	 *
 	 * @since    1.0.0
 	 * @access   public
@@ -46,10 +46,7 @@ class SK_Municipality_Adaptation_Query {
 			}
 
 			if ( ! SK_Municipality_Adaptation::page_access( $post->ID ) ) {
-
-				$wp_query->set_404();
-				status_header( 404 );
-
+				wp_redirect( get_bloginfo('url') );
 			}
 
 		}
