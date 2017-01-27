@@ -8,7 +8,6 @@
  * @package    SK_Municipality_Adaptation
  * @author     Andreas Färnstrand <andreas.farnstrand@cybercom.com>
  */
-
 class SK_Municipality_Adaptation_Query {
 
 
@@ -23,6 +22,7 @@ class SK_Municipality_Adaptation_Query {
 		// Add filter for querys
 		add_action( 'pre_get_posts', array( $this, 'modify_query' ), 99 );
 		add_action( 'wp', array( $this, 'modify_single_query' ) );
+		add_filter( 'post_search_result', array( $this, 'modify_search_result' ) );
 
 	}
 
@@ -41,12 +41,12 @@ class SK_Municipality_Adaptation_Query {
 
 		if ( is_object( $post ) ) {
 
-			if( $wp_query->is_posts_page ) {
+			if ( $wp_query->is_posts_page ) {
 				return true;
 			}
 
 			if ( ! SK_Municipality_Adaptation::page_access( $post->ID ) ) {
-				wp_redirect( get_bloginfo('url') );
+				wp_redirect( get_bloginfo( 'url' ) );
 			}
 
 		}
@@ -70,7 +70,6 @@ class SK_Municipality_Adaptation_Query {
 
 		$meta_query = $query->get( 'meta_query' );
 
-
 		// Check if on frontend and that this is a post type we should modify results for
 		if ( ! is_admin() && isset( $query->query_vars['post_type'] ) && $this->query_has_valid_post_type( $query->query_vars['post_type'] ) && SK_Municipality_Adaptation_Cookie::exists() ) {
 
@@ -88,7 +87,6 @@ class SK_Municipality_Adaptation_Query {
 			);
 
 			$query->set( 'meta_query', $meta_query );
-
 
 		} else {
 
@@ -138,8 +136,8 @@ class SK_Municipality_Adaptation_Query {
 	private function query_has_valid_post_type( $post_type ) {
 
 		$result = true;
-		if( is_array( $post_type ) ) {
-			foreach( $post_type as $type ) {
+		if ( is_array( $post_type ) ) {
+			foreach ( $post_type as $type ) {
 
 				if ( ! in_array( $type, SK_Municipality_Adaptation_Settings::valid_post_types() ) ) {
 					$result = false;
@@ -156,6 +154,40 @@ class SK_Municipality_Adaptation_Query {
 		}
 
 		return $result;
+
+	}
+
+
+	/**
+	 * Loop through all posts to see if user has page post access.
+	 *
+	 * @since    1.0.0
+	 * @access   public
+	 *
+	 * @param array
+	 *
+	 * @return array
+	 */
+	public function modify_search_result( $posts ) {
+
+		$filtered_posts = array();
+
+		if ( is_array( $posts ) && count( $posts ) > 0 ) {
+
+			foreach ( $posts as $key => $post ) {
+
+				if ( SK_Municipality_Adaptation::page_access( $post->ID ) ) {
+
+					$filtered_posts [] = $post;
+
+				}
+
+
+			}
+
+		}
+
+		return $filtered_posts;
 
 	}
 
