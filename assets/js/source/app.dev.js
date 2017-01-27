@@ -69,7 +69,7 @@
 					name: 'my-dataset',
 					display: 'street_address',
 					source: engine,
-					limit: 12,
+					limit: 99,
 
 					templates: {
 						empty: '<p>Hittar inte angiven adress.</p>',
