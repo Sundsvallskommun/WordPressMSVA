@@ -64,7 +64,7 @@ class SK_Connection_Fee_Shortcode {
 					<div class="form-check">
 						<label class="form-check-label">
 							<input type="checkbox" id="water-fee" class="form-check-input" name="water_fee" />
-							<?php _e( 'Vattenförsöjning', 'msva' ); ?>
+							<?php _e( 'Vattenförsörjning', 'msva' ); ?>
 						</label>
 					</div>
 					<div class="form-check">

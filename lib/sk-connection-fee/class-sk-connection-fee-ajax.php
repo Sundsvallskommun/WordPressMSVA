@@ -137,7 +137,7 @@ class SK_Connection_Fee_Ajax {
 		$response_markup = <<<eol
 <div class="card card-block">
   <p class="card-text">
-  Anläggningsavgiften i %s för de valda tjänserna blir <strong>%s</strong> kr inklusive moms.
+  Anläggningsavgiften i %s för de valda tjänsterna blir <strong>%s</strong> kr inklusive moms.
   </p>
   <p class="card-text">
 	Anslutningen är möjlig om fastigheten ligger inom kommunens verksamhetsområde för allmänna vatten- och avloppstjänster.
@@ -146,7 +146,7 @@ class SK_Connection_Fee_Ajax {
 </div>
 eol;
 
-		return sprintf( $response_markup, $municipality, number_format( $sum,  0, ' ', ' ' ) );
+		return sprintf( $response_markup, ucfirst( $municipality ), number_format( $sum,  0, ' ', ' ' ) );
 
 	}
 
