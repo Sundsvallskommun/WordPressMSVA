@@ -73,11 +73,7 @@ class SK_Municipality_Adaptation_Settings {
 	public function valid_post_types_field_callback() {
 		ob_start();
 
-		$post_types = get_post_types(
-			array(
-				'public' => true
-			)
-		);
+		$post_types = get_post_types();
 		$valid_post_types = self::valid_post_types();
 
 		?>
