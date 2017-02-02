@@ -180,3 +180,7 @@ $sk_news_feed = new SK_News_Feed();
 /* SK Custom News Feed */
 require_once locate_template( 'lib/sk-news/class-sk-news.php' );
 $sk_news = new SK_News();
+
+/* SK Critical Information */
+require_once locate_template( 'lib/sk-critical-information/class-sk-critical-information.php' );
+$sk_critical_information = new SK_Critical_Information();
