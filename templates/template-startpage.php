@@ -16,7 +16,9 @@ $sections = SK_Blocks::get_sections();
 
 get_header();
 ?>
+<?php get_template_part( 'partials/front-page/critical-information' ); ?>
 <?php get_template_part( 'partials/front-page/operation-messages' ); ?>
+
 <div class="container-fluid sections">
 
 	<?php foreach ( $sections as $section ) : ?>
