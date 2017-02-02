@@ -38,6 +38,10 @@ class SK_Municipality_Adaptation_Query {
 	public function modify_single_query() {
 		global $post, $wp_query;
 
+		// bail if in admin view.
+		if( is_admin() )
+			return false;
+
 
 		if ( is_object( $post ) ) {
 
