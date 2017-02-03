@@ -3,7 +3,7 @@
  * Archive for operation messages
  */
 get_header();
-$messages = SK_Operation_Messages::messages();
+$messages = SK_Operation_Messages::messages(array('publish'), true, true);
 ?>
 
 <div class="container-fluid archive">

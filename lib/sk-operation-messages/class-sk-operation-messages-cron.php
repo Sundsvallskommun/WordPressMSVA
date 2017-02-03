@@ -87,16 +87,26 @@ class SK_Operation_Messages_Cron {
 	public function unpublish_archived_messages_callback() {
 
 		// Get all archived messages
-		$messages = SK_Operation_Messages::messages( array( 'publish' ), false, true );
+		$messages = SK_Operation_Messages::messages( array( 'publish' ), true, true, true );
 
 		if ( isset( $messages ) && is_array( $messages ) ) {
 
 			foreach ( $messages as $message ) {
 
-				$post_id = wp_update_post( array(
-					'ID'          => $message->ID,
-					'post_status' => 'draft'
-				) );
+				$unpublishing_time = date( 'H:i', strtotime( $message->meta['om_archived_at'][0] ) );
+				$unpublishing_time = new DateTime( $unpublishing_time );
+
+				$current_time = current_time( 'H:i' );
+				$current_time = new DateTime( $current_time );
+
+				if ( $current_time >= $unpublishing_time ) {
+
+					$post_id = wp_update_post( array(
+						'ID'          => $message->ID,
+						'post_status' => 'draft'
+					) );
+
+				}
 
 			}
 
