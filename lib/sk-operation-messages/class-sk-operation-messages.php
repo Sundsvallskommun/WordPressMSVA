@@ -87,31 +87,47 @@ class SK_Operation_Messages {
 	 *
 	 * @return array    the posts
 	 */
-	public static function messages( $statuses = array( 'publish' ), $with_meta = true, $archived = false ) {
+	public static function messages( $statuses = array( 'publish' ), $with_meta = true, $archived = false, $ready_to_unpublish = false ) {
 
 		$args = array(
 			'posts_per_page' => - 1,
 			'post_type'      => 'operation_message',
-			'post_status'    => $statuses,
-			'meta_query'     => array(
-				array(
-					'key'     => 'om_archived_at',
-					'compare' => 'NOT EXISTS'
-				),
-			),
+			'post_status'    => $statuses
 		);
 
 		if ( $archived ) {
 
-			$compare_date = self::get_archive_limit_date();
+			if ( $ready_to_unpublish ) { // Check for operation messages to unpublish
+
+				$compare_date = self::get_archive_limit_date();
+
+				$args['meta_query'] = array(
+					array(
+						'key'     => 'om_archived_at',
+						'value' => $compare_date,
+						'type' => 'DATE',
+						'compare' => '<='
+					)
+				);
+
+			} else { // Check for messages that are archived
+
+				$args['meta_query'] = array(
+					array(
+						'key'     => 'om_archived_at',
+						'compare' => 'EXISTS'
+					)
+				);
+			}
+
+
+		} else { // Check for messages that are published and should be on front page
 
 			$args['meta_query'] = array(
 				array(
 					'key'     => 'om_archived_at',
-					'value'   => $compare_date,
-					'type'    => 'DATE',
-					'compare' => '<='
-				)
+					'compare' => 'NOT EXISTS'
+				),
 			);
 
 		}
