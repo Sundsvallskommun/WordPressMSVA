@@ -66,15 +66,15 @@ class SK_My_Pages_Shortcode {
 
 		$municipality = SK_Municipality_Adaptation_Cookie::value();
 		switch ( $municipality ) {
-
+			
 			case 'sundsvall':
-				return 'http://masvall.mittsverigevatten.se';
+				return 'http://masvall.msva.se';
 				break;
 			case 'timra':
-				return 'http://matimra.mittsverigevatten.se';
+				return 'http://matimra.msva.se';
 				break;
 			case 'nordanstig':
-				return 'http://manstig.mittsverigevatten.se';
+				return 'http://manstig.msva.se';
 				break;
 			default:
 				break;
