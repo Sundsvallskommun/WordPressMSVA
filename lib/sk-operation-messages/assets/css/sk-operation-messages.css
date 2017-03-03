@@ -1,3 +1,9 @@
+.operation-message-wrapper .form-section{
+    background: #f7f7f7;
+    padding: 1em;
+    margin-bottom: 1.5em;
+}
+
 .operation-messages-list {
     margin-top: 20px;
 }

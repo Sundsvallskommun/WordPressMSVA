@@ -52,7 +52,7 @@ $message = SK_Operation_Messages_Post::fromId( get_the_ID() );
                         </div>
 
                         <div id="om-info-2" class="om-info">
-							<p><?php echo wpautop( $message->info_2() ); ?></p>
+							<?php echo wpautop( $message->info_2() ); ?>
                         </div>
 
                         <div id="om-ending" class="om-info">

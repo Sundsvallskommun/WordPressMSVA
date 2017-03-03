@@ -117,7 +117,7 @@ class SK_Operation_Messages_Ajax {
 
 				foreach ( $params['operation_message'] as $key => $value ) {
 
-					update_post_meta( $post_id, $key, strip_tags( $value, '<p><b><strong>' ) );
+					update_post_meta( $post_id, $key, $value );
 
 					if ( isset( $municipality ) ) {
 
@@ -213,8 +213,7 @@ class SK_Operation_Messages_Ajax {
 
 				foreach ( $params['operation_message'] as $key => $value ) {
 
-
-					update_post_meta( $post_id, $key, strip_tags( $value, '<p><b><strong>' ) );
+					update_post_meta( $post_id, $key, $value );
 					if ( isset( $tomorrow ) ) {
 
 						update_post_meta( $post_id, 'om_archive_at_date', $tomorrow );
