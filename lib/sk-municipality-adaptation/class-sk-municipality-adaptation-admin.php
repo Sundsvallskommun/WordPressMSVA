@@ -35,6 +35,9 @@ class SK_Municipality_Adaptation_Admin {
 		// Add logic and markup for metabox
 		add_action( 'add_meta_boxes', array( $this, 'meta_boxes' ) );
 		add_action( 'save_post', array( $this, 'save' ), 10, 3 );
+		add_action( 'edit_attachment', array ( $this, 'save_attachment' ) );
+		add_filter( 'attachment_fields_to_edit', array( $this, 'attachment_media_fields' ), 11, 2 );
+		add_filter( 'attachment_fields_to_save', array( $this, 'save_attachment_media_fields' ), 11, 2 );
 
 		// Add extra columns for certain post types
         // in post types list page.
@@ -230,6 +233,198 @@ class SK_Municipality_Adaptation_Admin {
 		}
 
 	}
+
+
+	/**
+     * Need to have different save method for attachments when opening
+     * in different kind of views.
+     * This saves adaptation post meta for attachments.
+     *
+	 * @param $post_id
+	 *
+	 * @return mixed
+	 */
+	public function save_attachment( $post_id ) {
+
+		// Security checks
+		if ( ! current_user_can( 'edit_post', $post_id ) ) return $post_id;
+		if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) return $post_id;
+
+		$post = get_post( $post_id );
+
+		// Check if this is a valid post type
+		if ( ! in_array( $post->post_type, SK_Municipality_Adaptation_Settings::valid_post_types() ) ) return $post_id;
+
+		if ( isset( $_POST['municipality_adaptation'] ) ) {
+
+			update_post_meta(
+				$post_id,
+				'municipality_adaptation',
+				$this->municipalities_to_string( $_POST['municipality_adaptation'] )
+			);
+
+		} else {
+
+			delete_post_meta( $post_id, 'municipality_adaptation' );
+
+		}
+
+		if ( isset( $_POST['municipality_adaptation_override'] ) ) {
+
+			update_post_meta( $post_id, 'municipality_adaptation_override', true );
+
+		} else {
+
+			delete_post_meta( $post_id, 'municipality_adaptation_override' );
+
+		}
+
+    }
+
+
+	/**
+     * The html output for the new attachment smeta fields.
+     *
+	 * @param $form_fields
+	 * @param null $post
+	 *
+	 * @return mixed
+	 */
+    public function attachment_media_fields( $form_fields, $post = null ) {
+
+	    $municipality_adaptation = get_post_meta( $post->ID, 'municipality_adaptation', true );
+	    $municipality_adaptation_override = get_post_meta( $post->ID, 'municipality_adaptation_override', true );
+
+
+	    $form_fields['municipality_adaptation'] = array(
+		    'label' => __('Kommuntillhörighet', 'msva'),
+		    'input' => 'html',
+		    'html' =>  $this->attachment_media_fields_output( $post, $municipality_adaptation )
+	    );
+
+	    $form_fields['municipality_adaptation_override'] = array(
+		    'label' => __('Åsidosätt eventuell förälders kommuntillhörighet', 'msva'),
+		    'input' => 'html',
+		    'html' =>  $this->municipality_adaptation_overide_attachment_fields_output( $post, $municipality_adaptation_override )
+	    );
+
+
+	    return $form_fields;
+
+    }
+
+
+	/**
+	 * Need to have different save method for attachments when opening
+	 * in different kind of views.
+	 * This saves adaptation post meta for attachments.
+	 *
+	 * @param $post_id
+	 *
+	 * @return mixed
+	 */
+    public function save_attachment_media_fields( $post, $attachment ) {
+
+	    // Check if this is a valid post type
+	    if ( ! in_array( $post['post_type'], SK_Municipality_Adaptation_Settings::valid_post_types() ) ) return $post;
+
+	    if ( isset( $attachment['municipality_adaptation'] ) || isset( $attachment['municipality_adaptation_override'] ) ) {
+
+		    if ( isset( $attachment['municipality_adaptation'] ) ) {
+
+			    $result = update_post_meta(
+				    $post['ID'],
+				    'municipality_adaptation',
+				    $this->municipalities_to_string( $attachment['municipality_adaptation'] )
+			    );
+
+
+		    } else {
+
+			    delete_post_meta( $post['ID'], 'municipality_adaptation' );
+
+		    }
+
+		    if ( isset( $attachment['municipality_adaptation_override'] ) ) {
+
+			    update_post_meta( $post['ID'], 'municipality_adaptation_override', true );
+
+		    } else {
+
+			    delete_post_meta( $post['ID'], 'municipality_adaptation_override' );
+
+		    }
+
+		    return $post['ID'];
+
+
+        }
+
+	    return $post;
+
+    }
+
+
+	/**
+     * HTML output fot extra attachment meta fields.
+     *
+	 * @param $post
+	 * @param null $mao
+	 *
+	 * @return string
+	 */
+    private function municipality_adaptation_overide_attachment_fields_output( $post, $mao = null ) {
+
+	    ob_start();
+        ?>
+            <input type='checkbox' name='attachments[<?php echo $post->ID; ?>][municipality_adaptation_override]'
+                   id='attachments[<?php echo $post->ID; ?>][municipality_adaptation_override]' <?php echo isset( $mao ) ? 'checked="checked"' : ''; ?> />
+        <?php
+        return ob_get_clean();
+
+    }
+
+
+	/**
+	 * HTML output fot extra attachment meta fields.
+	 *
+	 * @param $post
+	 * @param null $ma
+	 *
+	 * @return string
+	 */
+    private function attachment_media_fields_output( $post, $ma = null ) {
+
+	    $ma_array = array();
+	    if ( ! empty( $ma ) ) {
+		    $ma_array = explode( ',', $ma );
+        }
+
+
+	    ob_start();
+        ?>
+        <div style="width: 100%;">
+            <input type='checkbox' value='sundsvall'
+                   name='attachments[<?php echo $post->ID; ?>][municipality_adaptation][]'
+                   id='attachments[<?php echo $post->ID; ?>][municipality_adaptation_sundsvall]' <?php if ( in_array( 'sundsvall', $ma_array ) ) echo 'checked="checked"'; ?>/>
+            <label for="<?php echo "attachments[{$post->ID}][municipality_adaptation_sundsvall]"; ?>"><?php _e( 'Sundsvall', 'msva' ); ?></label>
+        </div>
+        <div style="width: 100%;">
+            <input type='checkbox' value='timra'
+                name='attachments[<?php echo $post->ID; ?>][municipality_adaptation][]'
+                id='attachments[<?php echo $post->ID; ?>][municipality_adaptation_timra]' <?php if ( in_array( 'timra', $ma_array ) ) echo 'checked="checked"'; ?>/>
+            <label for="<?php echo "attachments[{$post->ID}][municipality_adaptation_sundsvall]"; ?>"><?php _e( 'Timrå', 'msva' ); ?></label>
+        </div>
+        <div style="width: 100%;">
+            <input type='checkbox' value='nordanstig'
+                   name='attachments[<?php echo $post->ID; ?>][municipality_adaptation][]'
+                   id='attachments[<?php echo $post->ID; ?>][municipality_adaptation_nordanstig]' <?php if ( in_array( 'nordanstig', $ma_array ) ) echo 'checked="checked"'; ?>/>
+            <label for="<?php echo "attachments[{$post->ID}][municipality_adaptation_nordanstig]"; ?>"><?php _e( 'Nordanstig', 'msva' ); ?></label>
+        </div>
+        <?php
+        return ob_get_clean();
+
+    }
 
 
 	/**
