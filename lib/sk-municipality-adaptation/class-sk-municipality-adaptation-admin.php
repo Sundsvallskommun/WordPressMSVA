@@ -294,12 +294,19 @@ class SK_Municipality_Adaptation_Admin {
 	public static function top_parent_municipalities( $post_id ) {
 
 		$parents = get_post_ancestors( $post_id );
+
 		if( ! is_array( $parents ) || count( $parents ) == 0 ) return false;
 
-		$parent_id = array_pop( $parents );
-		$check_id = ($parent_id) ? $parent_id : $post_id;
+		// Loop post parents to check for adaptations
+		foreach( $parents as $parent_id ) {
 
-		return get_post_meta( $check_id, 'municipality_adaptation', true );
+			$post_meta = get_post_meta( $parent_id, 'municipality_adaptation', true );
+
+			if ( ! empty( $post_meta ) ) return $post_meta;
+
+		}
+
+		return null;
 
 	}
 
