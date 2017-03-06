@@ -106,7 +106,7 @@ class SK_Operation_Messages_Posttype {
 
 			foreach ( $_POST['operation_message'] as $key => $value ) {
 
-				update_post_meta( $post_id, $key, sanitize_text_field( $value ) );
+				update_post_meta( $post_id, $key, $value );
 
 			}
 
@@ -166,9 +166,9 @@ class SK_Operation_Messages_Posttype {
         <div class="operation-message-metabox-wrapper">
 
             <div class="operation-message-metabox-section">
-	            <div class="row">
+	            <div class="form-row">
 		            <label><?php _e( 'Händelse', 'msva' ); ?></label>
-	                <select name="operation_message[om_event]">
+	                <select id="operation-message-event" name="operation_message[om_event]">
 	                    <option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
 	                    <option value="Vattenläcka" <?php selected( $event, 'Vattenläcka' ); ?>><?php _e( 'Vattenläcka', 'msva' ); ?></option>
 	                    <option value="Vattenavstängning" <?php selected( $event, 'Vattenavstängning' ); ?>><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
@@ -178,7 +178,7 @@ class SK_Operation_Messages_Posttype {
 	                    <option value="1" <?php selected( $event, 1 ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
 	                </select>
 	            </div>
-	            <div class="row">
+	            <div class="form-row">
                     <label><?php _e( 'Egen händelse', 'msva' ); ?></label>
                     <input type="text" name="operation_message[om_custom_event]" value="<?php echo $custom_event; ?>">
 	            </div>
@@ -187,7 +187,7 @@ class SK_Operation_Messages_Posttype {
 
             <div class="operation-message-metabox-municipality-section">
 
-	            <div class="row">
+	            <div class="form-row">
                 <h4><?php _e( 'Kommun' ); ?></h4>
 		            <p><i><?php _e('Välj kommun i panelen "kommuntillhörighet"', 'msva'); ?></i></p>
 
@@ -209,28 +209,23 @@ class SK_Operation_Messages_Posttype {
                 <h4><?php _e( 'Information och område', 'msva' ); ?></h4>
                 <hr/>
 
-                <label><?php _e( 'Information del 1', 'msva' ); ?></label>
-				<?php
-				$wp_editor_args = array(
-					'tinymce'       => false,
-					'quicktags'     => true,
-					'media_buttons' => false,
-					'textarea_rows' => 6,
-
-				);
-				wp_editor( $info_1, 'operation_message[om_information_part_1]', $wp_editor_args );
-				?>
-
+	            <div class="form-row">
+                    <label><?php _e( 'Information del 1', 'msva' ); ?></label>
+	                <textarea cols="" rows="5" name="operation_message[om_information_part_1]" class="operation-message-information-1"><?php echo ! empty( $info_1 ) ? $info_1: null;?></textarea>
+	            </div>
+	            <div class="form-row">
                 <label for="area_street"><?php _e( 'Område/Gata', 'msva' ); ?></label><br/>
                 <input type="text" id="area_street" name="operation_message[om_area_street]"
-                       value="<?php echo $street; ?>"/>
-                <br/>
-
+                       value="<?php echo $street; ?>">
+		            </div>
+	            <div class="form-row">
                 <label><?php _e( 'Information del 2', 'msva' ); ?></label>
-				<?php wp_editor( $info_2, 'operation_message[om_information_part_2]', $wp_editor_args ); ?>
-
-                <label><?php _e( 'Avslut', 'msva' ); ?></label>
-				<?php wp_editor( $ending, 'operation_message[om_ending]', $wp_editor_args ); ?>
+	            <textarea cols="" rows="5" name="operation_message[om_information_part_2]" class="operation-message-information-2"><?php echo ! empty( $info_2 ) ? $info_2 : null;?></textarea>
+		            </div>
+	            <div class="form-row">
+	            <label><?php _e( 'Avslut', 'msva' ); ?></label>
+	            <textarea cols="" rows="5" name="operation_message[om_ending]"><?php echo ! empty( $ending ) ? $ending : null;?></textarea>
+		            </div>
 
             </div>
 

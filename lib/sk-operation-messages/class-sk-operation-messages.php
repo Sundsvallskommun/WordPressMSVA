@@ -36,6 +36,8 @@ class SK_Operation_Messages {
 
 		// Register script and style if page uses the correct template
 		add_action( 'wp_enqueue_scripts', array( $this, 'register_scripts_and_styles' ), 99 );
+		add_action( 'admin_enqueue_scripts', array( $this, 'register_admin_script_and_styles' ), 99 );
+
 
 		// Setup ajax callbacks
 		add_action( 'wp_ajax_new_message', array( $ajax, 'callback' ) );
@@ -53,6 +55,21 @@ class SK_Operation_Messages {
 
 	}
 
+
+	/**
+	 * Register scripts in admin.
+	 *
+	 * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+	 *
+	 */
+	public function register_admin_script_and_styles() {
+		wp_register_script( 'sk-operation-messages-js-admin', get_stylesheet_directory_uri() . '/lib/sk-operation-messages/assets/js/sk-operation-messages-admin.js', array( 'jquery' ), false, false);
+		wp_enqueue_script( 'sk-operation-messages-js-admin' );
+
+		wp_register_style( 'sk-operation-messages-css-admin', get_stylesheet_directory_uri() . '/lib/sk-operation-messages/assets/css/sk-operation-messages-admin.css' );
+		wp_enqueue_style( 'sk-operation-messages-css-admin');
+
+	}
 
 	/**
 	 * Register scripts and styles for later enqueueing.
@@ -104,8 +121,8 @@ class SK_Operation_Messages {
 				$args['meta_query'] = array(
 					array(
 						'key'     => 'om_archived_at',
-						'value' => $compare_date,
-						'type' => 'DATE',
+						'value'   => $compare_date,
+						'type'    => 'DATE',
 						'compare' => '<='
 					)
 				);
@@ -194,14 +211,12 @@ class SK_Operation_Messages {
 
 		if ( isset( $wp->query_vars['post_type'] ) && $wp->query_vars['post_type'] == 'operation_message' ) {
 
-			if(is_single()) {
+			if ( is_single() ) {
 				$template_filename = 'single-operation_message.php';
 				if ( file_exists( get_stylesheet_directory() . '/lib/sk-operation-messages/assets/templates/' . $template_filename ) ) {
 					return get_stylesheet_directory() . '/lib/sk-operation-messages/assets/templates/' . $template_filename;
 				}
-			}
-
-			elseif(is_archive() ) {
+			} elseif ( is_archive() ) {
 				$template_filename = 'archive-operation_message.php';
 				if ( file_exists( get_stylesheet_directory() . '/lib/sk-operation-messages/assets/templates/' . $template_filename ) ) {
 					return get_stylesheet_directory() . '/lib/sk-operation-messages/assets/templates/' . $template_filename;
