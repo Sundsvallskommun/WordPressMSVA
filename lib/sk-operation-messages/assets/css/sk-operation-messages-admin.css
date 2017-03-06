@@ -1,0 +1,20 @@
+.operation-message-metabox-wrapper h4{
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+
+.operation-message-metabox-wrapper .form-row{
+    margin: 1em auto;
+}
+
+.operation-message-metabox-wrapper .form-row label{
+    display: block;
+}
+
+.operation-message-metabox-wrapper .form-row input[type=text]{
+    width: 70%;
+}
+
+.operation-message-metabox-wrapper .form-row textarea{
+    width: 100%;
+}
