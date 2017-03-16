@@ -89,7 +89,13 @@
 					templates: {
 						empty: '<p>Hittar inte angiven adress.</p>',
 						suggestion: function (data) {
-							return '<p>' + data.street_address + ', ' + data.zip_code + '</p>';
+
+
+							if (typeof data.zip_code !== 'undefined') {
+								return '<p>' + data.street_address + ', ' + data.zip_code + '</p>';
+							}
+
+							return '<p>' + data.street_address + '</p>';
 						}
 					}
 
