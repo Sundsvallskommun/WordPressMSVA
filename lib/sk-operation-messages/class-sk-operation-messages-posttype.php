@@ -93,7 +93,7 @@ class SK_Operation_Messages_Posttype {
 	public function save( $post_id ) {
 		global $post;
 
-		if ( $post->post_type != 'operation_message' ) {
+		if ( isset( $post->post_type ) && $post->post_type != 'operation_message' ) {
 			return;
 		}
 
