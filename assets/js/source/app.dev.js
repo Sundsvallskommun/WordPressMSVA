@@ -53,7 +53,22 @@
 			});
 
 			var engine = new Bloodhound({
-				datumTokenizer: Bloodhound.tokenizers.obj.whitespace('street_address'),
+
+				/**
+				 *
+				 * Splits a string by whitespace and dash
+				 *
+				 * @param datum object to be analyzed
+				 * @returns array containing the words or empty array if str eval to false
+				 */
+				datumTokenizer: function(datum) {
+					var str = false;
+					if (datum.hasOwnProperty('street_address')) {
+						str = datum.street_address;
+					}
+
+					return str ? str.split(/[\-\s+]/) : [];
+				},
 				queryTokenizer: Bloodhound.tokenizers.whitespace,
 				local: data
 
