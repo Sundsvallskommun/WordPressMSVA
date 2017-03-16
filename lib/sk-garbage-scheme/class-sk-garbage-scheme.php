@@ -77,7 +77,8 @@ class SK_Garbage_Scheme {
 	static function get_addresses( $print = false ) {
 		global $wpdb;
 
-		$sql     = "SELECT DISTINCT street_address, zip_code FROM $wpdb->garbage_scheme ORDER BY street_address ASC";
+		//$sql     = "SELECT DISTINCT street_address, zip_code FROM $wpdb->garbage_scheme ORDER BY street_address ASC";
+		$sql     = "SELECT DISTINCT street_address FROM $wpdb->garbage_scheme ORDER BY street_address ASC";
 		$results = $wpdb->get_results( $sql );
 
 
