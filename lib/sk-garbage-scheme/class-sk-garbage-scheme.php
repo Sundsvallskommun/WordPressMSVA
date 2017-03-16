@@ -77,8 +77,7 @@ class SK_Garbage_Scheme {
 	static function get_addresses( $print = false ) {
 		global $wpdb;
 
-		//$sql     = "SELECT DISTINCT street_address, zip_code FROM $wpdb->garbage_scheme ORDER BY street_address ASC";
-		$sql     = "SELECT DISTINCT street_address FROM $wpdb->garbage_scheme ORDER BY street_address ASC";
+		$sql     = "SELECT DISTINCT street_address, zip_code FROM $wpdb->garbage_scheme ORDER BY street_address ASC";
 		$results = $wpdb->get_results( $sql );
 
 
@@ -267,7 +266,7 @@ class SK_Garbage_Scheme {
 							'run_list_code'    => $item[3],
 							'run_list_name'    => $item[4],
 							'last_updated'     => current_time( 'mysql', 1 ),
-                            'zip_code'         => $item[5]
+                            'zip_code'         => array_key_exists(5, $item) ? $item[5] : null
 						)
 					);
 				}
@@ -313,7 +312,11 @@ class SK_Garbage_Scheme {
 			$data[ $key ][] = $row[3];
 			$data[ $key ][] = $row[4];
 			$data[ $key ][] = utf8_encode( trim( $row[5] ) );
-			$data[ $key ][] = $row[6];
+
+			if (array_key_exists(6, $row)) {
+			    $data[ $key ][] = $row[6];
+			}
+
 		}
 
 		// update timestamp for file.
