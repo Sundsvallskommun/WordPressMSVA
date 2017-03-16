@@ -1,17 +1,32 @@
 <?php
 
 /**
+ * Adding google analytics before </head>
+ *
+ * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+ *
+ */
+function google_analytics() { ?>
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-93844217-1', 'auto');
+		ga('send', 'pageview');
+	</script>
+<?php }
+add_action( 'wp_head', 'google_analytics', 99 );
+
+
+/**
  * Adding custom ACF settings page for MSVA.
  *
  * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
  *
  */
-
-
-add_filter( 'sk_acf_options_page', 'msva_options_page', 999, 1 );
-
 function msva_options_page( $subpages ) {
-
 	$subpages[] = array(
 
 		'page_title'  => 'Anpassade inställningar för MSVA',
@@ -19,11 +34,9 @@ function msva_options_page( $subpages ) {
 		'parent_slug' => 'general-settings',
 
 	);
-
 	return $subpages;
-
 }
-
+add_filter( 'sk_acf_options_page', 'msva_options_page', 999, 1 );
 
 /**
  * CSS setup for SK Child Theme.
