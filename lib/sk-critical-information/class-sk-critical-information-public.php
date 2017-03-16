@@ -19,7 +19,7 @@ class SK_Critical_Information_Public {
 	 *
 	 * @return array
 	 */
-	public function get_messages() {
+	public static function get_messages() {
 
 		$args = array(
 			'post_type'   => 'critical_information',
