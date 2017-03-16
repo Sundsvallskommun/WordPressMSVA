@@ -91,7 +91,7 @@
 						suggestion: function (data) {
 
 
-							if (typeof data.zip_code !== 'undefined') {
+							if (typeof data.zip_code !== 'undefined' && data.zip_code !== null) {
 								return '<p>' + data.street_address + ', ' + data.zip_code + '</p>';
 							}
 
