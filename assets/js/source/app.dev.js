@@ -69,7 +69,10 @@
 
 					return str ? str.split(/[\-\s+]/) : [];
 				},
-				queryTokenizer: Bloodhound.tokenizers.whitespace,
+				queryTokenizer: function(query) {
+					return query ? query.split(/[\-\s+]/) : [];
+				},
+
 				local: data
 
 			});
