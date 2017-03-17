@@ -231,6 +231,7 @@ class SK_Garbage_Scheme {
 			`run_list_code` varchar(20) DEFAULT NULL,
 			`run_list_name` varchar(20) DEFAULT NULL,
 			`last_updated` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+			`zip_code` varchar(10) DEFAULT NULL,
 			PRIMARY KEY id (id)
 			)";
 
