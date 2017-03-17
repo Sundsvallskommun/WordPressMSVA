@@ -1,6 +1,32 @@
 <?php
 
 /**
+ * Redirect function for event location.
+ *
+ * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+ *
+ */
+function msva_redirect_event_location() {
+	$queried_post_type = get_query_var( 'post_type' );
+	if ( is_single() && $queried_post_type === 'event_location' ) {
+
+		if ( get_field( 'msva_redirect_type' ) === 'internal' && ! empty( get_field( 'msva_internal_link' ) ) ) {
+			wp_redirect( get_field( 'msva_internal_link' ), 301 );
+			exit;
+		}
+
+		if ( get_field( 'msva_redirect_type' ) === 'external' && ! empty( get_field( 'msva_external_link' ) ) ) {
+			wp_redirect( get_field( 'msva_external_link' ), 301 );
+			exit;
+		}
+
+	}
+}
+add_action( 'template_redirect', 'msva_redirect_event_location', 10 );
+
+
+/**
+ *
  * Adding google analytics before </head>
  *
  * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
@@ -8,15 +34,23 @@
  */
 function google_analytics() { ?>
 	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+		(function (i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r;
+			i[r] = i[r] || function () {
+					(i[r].q = i[r].q || []).push(arguments)
+				}, i[r].l = 1 * new Date();
+			a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0];
+			a.async = 1;
+			a.src = g;
+			m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
 		ga('create', 'UA-93844217-1', 'auto');
 		ga('send', 'pageview');
 	</script>
 <?php }
+
 add_action( 'wp_head', 'google_analytics', 99 );
 
 
@@ -34,8 +68,10 @@ function msva_options_page( $subpages ) {
 		'parent_slug' => 'general-settings',
 
 	);
+
 	return $subpages;
 }
+
 add_filter( 'sk_acf_options_page', 'msva_options_page', 999, 1 );
 
 /**
