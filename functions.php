@@ -1,6 +1,17 @@
 <?php
 
 /**
+ * Adding custom images sizes
+ *
+ * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+ *
+ */
+function msva_add_image_size() {
+	add_image_size( 'full-page', 1170, 9999 );
+}
+add_action( 'after_setup_theme', 'msva_add_image_size' );
+
+/**
  * Redirect function for event location.
  *
  * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>

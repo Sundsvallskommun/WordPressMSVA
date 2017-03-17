@@ -16,35 +16,32 @@ class SK_Blocks_Public {
 	}
 
 
-	public function init(){
+	public function init() {
 
 	}
 
 
-	public function print_section( $section = '' ){
-		if( empty ($section ))
+	public function print_section( $section = '' ) {
+		if ( empty ( $section ) ) {
 			return false;
+		}
 		?>
 		<div class="row">
-		<?php foreach ($section['sk-row'] as $row ) : ?>
-			<div class="col-md-<?php echo $row['sk-grid']; ?>">
-				<?php self::column_content( $row ); ?>
-			</div>
+			<?php foreach ( $section['sk-row'] as $row ) : ?>
+				<div class="col-md-<?php echo $row['sk-grid']; ?>">
+					<?php self::column_content( $row ); ?>
+				</div>
 			<?php endforeach; ?>
 		</div><!-- .row -->
 		<?php
 
-		//util::debug( $section );
-
-
 	}
 
 	public static function print_shortcode( $column ) {
-		//util::debug( $column );
 
 		if ( intval( $column['sk-grid-border'] ) === 1 ) : ?>
 			<div class="sk-grid-border-inner">
-				<?php echo do_shortcode( $column['sk-short-code'] );?>
+				<?php echo do_shortcode( $column['sk-short-code'] ); ?>
 			</div>
 		<?php else : ?>
 			<?php echo do_shortcode( $column['sk-short-code'] ); ?>
@@ -52,29 +49,30 @@ class SK_Blocks_Public {
 		<?php
 	}
 
-	public static function print_block( $block_id ){
+	public static function print_block( $block_id, $grid ) {
 
 		$block = get_post( $block_id );
 
-		$type = wp_get_post_terms($block_id, 'block-type', array('fields' => 'slugs'));
-		if(empty( $type ))
+		$type = wp_get_post_terms( $block_id, 'block-type', array( 'fields' => 'slugs' ) );
+		if ( empty( $type ) ) {
 			return false;
+		}
 
-		echo self::get_block( $block_id, $type[0] );
+		echo self::get_block( $block_id, $type[0], $grid );
 
 
-		//util::debug( $block );
 	}
 
-	private static function get_block( $block_id = '', $type = '' ){
+	private static function get_block( $block_id = '', $type = '', $grid = '' ) {
 
-		switch ($type ) {
+
+		switch ( $type ) {
 			case 'bild':
-				echo self::get_block_image( $block_id );
+				echo self::get_block_image( $block_id, $grid );
 				break;
 
 			case 'bild-och-text':
-				echo self::get_block_image_with_text( $block_id );
+				echo self::get_block_image_with_text( $block_id, $grid );
 				break;
 
 			case 'lanklista':
@@ -89,7 +87,7 @@ class SK_Blocks_Public {
 	}
 
 
-	private static function get_block_image( $block_id = '' ){
+	private static function get_block_image( $block_id = '', $grid = '' ) {
 		$block = get_post( $block_id );
 
 		/*
@@ -99,14 +97,14 @@ class SK_Blocks_Public {
 		*/
 
 		$image_id = get_field( 'sk-blocks-image', $block_id );
-		$image = wp_get_attachment_image_src( $image_id, 'content-full' );
+		$image    = wp_get_attachment_image_src( $image_id, 'content-full' );
 
 		$links['internal'] = get_field( 'sk-block-link-internal', $block_id );
 		$links['external'] = get_field( 'sk-block-link-external', $block_id );
 
 		$link = $links['internal'];
 
-		if( empty ($link ) ) {
+		if ( empty ( $link ) ) {
 			$link = $links['external'];
 		}
 
@@ -136,7 +134,7 @@ class SK_Blocks_Public {
 	}
 
 
-	private static function get_block_image_with_text( $block_id = '' ){
+	private static function get_block_image_with_text( $block_id = '', $grid = '' ) {
 		$block = get_post( $block_id );
 
 		/*
@@ -146,10 +144,11 @@ class SK_Blocks_Public {
 		*/
 
 		$image_id = get_field( 'sk-block-image-and-text', $block_id );
-		$image    = wp_get_attachment_image_src( $image_id, 'content-full' );
-		$title    = get_field( 'sk-block-image-and-text-title', $block_id );
-		$content  = get_field( 'sk-block-image-and-text-content', $block_id );
-		$theme    = get_field( 'sk-block-image-and-text-theme', $block_id );
+		$image    = wp_get_attachment_image_src( $image_id, $grid === '12' ? 'page-full' : 'content-full' );
+
+		$title   = get_field( 'sk-block-image-and-text-title', $block_id );
+		$content = get_field( 'sk-block-image-and-text-content', $block_id );
+		$theme   = get_field( 'sk-block-image-and-text-theme', $block_id );
 
 
 		$links['internal'] = get_field( 'sk-block-link-internal', $block_id );
@@ -157,7 +156,7 @@ class SK_Blocks_Public {
 
 		$link = $links['internal'];
 
-		if( empty ($link ) ) {
+		if ( empty ( $link ) ) {
 			$link = $links['external'];
 		}
 
@@ -165,13 +164,16 @@ class SK_Blocks_Public {
 		//util::debug( $link );
 		?>
 
-		<div class="block block-image-and-text<?php echo !empty( $theme ) ? ' '.$theme : NULL; ?>">
-			<div class="block-block__image"><img src="<?php echo $image[0];?>"></div>
+		<div
+			class="block block-image-and-text<?php echo ! empty( $theme ) ? ' ' . $theme : null; ?><?php echo $grid === '12' ? ' block-full-width' : null; ?>">
+			<div class="block-block__image"><img src="<?php echo $image[0]; ?>"></div>
 			<div class="block-footer">
 				<div class="block-footer__title"><h3><?php echo $title; ?></h3></div>
 				<div class="block-footer__content"><?php echo $content; ?></div>
-				<?php if( !empty( $link )) : ?>
-					<div class="block-footer__link"><a href="<?php echo $link; ?>"><?php _e( 'Läs mer', 'sk-tivoli' );?><?php material_icon( 'keyboard arrow right', array('size' => '1.3em' ) ); ?></a></div>
+				<?php if ( ! empty( $link ) ) : ?>
+					<div class="block-footer__link"><a
+							href="<?php echo $link; ?>"><?php _e( 'Läs mer', 'sk-tivoli' ); ?><?php material_icon( 'keyboard arrow right', array( 'size' => '1.3em' ) ); ?></a>
+					</div>
 				<?php endif; ?>
 			</div>
 
@@ -185,26 +187,26 @@ class SK_Blocks_Public {
 	}
 
 
-	private static function get_block_link_list( $block_id = '' ){
+	private static function get_block_link_list( $block_id = '' ) {
 
-		$title = get_field( 'sk_block_link_list_title', $block_id );
+		$title  = get_field( 'sk_block_link_list_title', $block_id );
 		$groups = get_field( 'sk_block_link_list', $block_id );
-		$markup  = '<a class="eservice-link" href="%s" title="%3$s"><span><span class="eservice-link__icon">%s</span><span class="eservice-link__name">%s</span></span></a>';
+		$markup = '<a class="eservice-link" href="%s" title="%3$s"><span><span class="eservice-link__icon">%s</span><span class="eservice-link__name">%s</span></span></a>';
 		ob_start();
 		?>
 
 		<div class="block block-link-list">
-			<?php if(!empty( $title )) : ?>
+			<?php if ( ! empty( $title ) ) : ?>
 				<h3><?php echo $title; ?></h3>
 			<?php endif; ?>
-			<?php foreach( $groups as $group ) : ?>
+			<?php foreach ( $groups as $group ) : ?>
 				<div class="block-link-list__title"><?php echo $group['rubrik']; ?></div>
 				<ul>
-				<?php foreach( $group['link'] as $link ) : ?>
-					<li>
-						<?php echo sprintf($markup, $link['linklist_url'], get_icon('arrow-right'), $link['linklist_title']) ?>
-					</li>
-				<?php endforeach; ?>
+					<?php foreach ( $group['link'] as $link ) : ?>
+						<li>
+							<?php echo sprintf( $markup, $link['linklist_url'], get_icon( 'arrow-right' ), $link['linklist_title'] ) ?>
+						</li>
+					<?php endforeach; ?>
 				</ul>
 			<?php endforeach; ?>
 
@@ -217,14 +219,6 @@ class SK_Blocks_Public {
 		return $block;
 
 	}
-
-
-
-
-
-
-
-
 
 
 }

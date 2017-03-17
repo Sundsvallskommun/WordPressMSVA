@@ -7,7 +7,7 @@
             "label": "Bild",
             "name": "sk-block-image-and-text",
             "type": "image",
-            "instructions": "Om det \u00e4r t\u00e4nkt att flera block ska ligga bredvid varandra s\u00e5 b\u00f6r bildernas storlek (bredd x h\u00f6jd) vara lika. Bredden b\u00f6r vara minst 800px f\u00f6r att g\u00f6ra sig bra vid responsiva l\u00e4gen.",
+            "instructions": "Om det \u00e4r t\u00e4nkt att flera block ska ligga bredvid varandra s\u00e5 b\u00f6r bildernas storlek (bredd x h\u00f6jd) vara lika. Bredden b\u00f6r vara minst 800px f\u00f6r att g\u00f6ra sig bra vid responsiva l\u00e4gen.<br><br>\r\nI de fall blocket ska str\u00e4cka sig \u00f6ver hela sidan b\u00f6r bilden vara minst 1170 px bred.",
             "required": 0,
             "conditional_logic": 0,
             "wrapper": {
@@ -111,5 +111,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1481814181
+    "modified": 1489768983
 }

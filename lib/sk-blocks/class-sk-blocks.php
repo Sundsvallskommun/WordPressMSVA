@@ -31,7 +31,7 @@ class SK_Blocks {
 
 		switch ($column['sk-content-type']) {
 			case 'block':
-				SK_Blocks_Public::print_block( $column['sk-block'][0] );
+				SK_Blocks_Public::print_block( $column['sk-block'][0], $column['sk-grid'] );
 				break;
 			case "shortcode":
 				SK_Blocks_Public::print_shortcode( $column );
