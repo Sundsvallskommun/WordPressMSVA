@@ -106,6 +106,43 @@
     min-height: 100%;
 
 
+    @include media-breakpoint-down(sm) {
+
+      &.block-image-and-text {
+        float: left;
+        width: 100%;
+        padding: 1em;
+        border-bottom: 1px solid $msva_border_color;
+
+        &.block-full-width{
+          .block-block__image {
+            float: left;
+            img {
+              width: auto;
+              margin-right: 1em;
+            }
+          }
+
+          .block-footer {
+            padding-top: 1em;
+            position: relative;
+            float:left;
+          }
+        }
+
+        .block-block__image {
+          float: left;
+          img {
+            width: 120px;
+            margin-right: 1em;
+          }
+
+        }
+
+      }
+    }
+
+
     .block-footer {
       padding: 2em;
       font-size: 90%;
@@ -119,6 +156,8 @@
           padding-bottom: 10px;
         }
       }
+
+
 
       @include media-breakpoint-down(sm) {
           padding: 0;
