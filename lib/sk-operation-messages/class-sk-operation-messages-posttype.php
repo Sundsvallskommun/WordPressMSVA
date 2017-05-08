@@ -236,7 +236,7 @@ class SK_Operation_Messages_Posttype {
 
                 <label><?php _e( 'Publicering', 'msva' ); ?></label>
                 <input type="text" name="operation_message[om_publish_at_date]"
-                       value="<?php echo $publish_at_date; ?>"/>
+                       value="<?php echo $publish_at_date; ?>" class="operation-message-datepicker">
 
                 <select name="operation_message[om_publish_at_hour]">
                     <option value="00" <?php selected( $publish_at_hour, '00' ); ?>>00</option>
@@ -277,7 +277,7 @@ class SK_Operation_Messages_Posttype {
 
                 <label><?php _e( 'Arkivering', 'msva' ); ?></label>
                 <input type="text" name="operation_message[om_archive_at_date]"
-                       value="<?php echo $archive_at_date; ?>"/>
+                       value="<?php echo $archive_at_date; ?>" class="operation-message-datepicker">
 
                 <select name="operation_message[om_archive_at_hour]">
                     <option value="00" <?php selected( $archive_at_hour, '00' ); ?>>00</option>
