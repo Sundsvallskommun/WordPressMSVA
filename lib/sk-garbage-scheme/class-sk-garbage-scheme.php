@@ -106,10 +106,11 @@ class SK_Garbage_Scheme {
 			return false;
 		}
 
-		$results = self::get_item_by_address( $address );
+		$data = self::get_item_by_address( $address );
+
+		//no duplicates
+		$results[] = $data[0];
 		?>
-
-
 		<div class="widget-garbage-scheme__response-close"><a
 				href="#"><?php material_icon( 'cancel', array( 'size' => '1.5em' ) ); ?></a></div>
 		<?php if ( ! empty( $results ) ) : ?>
@@ -284,10 +285,19 @@ class SK_Garbage_Scheme {
 	public static function get_data() {
 		$file = get_field( 'msva_garbage_scheme_file', 'options' );
 
+
+
+
 		if ( ! file_exists( $file ) ) {
 			update_option( 'msva_garbage_scheme_log', 'ERROR: importfil saknas. ' . $file );
 			sk_log( 'Import failed. File does not exist.', $file );
 			return false;
+		}
+
+		// prevent encoding for manually created csv file.
+		$encode = true;
+		if( basename( $file ) === 'garbage_run_temp.csv' ){
+			$encode = false;
 		}
 
 		$last_updated = get_option( 'msva_garbage_scheme_log' );
@@ -305,11 +315,11 @@ class SK_Garbage_Scheme {
 		$data = array();
 		foreach ( $rows as $key => $row ) {
 
-			$data[ $key ][] = utf8_encode( $row[0] . ' ' . $row[1] );
+			$data[ $key ][] = $encode === true ? utf8_encode( $row[0] . ' ' . $row[1] ) : $row[0] . ' ' . $row[1];
 			$data[ $key ][] = $row[2];
 			$data[ $key ][] = $row[3];
 			$data[ $key ][] = $row[4];
-			$data[ $key ][] = utf8_encode( trim( $row[5] ) );
+			$data[ $key ][] = $encode === true ? utf8_encode( trim( $row[5] ) ) : $row[5];
 
 			if (array_key_exists(6, $row)) {
 			    $data[ $key ][] = $row[6];
