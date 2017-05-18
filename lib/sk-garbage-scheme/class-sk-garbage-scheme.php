@@ -1,9 +1,5 @@
 <?php
-
 require_once 'class-sk-garbage-scheme-public.php';
-
-//require_once 'class-sk-garbage-scheme-admin.php';
-
 class SK_Garbage_Scheme {
 
 	private $hash = '8fb6898754b3b8c9ab734c979d4e1095';
@@ -40,7 +36,6 @@ class SK_Garbage_Scheme {
 			wp_schedule_event( time(), 'hourly', 'msva_scheduled_import' );
 		}
 
-
 	}
 
 	/**
@@ -61,6 +56,7 @@ class SK_Garbage_Scheme {
 	 */
 	public function importer() {
 		if ( isset( $_GET['importer'] ) && $_GET['importer'] === $this->hash ) {
+
 			self::populate_data();
 		}
 	}
@@ -290,12 +286,13 @@ class SK_Garbage_Scheme {
 
 		if ( ! file_exists( $file ) ) {
 			update_option( 'msva_garbage_scheme_log', 'ERROR: importfil saknas. ' . $file );
-
+			sk_log( 'Import failed. File does not exist.', $file );
 			return false;
 		}
 
 		$last_updated = get_option( 'msva_garbage_scheme_log' );
 		if ( date( 'Y-m-d H:i:s', filemtime( $file ) ) === $last_updated ) {
+			sk_log( 'Import failed. The import file is not updated, timestamp is the same as the latest import.', $file );
 			return false;
 		}
 
@@ -319,9 +316,9 @@ class SK_Garbage_Scheme {
 			}
 
 		}
-
 		// update timestamp for file.
 		update_option( 'msva_garbage_scheme_log', date( 'Y-m-d H:i:s', filemtime( $file ) ) );
+		sk_log( 'Import for garbage run scheme succeeded.', $file, 'notice' );
 
 		return $data;
 
