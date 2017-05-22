@@ -53,6 +53,24 @@ class SK_Operation_Messages {
 		add_filter( 'template_include', array( $this, 'add_templates' ) );
 
 
+		add_filter( 'manage_operation_message_posts_columns', array( $this, 'manage_columns' ) );
+
+
+	}
+
+
+	/**
+	 * Replacing title in wp-list-table columns.
+	 *
+	 * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+	 *
+	 * @param $posts_columns
+	 *
+	 * @return mixed
+	 */
+	public function manage_columns( $posts_columns ) {
+		$posts_columns[ 'title' ] = 'Område';
+		return $posts_columns;
 	}
 
 
