@@ -29,12 +29,17 @@ $messages = SK_Operation_Messages::messages(array('publish'), true, true);
 							</tr>
 							</thead>
 							<tbody>
-							<?php foreach ( $messages as $message ) : ?>
+							<?php foreach ( $messages as $message ) :
+								$type_of_action = $message->meta['om_event'][0];
+								if( $message->meta['om_event'][0] === '1' ){
+									$type_of_action = $message->meta['om_custom_event'][0];
+								}
+								?>
 								<tr>
 									<td>
 										<a href="<?php echo get_permalink( $message->ID ); ?>"><?php echo $message->post_title; ?></a>
 									</td>
-									<td><?php echo $message->meta['om_event'][0]; ?></td>
+									<td><?php echo $type_of_action; ?></td>
 									<td><?php echo $message->meta['om_custom_municipality'][0]; ?></td>
 									<td><?php echo $message->meta['om_publish_at_date'][0]; ?> <?php echo $message->meta['om_publish_at_hour'][0]; ?>.<?php echo $message->meta['om_publish_at_minute'][0]; ?></td>
 								</tr>
