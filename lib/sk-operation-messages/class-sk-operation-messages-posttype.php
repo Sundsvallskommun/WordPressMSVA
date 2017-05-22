@@ -16,11 +16,8 @@ class SK_Operation_Messages_Posttype {
 	 *
 	 */
 	public function register_posttype() {
-
 		register_post_type( 'operation_message', $this->posttype_arguments() );
-
 	}
-
 
 	/**
 	 * The posttype arguments
@@ -68,15 +65,15 @@ class SK_Operation_Messages_Posttype {
 			'menu_name'          => _x( 'Driftmeddelanden', 'admin menu', 'msva' ),
 			'name_admin_bar'     => _x( 'Driftmeddelanden', 'add new on admin bar', 'msva' ),
 			'add_new'            => _x( 'Nytt meddelande', 'operation_message', 'msva' ),
-			'add_new_item'       => __( 'Lägg till nytt Driftmeddelande', 'msva' ),
+			'add_new_item'       => __( 'Lägg till nytt driftmeddelande', 'msva' ),
 			'new_item'           => __( 'Nytt meddelande', 'msva' ),
-			'edit_item'          => __( 'Ändra Driftmeddelande', 'msva' ),
-			'view_item'          => __( 'Visa Driftmeddelande', 'msva' ),
+			'edit_item'          => __( 'Ändra driftmeddelande', 'msva' ),
+			'view_item'          => __( 'Visa driftmeddelande', 'msva' ),
 			'all_items'          => __( 'Alla meddelanden', 'msva' ),
-			'search_items'       => __( 'Sök Driftmeddelanden', 'msva' ),
-			'parent_item_colon'  => __( 'Nuvarande Driftmeddelande:', 'msva' ),
-			'not_found'          => __( 'Inga Driftmeddelanden funna.', 'msva' ),
-			'not_found_in_trash' => __( 'Inga Driftmeddelanden funna i papperskorgen.', 'msva' )
+			'search_items'       => __( 'Sök driftmeddelanden', 'msva' ),
+			'parent_item_colon'  => __( 'Nuvarande driftmeddelande:', 'msva' ),
+			'not_found'          => __( 'Inga driftmeddelanden funna.', 'msva' ),
+			'not_found_in_trash' => __( 'Inga driftmeddelanden funna i papperskorgen.', 'msva' )
 		);
 
 
@@ -146,20 +143,20 @@ class SK_Operation_Messages_Posttype {
 
 		// Load and setup meta data for the message
 		$meta                = get_post_custom( $post->ID );
-		$event               = $meta['om_event'][0];
-		$custom_event        = $meta['om_custom_event'][0];
-		$municipality        = $meta['om_municipality'][0];
-		$custom_municipality = $meta['om_custom_municipality'][0];
-		$info_1              = $meta['om_information_part_1'][0];
-		$info_2              = $meta['om_information_part_2'][0];
-		$street              = $meta['om_area_street'][0];
-		$ending              = $meta['om_ending'][0];
-		$publish_at_date     = $meta['om_publish_at_date'][0];
-		$publish_at_hour     = $meta['om_publish_at_hour'][0];
-		$publish_at_minute   = $meta['om_publish_at_minute'][0];
-		$archive_at_date     = $meta['om_archive_at_date'][0];
-		$archive_at_hour     = $meta['om_archive_at_hour'][0];
-		$archive_at_minute   = $meta['om_archive_at_minute'][0];
+		$event               = isset( $meta['om_event'][0] ) ? $meta['om_event'][0] : null;
+		$custom_event        = isset( $meta['om_custom_event'][0] ) ? $meta['om_custom_event'][0] : null;
+		$municipality        = isset( $meta['om_municipality'][0] ) ? $meta['om_municipality'][0] : null;
+		$custom_municipality = isset( $meta['om_custom_municipality'][0] ) ? $meta['om_custom_municipality'][0] : null;
+		$info_1              = isset( $meta['om_information_part_1'][0] ) ? $meta['om_information_part_1'][0] : null;
+		$info_2              = isset( $meta['om_information_part_2'][0] ) ? $meta['om_information_part_2'][0] : null;
+		$street              = isset( $meta['om_area_street'][0] ) ? $meta['om_area_street'][0] : null;
+		$ending              = isset( $meta['om_ending'][0] ) ? $meta['om_ending'][0] : null;
+		$publish_at_date     = isset( $meta['om_publish_at_date'][0] ) ? $meta['om_publish_at_date'][0] : null;
+		$publish_at_hour     = isset( $meta['om_publish_at_hour'][0] ) ? $meta['om_publish_at_hour'][0] : null;
+		$publish_at_minute   = isset( $meta['om_publish_at_minute'][0] ) ? $meta['om_publish_at_minute'][0] : null;
+		$archive_at_date     = isset( $meta['om_archive_at_date'][0] ) ? $meta['om_archive_at_date'][0] : null;
+		$archive_at_hour     = isset( $meta['om_archive_at_hour'][0] ) ? $meta['om_archive_at_hour'][0] : null;
+		$archive_at_minute   = isset( $meta['om_archive_at_minute'][0] ) ? $meta['om_archive_at_minute'][0] : null;
 
 
 		?>
