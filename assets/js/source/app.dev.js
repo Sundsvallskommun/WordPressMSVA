@@ -1,6 +1,19 @@
 (function($) {
 	"use strict";
+
+
 	$(document).ready(function() {
+
+		if ( $(window).width() < 768 && ajax_object.area === 'Sundsvall' && ajax_object.page === '1' ) {
+			if( $('.opening-hours-wrapper').length > 0 ){
+				var opening_hours = $('.opening-hours-wrapper').clone();
+				$('.opening-hours-wrapper').remove();
+				$('.sections').prepend( opening_hours );
+			}
+		}
+
+
+
 		$('.dropdown-toggle').dropdown()
 		if( $('.widget-garbage-scheme').length > 0 ) {
 

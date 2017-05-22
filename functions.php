@@ -107,9 +107,15 @@ function sk_childtheme_enqueue_styles() {
 		'typeahead'
 	] );
 
+	$front_page = false;
+	if(is_front_page())
+		$front_page = true;
+
 	wp_localize_script( 'main-child', 'ajax_object', array(
 			'ajaxurl'    => admin_url( 'admin-ajax.php' ),
-			'ajax_nonce' => wp_create_nonce( 'ajax_nonce' )
+			'ajax_nonce' => wp_create_nonce( 'ajax_nonce' ),
+			'area' => SK_Municipality_Adaptation_Cookie::print_value(),
+			'page' => $front_page === true ? '1' : null
 		)
 	);
 }
