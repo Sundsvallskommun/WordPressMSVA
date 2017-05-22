@@ -1,5 +1,25 @@
 <?php
 
+
+/**
+ * Remove images from search results.
+ *
+ * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+ *
+ * @param $args
+ *
+ * @return mixed
+ */
+function remove_images_from_search( $args ){
+	$remove_mimes  = array( 'image/jpeg', 'image/gif', 'image/png', 'image/bmp', 'image/tiff', 'image/x-icon' );
+	$all_mimes          = get_allowed_mime_types();
+	$accepted_mimes     = array_diff( $all_mimes, $remove_mimes );
+	$args['post_mime_type']  = $accepted_mimes;
+	return $args;
+}
+add_filter( 'search_attachments', 'remove_images_from_search', 10, 1 );
+
+
 /**
  * Adding custom images sizes
  *
