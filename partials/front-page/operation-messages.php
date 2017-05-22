@@ -7,13 +7,19 @@
 				<div class="operation-messages-list">
 					<ul>
 						<?php if ( ! empty( $messages ) ) : ?>
-							<?php foreach ( $messages as $message ) : ?>
+							<?php foreach ( $messages as $message ) :
+									$type_of_action = $message->meta['om_event'][0];
+									if( $message->meta['om_event'][0] === '1' ){
+										$type_of_action = $message->meta['om_custom_event'][0];
+									}
+
+								?>
 								<li class="active">
 									<a href="<?php echo get_permalink( $message->ID ); ?>"
-									   title="<?php echo ! empty( $message->meta['om_event'][0] ) ? $message->meta['om_event'][0] . ', ' : null; ?><?php echo ! empty( $message->post_title ) ? $message->post_title . ':' : null; ?>">
+									   title="<?php echo ! empty( $type_of_action ) ? $type_of_action . ', ' : null; ?><?php echo ! empty( $message->post_title ) ? $message->post_title . ':' : null; ?>">
 										<?php material_icon( 'error', array( 'size' => '2em' ) ); ?>
 										<span class="operation-messages-list__om-event">
-									<?php echo ! empty( $message->meta['om_event'][0] ) ? $message->meta['om_event'][0] . ', ' : null; ?>
+									<?php echo ! empty( $type_of_action ) ? $type_of_action . ', ' : null; ?>
 								</span>
 										<span class="operation-messages-list__om-area-street">
 									<?php echo ! empty( $message->post_title ) ? $message->post_title . ':' : null; ?>
