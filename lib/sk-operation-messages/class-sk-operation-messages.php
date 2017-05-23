@@ -130,7 +130,7 @@ class SK_Operation_Messages {
 	public static function messages( $statuses = array( 'publish' ), $with_meta = true, $archived = false, $ready_to_unpublish = false ) {
 
 		$args = array(
-			'posts_per_page' => - 1,
+			'posts_per_page' => -1,
 			'post_type'      => 'operation_message',
 			'post_status'    => $statuses
 		);
