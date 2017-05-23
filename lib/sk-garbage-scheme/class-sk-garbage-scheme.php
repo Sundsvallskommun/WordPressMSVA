@@ -109,11 +109,12 @@ class SK_Garbage_Scheme {
 		$data = self::get_item_by_address( $address );
 
 		//no duplicates
-		$results[] = $data[0];
+		$results[] = ! empty( $data[0] ) ? $data[0] : null;
+
 		?>
 		<div class="widget-garbage-scheme__response-close"><a
 				href="#"><?php material_icon( 'cancel', array( 'size' => '1.5em' ) ); ?></a></div>
-		<?php if ( ! empty( $results ) ) : ?>
+		<?php if ( ! empty( $results[0] ) ) : ?>
 			<?php foreach ( $results as $result ) : ?>
 				<div>
 					<?php material_icon( 'local shipping', array( 'size' => '1.5em' ) ); ?><?php _e( sprintf( 'Dina sopor hämtas på %s. Nu är det vecka %d.', self::scheme_output( $result->run_list_name ), (int) date( 'W' ) ), 'msva' ); ?>
