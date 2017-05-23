@@ -4,8 +4,8 @@
  */
 ?>
 <?php
-	if ( isset( $_GET['parallel_type'] ) && $_GET['parallel_type'] === 'operation-messages' ) :
-	$posts = SK_Operation_Messages::messages(array('publish'), true, false);
+if ( isset( $_GET['parallel_type'] ) && $_GET['parallel_type'] === 'operation-messages' ) :
+	$items = SK_Operation_Messages::messages(array('publish'), true, false, false);
 	header( 'Content-Type: ' . feed_content_type( 'rss-http' ) . '; charset=' . get_option( 'blog_charset' ), true );
 	echo '<?xml version="1.0" encoding="' . get_option( 'blog_charset' ) . '"?' . '>';
 	?>
@@ -27,14 +27,13 @@
 			<sy:updatePeriod><?php echo apply_filters( 'rss_update_period', 'hourly' ); ?></sy:updatePeriod>
 			<sy:updateFrequency><?php echo apply_filters( 'rss_update_frequency', '1' ); ?></sy:updateFrequency>
 			<?php //do_action('rss2_head'); ?>
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php
+			<?php foreach ($items as $post ) : setup_postdata( $post );
+
 				$municipality = get_post_meta( get_the_ID(), 'municipality_adaptation', true );
 				$municipality = ! empty( $municipality ) ? $municipality : '';
 				?>
-
 				<item>
-					<title><?php the_title_rss(); ?></title>
+					<title><?php the_title_rss(); ?> <?php echo $post->ID; ?></title>
 					<link><?php the_permalink_rss(); ?></link>
 					<pubDate><?php echo mysql2date( 'D, d M Y H:i:s +0000', get_post_time( 'Y-m-d H:i:s', true ), false ); ?></pubDate>
 					<dc:creator><?php the_author(); ?></dc:creator>
@@ -58,7 +57,7 @@
 					<?php rss_enclosure(); ?>
 					<?php do_action( 'rss2_item' ); ?>
 				</item>
-			<?php endwhile; ?>
+			<?php wp_reset_postdata( $post ); endforeach; ?>
 		</channel>
 	</rss>
 <?php else :
