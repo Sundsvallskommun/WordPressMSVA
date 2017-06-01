@@ -1,0 +1,56 @@
+.wasteguide-results {
+  .post-count__total{
+    padding: 0.5em;
+  }
+  .material-content{
+    margin-top: 1em;
+  }
+
+  .alert{
+    margin-top: 1em;
+  }
+
+  .search-modules-row {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .wasteguide-search-result {
+
+
+  }
+
+  .wasteguide-search-result-header{
+    .post-count{
+      text-align: right;
+    }
+  }
+
+  .card-header{
+    background-color: #ffffff;
+
+    .card-title{
+      margin-bottom: 0;
+    }
+
+  }
+
+  .card-block{
+    padding: 0;
+    .card-inner{
+      padding: 1.25em;
+      padding-bottom: 0;
+    }
+
+    .sort-as{
+      background-color: rgba(200,210,236, 0.2);
+    }
+  }
+
+}
+
+.widget-wasteguide{
+  .widget-wasteguide__text{
+    margin: 1em 0;
+  }
+}

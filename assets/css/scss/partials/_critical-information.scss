@@ -1,0 +1,22 @@
+.critical-information{
+  margin-top: -1.25em;
+  padding-top: 1em;
+  background-color: #cc2e2b;
+  margin-bottom: 2em;
+
+  .card{
+    background-color: transparent;
+    color: #ffffff;
+    border: none;
+    border-radius: 0;
+    padding-top: 3em;
+    padding-bottom: 3em;
+
+    a{
+      text-decoration: underline;
+      color: #ffffff;
+    }
+
+  }
+
+}

@@ -1,0 +1,65 @@
+.site-navigation {
+	border-bottom: 4px solid #C8D2EC;
+
+
+
+	nav a{
+		border-bottom: 4px solid transparent;
+		color: #327FB5;
+		font-weight: bold;
+
+		&:hover,
+		&.current-menu-item,
+		&.current-page-ancestor {
+			border-bottom-color: transparent !important;
+		}
+
+		.menu-item-icon{
+			background-color: #97B1DD !important;
+
+		}
+
+		&:hover .menu-item-icon {
+			background-color: #286AA6 !important;
+		}
+
+	}
+
+
+
+}
+
+.site-header{
+
+	.navbar-nav .nav-item + .nav-item {
+		margin-left: 0.5em;
+	}
+
+	.btn-primary {
+		text-transform: uppercase;
+		font-size: 70%;
+		letter-spacing: 1px;
+	}
+
+
+	.dropdown-menu {
+		box-shadow: none;
+		font-family: inherit;
+		left: auto;
+		padding-bottom: 1em;
+		padding-top: 1em;
+		right: 0;
+		border: 1px solid $msva_border_color;
+		border-radius: 0.25rem;
+		font-size: 80%;
+		font-weight: 300;
+		min-width: 100%;
+
+		a{
+			font-weight: 400;
+		}
+
+	}
+
+}
+

@@ -1,0 +1,67 @@
+.operation-messages{
+
+  &__button{
+
+    float:right;
+    margin-top: -0.45em;
+    @include media-breakpoint-down(md) {
+      float:left;
+      margin-bottom: 2em;
+      width: 100%;
+
+      .btn{
+        width: 100%;
+      }
+
+    }
+
+  }
+
+  border-bottom: 1px solid $msva_border_color;
+
+  @include media-breakpoint-down(md) {
+    margin-bottom: 2em;
+  }
+
+  ul{
+    list-style: none;
+    padding: 0;
+  }
+
+  .icon{
+    margin-right: 1em;
+    padding-bottom: 0.7em;
+  }
+
+  li {
+
+    padding: 0.3em 0 0.3em 0.35em;
+
+    &.active a{
+      color: #cc2e2b
+
+
+    }
+
+    &.done{
+      color: #48804e;
+    }
+    @include media-breakpoint-up(md) {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+  }
+}
+
+
+.single-operation_message{
+  .om-info-wrapper{
+    margin-top: 2em;
+  }
+
+  .info-text{
+    //font-weight: 600;
+  }
+}

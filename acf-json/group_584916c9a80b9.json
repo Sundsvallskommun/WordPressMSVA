@@ -1,0 +1,50 @@
+{
+    "key": "group_584916c9a80b9",
+    "title": "Kommun f\u00f6r p\u00e5g\u00e5ende arbeten\/projekt",
+    "fields": [
+        {
+            "key": "field_584916ed32482",
+            "label": "Kommun",
+            "name": "kommun",
+            "type": "radio",
+            "instructions": "Ange den aktuella kommunen f\u00f6r arbetet",
+            "required": 1,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "sundsvall": "Sundsvall",
+                "timra": "Timr\u00e5",
+                "nordanstig": "Nordanstig"
+            },
+            "allow_null": 0,
+            "other_choice": 0,
+            "save_other_choice": 0,
+            "default_value": "",
+            "layout": "vertical",
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "ongoing_projects"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "menu_item_level": "all",
+    "modified": 1481200105
+}

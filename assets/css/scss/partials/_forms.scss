@@ -1,0 +1,12 @@
+.form-control, .ginput_container input, .ginput_container select, .ginput_container textarea {
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid $btn-secondary-border;
+  border-radius: 0.25rem;
+  color: #6b7174;
+  display: block;
+  font-size: 1rem;
+  line-height: 1.75;
+  padding: 0.375rem 0.75rem;
+  width: 100%;
+}

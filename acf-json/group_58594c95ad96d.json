@@ -1,0 +1,41 @@
+{
+    "key": "group_58594c95ad96d",
+    "title": "Parallellpublicering",
+    "fields": [
+        {
+            "key": "field_58594ca4af487",
+            "label": "Publicera p\u00e5 intran\u00e4tet",
+            "name": "publicera_pa_intranatet",
+            "type": "true_false",
+            "instructions": "Kryssa i denna ruta om inl\u00e4gget skall publiceras till Intran\u00e4tet",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "message": "Publicera",
+            "default_value": 0
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "post"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "menu_item_level": "all",
+    "modified": 1482247691
+}

@@ -1,0 +1,105 @@
+{
+    "key": "group_585798b2095f0",
+    "title": "Kommunv\u00e4ljare",
+    "fields": [
+        {
+            "key": "field_585798b81a249",
+            "label": "Aktivera kommunv\u00e4ljare",
+            "name": "msva_region_selector_activated",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "true": "Ja, aktivera kommunv\u00e4ljare."
+            },
+            "default_value": [
+
+            ],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value"
+        },
+        {
+            "key": "field_585799251a24a",
+            "label": "Rubrik",
+            "name": "msva_region_selector_title",
+            "type": "text",
+            "instructions": "Ange rubrik f\u00f6r kommunv\u00e4ljaren.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_585799601a24b",
+            "label": "Inneh\u00e5ll",
+            "name": "msva_region_selector_content",
+            "type": "textarea",
+            "instructions": "Ange den text som ska visas i kommunv\u00e4ljaren.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "wpautop"
+        },
+        {
+            "key": "field_5865146ee99d6",
+            "label": "Sidfotstext",
+            "name": "msva_region_selector_footer",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "wpautop"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-msva"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "menu_item_level": "all",
+    "modified": 1483019452
+}
