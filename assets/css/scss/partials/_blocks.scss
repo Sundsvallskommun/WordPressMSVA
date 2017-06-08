@@ -208,7 +208,7 @@
           border: 1px solid $msva_border_color;
 
           a, a:hover, a:visited, a:active, a:focus{
-            color: $msva_blue !important;
+            color: $msva_blue;
           }
 
           @include media-breakpoint-down(sm) {
@@ -240,7 +240,7 @@
         border: 1px solid $msva_border_color;
 
         a, a:hover, a:visited, a:active, a:focus{
-          color: $msva_blue !important;
+          color: $msva_blue;
         }
 
         @include media-breakpoint-down(sm) {
