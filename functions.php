@@ -2,6 +2,30 @@
 
 
 /**
+ * Override gettext translation.
+ *
+ * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+ *
+ * @param $translated_text
+ * @param $text
+ * @param $domain
+ *
+ * @return string|void
+ */
+function override_translation( $translated_text, $text, $domain ) {
+	if(is_search() ) {
+		switch ( $translated_text ) {
+			case 'Bilder och dokument' :
+				$translated_text = __( 'Dokument', 'sk_tivoli' );
+				break;
+		}
+		return $translated_text;
+	}
+}
+add_filter( 'gettext', 'override_translation', 20, 3 );
+
+
+/**
  * Remove images from search results.
  *
  * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
@@ -10,13 +34,22 @@
  *
  * @return mixed
  */
-function remove_images_from_search( $args ){
-	$remove_mimes  = array( 'image/jpeg', 'image/gif', 'image/png', 'image/bmp', 'image/tiff', 'image/x-icon' );
-	$all_mimes          = get_allowed_mime_types();
-	$accepted_mimes     = array_diff( $all_mimes, $remove_mimes );
-	$args['post_mime_type']  = $accepted_mimes;
+function remove_images_from_search( $args ) {
+	$remove_mimes           = array(
+		'image/jpeg',
+		'image/gif',
+		'image/png',
+		'image/bmp',
+		'image/tiff',
+		'image/x-icon'
+	);
+	$all_mimes              = get_allowed_mime_types();
+	$accepted_mimes         = array_diff( $all_mimes, $remove_mimes );
+	$args['post_mime_type'] = $accepted_mimes;
+
 	return $args;
 }
+
 add_filter( 'search_attachments_args', 'remove_images_from_search', 10, 1 );
 
 
@@ -29,6 +62,7 @@ add_filter( 'search_attachments_args', 'remove_images_from_search', 10, 1 );
 function msva_add_image_size() {
 	add_image_size( 'full-page', 1170, 9999 );
 }
+
 add_action( 'after_setup_theme', 'msva_add_image_size' );
 
 /**
@@ -53,6 +87,7 @@ function msva_redirect_event_location() {
 
 	}
 }
+
 add_action( 'template_redirect', 'msva_redirect_event_location', 10 );
 
 
@@ -128,14 +163,15 @@ function sk_childtheme_enqueue_styles() {
 	] );
 
 	$front_page = false;
-	if(is_front_page())
+	if ( is_front_page() ) {
 		$front_page = true;
+	}
 
 	wp_localize_script( 'main-child', 'ajax_object', array(
 			'ajaxurl'    => admin_url( 'admin-ajax.php' ),
 			'ajax_nonce' => wp_create_nonce( 'ajax_nonce' ),
-			'area' => SK_Municipality_Adaptation_Cookie::print_value(),
-			'page' => $front_page === true ? '1' : null
+			'area'       => SK_Municipality_Adaptation_Cookie::print_value(),
+			'page'       => $front_page === true ? '1' : null
 		)
 	);
 }
