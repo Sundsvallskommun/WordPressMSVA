@@ -150,6 +150,14 @@ class SK_Blocks_Public {
 		$content = get_field( 'sk-block-image-and-text-content', $block_id );
 		$theme   = get_field( 'sk-block-image-and-text-theme', $block_id );
 
+		if( get_field( 'sk-block-image-and-text-bg', $block_id ) ){
+			$custom['bg_color'] = sprintf(' style="background-color: %s"', get_field( 'sk-block-image-and-text-bg', $block_id ) ) ;
+		}
+
+		if( get_field( 'sk-block-image-and-text-color', $block_id ) ){
+			$custom['text_color'] = sprintf(' style="color: %s"', get_field( 'sk-block-image-and-text-color', $block_id ) ) ;
+		}
+
 
 		$links['internal'] = get_field( 'sk-block-link-internal', $block_id );
 		$links['external'] = get_field( 'sk-block-link-external', $block_id );
@@ -161,18 +169,17 @@ class SK_Blocks_Public {
 		}
 
 		ob_start();
-		//util::debug( $link );
 		?>
 
 		<div
-			class="block block-image-and-text<?php echo ! empty( $theme ) ? ' ' . $theme : null; ?><?php echo $grid === '12' ? ' block-full-width' : null; ?>">
+			class="block block-image-and-text<?php echo ! empty( $theme ) ? ' ' . $theme : null; ?><?php echo $grid === '12' ? ' block-full-width' : null; ?>"<?php echo isset( $custom['bg_color'] ) ? $custom['bg_color'] : null; ?>>
 			<div class="block-block__image"><img src="<?php echo $image[0]; ?>"></div>
-			<div class="block-footer">
+			<div class="block-footer"<?php echo isset( $custom['text_color'] ) ? $custom['text_color'] : null; ?>>
 				<div class="block-footer__title"><h3><?php echo $title; ?></h3></div>
 				<div class="block-footer__content"><?php echo $content; ?></div>
 				<?php if ( ! empty( $link ) ) : ?>
 					<div class="block-footer__link"><a
-							href="<?php echo $link; ?>"><?php _e( 'Läs mer', 'sk-tivoli' ); ?><?php material_icon( 'keyboard arrow right', array( 'size' => '1.3em' ) ); ?></a>
+							href="<?php echo $link; ?>"<?php echo isset( $custom['text_color'] ) ? $custom['text_color'] : null; ?>><?php _e( 'Läs mer', 'sk-tivoli' ); ?><?php material_icon( 'keyboard arrow right', array( 'size' => '1.3em' ) ); ?></a>
 					</div>
 				<?php endif; ?>
 			</div>

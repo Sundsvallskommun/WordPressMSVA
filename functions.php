@@ -17,7 +17,7 @@ function remove_images_from_search( $args ){
 	$args['post_mime_type']  = $accepted_mimes;
 	return $args;
 }
-add_filter( 'search_attachments', 'remove_images_from_search', 10, 1 );
+add_filter( 'search_attachments_args', 'remove_images_from_search', 10, 1 );
 
 
 /**
