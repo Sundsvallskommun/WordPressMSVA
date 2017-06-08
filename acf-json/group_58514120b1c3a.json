@@ -91,6 +91,36 @@
             "ajax": 0,
             "return_format": "value",
             "placeholder": ""
+        },
+        {
+            "key": "field_593804d866cc2",
+            "label": "Bakgrundsf\u00e4rg",
+            "name": "sk-block-image-and-text-bg",
+            "type": "color_picker",
+            "instructions": "Egen bakgrundsf\u00e4rg\/textf\u00e4rg skriver \u00f6ver valt tema.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        },
+        {
+            "key": "field_5938055466cc3",
+            "label": "Textf\u00e4rg",
+            "name": "sk-block-image-and-text-color",
+            "type": "color_picker",
+            "instructions": "Egen bakgrundsf\u00e4rg\/textf\u00e4rg skriver \u00f6ver valt tema.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
         }
     ],
     "location": [
@@ -111,5 +141,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1489768983
+    "modified": 1496843647
 }

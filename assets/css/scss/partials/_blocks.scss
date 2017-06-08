@@ -150,13 +150,12 @@
       height: 10em;
 
       a, a:hover, a:visited, a:active, a:focus{
-        color: #ffffff !important;
+        color: #ffffff;
         font-weight: 500;
         .icon{
           padding-bottom: 10px;
         }
       }
-
 
 
       @include media-breakpoint-down(sm) {
