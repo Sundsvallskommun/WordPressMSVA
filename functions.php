@@ -19,8 +19,9 @@ function override_translation( $translated_text, $text, $domain ) {
 				$translated_text = __( 'Dokument', 'sk_tivoli' );
 				break;
 		}
-		return $translated_text;
+
 	}
+	return $translated_text;
 }
 add_filter( 'gettext', 'override_translation', 20, 3 );
 
