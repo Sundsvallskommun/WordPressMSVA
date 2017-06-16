@@ -43,14 +43,17 @@ class SK_Municipality_Adaptation_Query {
 			return false;
 
 
-		if ( is_object( $post ) ) {
+		if ( is_object( $post ) && !is_search()) {
 
 			if ( $wp_query->is_posts_page ) {
 				return true;
 			}
 
 			if ( ! SK_Municipality_Adaptation::page_access( $post->ID ) ) {
+
+				error_log(sprintf("Visitor does not have access post %s ID is: %s", $post->ID, $post->post_title));
 				wp_redirect( get_bloginfo( 'url' ) );
+                exit;
 			}
 
 		}
