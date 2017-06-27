@@ -56,6 +56,14 @@ class SK_Municipality_Adaptation {
 		setcookie('municipality_adaptation', '', time() - 3600);
 	}
 
+
+	/**
+	 * Get start page ids from the municipalities.
+	 *
+	 * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+	 *
+	 * @return bool|mixed|null|void
+	 */
 	public static function get_start_page_id() {
 		if( SK_Municipality_Adaptation_Cookie::value() === 'nordanstig'){
 			return get_field('msva_start_page_nordanstig', 'options');
@@ -108,8 +116,15 @@ class SK_Municipality_Adaptation {
 	}
 
 
+	/**
+	 * Municipalities array.
+	 * Slug and nicename.
+	 *
+	 * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+	 *
+	 * @return array
+	 */
 	public static function municipalities() {
-
 		return array(
 			'sundsvall' => 'Sundsvall',
 			'timra' => 'Timrå',
