@@ -173,6 +173,11 @@ class SK_Municipality_Adaptation_Admin {
 			<?php _e( 'Åsidosätt eventuell förälders kommuntillhörighet', 'msva' ); ?>
 		</label>
 		<p class="howto"><?php _e( 'Detta gör att även om en föräldrasida är låst till en specifik kommun så kan barnsidan ändå visas för ovan valda kommuner.' ); ?></p>
+		<hr>
+		<label class="selectit">
+			<input type="checkbox" name="municipality_adaptation_disable" <?php if ( self::municipality_adaptation_disable( $post->ID  ) ) echo 'checked'; ?>/>
+			<?php _e( 'Inaktivera kommunväljare för denna post.', 'msva' ); ?>
+		</label>
 		<?php
 		return ob_end_flush();
 
@@ -183,6 +188,16 @@ class SK_Municipality_Adaptation_Admin {
 
 		$override = get_post_meta( $post_id, 'municipality_adaptation_override', true );
 		if ( $override == true ) return true;
+
+		return false;
+
+	}
+
+
+	public static function municipality_adaptation_disable( $post_id ) {
+
+		$disabled = get_post_meta( $post_id, 'municipality_adaptation_disable', true );
+		if ( $disabled == true ) return true;
 
 		return false;
 
@@ -223,13 +238,16 @@ class SK_Municipality_Adaptation_Admin {
 		}
 
 		if ( isset( $_POST['municipality_adaptation_override'] ) ) {
-
 			update_post_meta( $post_id, 'municipality_adaptation_override', true );
-
 		} else {
-
 			delete_post_meta( $post_id, 'municipality_adaptation_override' );
+		}
 
+
+		if ( isset( $_POST['municipality_adaptation_disable'] ) ) {
+			update_post_meta( $post_id, 'municipality_adaptation_disable', true );
+		} else {
+			delete_post_meta( $post_id, 'municipality_adaptation_disable' );
 		}
 
 	}

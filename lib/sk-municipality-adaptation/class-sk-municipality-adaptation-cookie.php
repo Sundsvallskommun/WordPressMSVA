@@ -19,10 +19,32 @@ class SK_Municipality_Adaptation_Cookie {
 	 */
 	public static function exists() {
 
-		if ( isset( $_COOKIE['municipality_adaptation'] ) ) return true;
+		if( self::disabled() === true )
+			return true;
+
+		if ( isset( $_COOKIE['municipality_adaptation'] ) )
+			return true;
 
 		return false;
 
+	}
+
+
+	/**
+	 * Check if post should be excluded from municipality_adaptation.
+	 *
+	 * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+	 *
+	 * @return bool
+	 */
+	public static function disabled(){
+		global $post;
+		if( !empty($post->ID) && intval( $post->ID ) ) {
+			$disabled = get_post_meta( $post->ID, 'municipality_adaptation_disable' );
+			if( isset($disabled[0]) && intval($disabled[0]) === 1 ){
+				return true;
+			}
+		}
 	}
 
 
@@ -36,7 +58,7 @@ class SK_Municipality_Adaptation_Cookie {
 	 */
 	public static function value() {
 
-		if( self::exists() ) return $_COOKIE['municipality_adaptation'];
+		if( self::exists() ) return isset($_COOKIE['municipality_adaptation']) ? $_COOKIE['municipality_adaptation'] : null;
 
 	}
 
@@ -51,7 +73,7 @@ class SK_Municipality_Adaptation_Cookie {
 
 		$nice_name = '';
 
-		if( self::exists() ){
+		if( self::exists() && self::disabled() !== true ){
 
 			switch ( strtolower( $_COOKIE['municipality_adaptation'] ) ) {
 				case 'sundsvall':

@@ -42,6 +42,9 @@ class SK_Municipality_Adaptation_Query {
 		if( is_admin() )
 			return false;
 
+		if( SK_Municipality_Adaptation_Cookie::disabled())
+			return false;
+
 
 		if ( is_object( $post ) ) {
 

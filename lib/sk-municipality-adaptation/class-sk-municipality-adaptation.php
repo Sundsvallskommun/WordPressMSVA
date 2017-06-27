@@ -6,6 +6,7 @@
  *
  * @package    SK_Municipality_Adaptation
  * @author     Andreas Färnstrand <andreas.farnstrand@cybercom.com>
+ * @author     Daniel Pihlström <daniel.pihlstrom@cybercom.com>
  */
 
 require_once 'class-sk-municipality-adaptation-settings.php';
@@ -36,10 +37,23 @@ class SK_Municipality_Adaptation {
 	 */
 	private function init() {
 
+		if(isset($_GET['cookie']) && $_GET['cookie'] === 'delete' )
+			$this->delete_cookie();
+
 		$settings = new SK_Municipality_Adaptation_Settings();
 		$query = new SK_Municipality_Adaptation_Query();
 		$admin = new SK_Municipality_Adaptation_Admin();
 
+	}
+
+	/**
+	 * Delete the municipality cookie.
+	 *
+	 * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+	 *
+	 */
+	private function delete_cookie(){
+		setcookie('municipality_adaptation', '', time() - 3600);
 	}
 
 	public static function get_start_page_id() {
