@@ -76,9 +76,12 @@ class SK_Garbage_Scheme {
 		$sql     = "SELECT DISTINCT street_address, zip_code FROM $wpdb->garbage_scheme ORDER BY street_address ASC";
 		$results = $wpdb->get_results( $sql );
 
-
 		if ( empty( $results ) ) {
 			return false;
+		}
+
+		foreach( $results as $key => $result ){
+			$result->complete = $result->street_address .', '. $result->zip_code;
 		}
 
 		if ( $print ) {
@@ -102,15 +105,13 @@ class SK_Garbage_Scheme {
 			$address = $_POST['address'];
 		}
 
-		if ( empty( $address ) ) {
+		$address = explode(', ', $address);
+
+		if ( empty( $address[0] ) || empty( $address[1] )) {
 			return false;
 		}
 
-		$data = self::get_item_by_address( $address );
-
-		//no duplicates
-		$results[] = ! empty( $data[0] ) ? $data[0] : null;
-
+		$results = self::get_item_by_address( $address[0], $address[1] );
 		?>
 		<div class="widget-garbage-scheme__response-close"><a
 				href="#"><?php material_icon( 'cancel', array( 'size' => '1.5em' ) ); ?></a></div>
@@ -136,18 +137,20 @@ class SK_Garbage_Scheme {
 	 * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
 	 *
 	 * @param string $address
+	 * @param string $zip_code
 	 *
 	 * @return array
 	 */
-	static function get_item_by_address( $address = '' ) {
+	static function get_item_by_address( $address = '', $zip_code = '' ) {
 		global $wpdb;
 		$results = $wpdb->get_results( $wpdb->prepare(
 			"SELECT *
 				FROM $wpdb->garbage_scheme 
 				WHERE street_address = %s
+				AND zip_code = %s
 			",
-			$address
-
+			$address,
+			$zip_code
 		) );
 
 		return $results;
