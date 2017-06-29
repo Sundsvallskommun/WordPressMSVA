@@ -155,7 +155,7 @@ class SK_Blocks_Public {
 		}
 
 		if( get_field( 'sk-block-image-and-text-color', $block_id ) ){
-			$custom['text_color'] = sprintf(' style="color: %s"', get_field( 'sk-block-image-and-text-color', $block_id ) ) ;
+			$custom['text_color'] = sprintf(' style="border:none; color: %s"', get_field( 'sk-block-image-and-text-color', $block_id ) ) ;
 		}
 
 

@@ -14,7 +14,7 @@
 
 
 
-		$('.dropdown-toggle').dropdown()
+		$('.dropdown-toggle').dropdown();
 		if( $('.widget-garbage-scheme').length > 0 ) {
 
 			$('#garbage-scheme-address').keypress(function (e) {
@@ -98,7 +98,7 @@
 				},
 				{
 					name: 'my-dataset',
-					display: 'street_address',
+					display: 'complete',
 					source: engine,
 					limit: 99,
 
@@ -111,7 +111,7 @@
 								return '<p>' + data.street_address + ', ' + data.zip_code + '</p>';
 							}
 
-							return '<p>' + data.street_address + '</p>';
+							return '<p>' + data.street_address + 'xx</p>';
 						}
 					}
 
