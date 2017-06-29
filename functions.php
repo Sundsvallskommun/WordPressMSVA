@@ -62,7 +62,6 @@ add_filter( 'search_attachments_args', 'remove_images_from_search', 10, 1 );
  */
 function msva_add_image_size() {
 	add_image_size( 'full-page', 1170, 9999 );
-	add_image_size( 'msva-content-full', 800, 9999 );
 }
 
 add_action( 'after_setup_theme', 'msva_add_image_size' );

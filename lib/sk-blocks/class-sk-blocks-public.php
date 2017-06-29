@@ -97,7 +97,7 @@ class SK_Blocks_Public {
 		*/
 
 		$image_id = get_field( 'sk-blocks-image', $block_id );
-		$image    = wp_get_attachment_image_src( $image_id, 'msva-content-full' );
+		$image    = wp_get_attachment_image_src( $image_id, 'content-full' );
 
 		$links['internal'] = get_field( 'sk-block-link-internal', $block_id );
 		$links['external'] = get_field( 'sk-block-link-external', $block_id );
@@ -144,7 +144,7 @@ class SK_Blocks_Public {
 		*/
 
 		$image_id = get_field( 'sk-block-image-and-text', $block_id );
-		$image    = wp_get_attachment_image_src( $image_id, $grid === '12' ? 'page-full' : 'msva-content-full' );
+		$image    = wp_get_attachment_image_src( $image_id, $grid === '12' ? 'page-full' : 'content-full' );
 
 		$title   = get_field( 'sk-block-image-and-text-title', $block_id );
 		$content = get_field( 'sk-block-image-and-text-content', $block_id );
