@@ -189,6 +189,8 @@ class SK_Garbage_Scheme {
 	 */
 	static function get_local_day( $day ) {
 
+		$day = mb_strtoupper( $day );
+
 		switch ( $day ) {
 			case 'MÅ':
 				$localize = 'måndagar';
