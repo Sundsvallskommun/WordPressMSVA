@@ -12,8 +12,14 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar
 
+#### 1.1.4
+##### Buggfixar
+* Tagit bort kontroll av "KP" som versaler vid import av körschema, matchar nu både KP som gemener eller versaler.
+* Lagt till en bildstorlek som används vid två-kolumn.
+
+
 #### 1.1.2
-##### Bugfixar
+##### Buggfixar
 * Åtgärd av bugg för körschema sopbil i de fall där samma gatuadress finns för olika områden.
 * Tagit bort ramlinje för block där egna färger används.
 
