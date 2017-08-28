@@ -260,7 +260,7 @@ class SK_Garbage_Scheme {
 			$wpdb->query( $query );
 			foreach ( $items as $key => $item ) {
 
-				if ( substr( $item[4], 0, 2 ) === 'KP' ) {
+				if ( substr( strtolower( $item[4] ), 0, 2 ) === 'kp' ) {
 					$wpdb->insert(
 						$wpdb->garbage_scheme,
 						array(
