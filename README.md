@@ -12,6 +12,10 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar
 
+#### 1.2.0
+##### Ny funktion
+* Synonymfunktion tillagd
+
 #### 1.1.4
 ##### Buggfixar
 * Tagit bort kontroll av "KP" som versaler vid import av körschema, matchar nu både KP som gemener eller versaler.
