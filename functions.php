@@ -308,3 +308,7 @@ $sk_news = new SK_News();
 /* SK Critical Information */
 require_once locate_template( 'lib/sk-critical-information/class-sk-critical-information.php' );
 $sk_critical_information = new SK_Critical_Information();
+
+/* SK Search Alias */
+require_once locate_template( 'lib/sk-search-alias/class-sk-search-alias.php' );
+$sk_search_alias = new SK_Search_Alias();
