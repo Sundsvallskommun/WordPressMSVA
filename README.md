@@ -12,6 +12,10 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar
 
+#### 1.3.1
+##### Buggfixar
+* Åtgärdat omdirigering till startsida vid sökning från startsida vilket uppfattas som ett nollresultat.
+
 #### 1.3.0
 ##### Ändring
 * Åtgärdat CDN länkar till att vara SSL kompatibla.
