@@ -38,6 +38,11 @@ class SK_Municipality_Adaptation_Query {
 	public function modify_single_query() {
 		global $post, $wp_query;
 
+		// bail if search
+		if(is_search())
+			return false;
+
+
 		// bail if in admin view.
 		if( is_admin() )
 			return false;
@@ -71,6 +76,7 @@ class SK_Municipality_Adaptation_Query {
 	 * @return object   $query
 	 */
 	public function modify_query( $query ) {
+
 
 		$meta_query = $query->get( 'meta_query' );
 
