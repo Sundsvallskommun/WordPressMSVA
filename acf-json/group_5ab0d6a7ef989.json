@@ -1,0 +1,103 @@
+{
+    "key": "group_5ab0d6a7ef989",
+    "title": "Driftst\u00f6rning - H\u00e4ndelser",
+    "fields": [
+        {
+            "key": "field_5ab0d8e6ce16e",
+            "label": "",
+            "name": "operation_disruption_events",
+            "type": "repeater",
+            "instructions": "H\u00e4ndelserna kommer listas i den ordning de \u00e4r angiven h\u00e4r",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "collapsed": "",
+            "min": 0,
+            "max": 0,
+            "layout": "table",
+            "button_label": "",
+            "sub_fields": [
+                {
+                    "key": "field_5ab0d94ece16f",
+                    "label": "H\u00e4ndelse",
+                    "name": "operation_disruption_event",
+                    "type": "text",
+                    "instructions": "H\u00e4ndelse visas i rullgardinslistan under \"H\u00e4ndelse och omr\u00e5de\"",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "prepend": "",
+                    "append": "",
+                    "maxlength": ""
+                },
+                {
+                    "key": "field_5ab0d95dce170",
+                    "label": "Information del 1",
+                    "name": "operation_disruption_event_info_1",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": "",
+                    "new_lines": "wpautop"
+                },
+                {
+                    "key": "field_5ab0d97fce171",
+                    "label": "Information del 2",
+                    "name": "operation_disruption_event_info_2",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": "",
+                    "new_lines": "wpautop"
+                }
+            ]
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-msva"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "menu_item_level": "all",
+    "modified": 1521548765
+}

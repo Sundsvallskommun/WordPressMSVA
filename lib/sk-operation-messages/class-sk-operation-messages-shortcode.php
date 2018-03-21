@@ -8,6 +8,8 @@
  */
 class SK_Operation_Message_Shortcode {
 
+    const FIELD_EVENT_NAME = 'operation_disruption_event';
+
 	/**
 	 * The callback for the operation messages
 	 * shortcode. Returns the html to output.
@@ -53,8 +55,15 @@ class SK_Operation_Message_Shortcode {
 
 		$meta_om_event = isset( $message->post->meta['om_event'] ) ? $message->post->meta['om_event'] : '';
 
+        $operation_disruption_events = get_field('operation_disruption_events', 'option');
+
 		?>
+
+		<?php  ?>
 		<div class="operation-message-wrapper">
+
+            <?php printf("<script>var operation_disruption_events = %s</script>", str_replace('<\/p>', '\n', str_replace('<p>', '', json_encode($operation_disruption_events)))); ?>
+
 			<form id="operation-message-form" method="post" action="">
 
 				<input type="hidden" value="<?php echo wp_create_nonce( 'sk-operation-messages' ); ?>" name="nonce"/>
@@ -67,18 +76,20 @@ class SK_Operation_Message_Shortcode {
 				<div class="form-section">
 					<div class="form-group">
 						<select class="form-control" name="operation_message[om_event]" id="operation-message-event">
-							<option
-								value="0" <?php selected( $meta_om_event, '0' ); ?>><?php _e( 'Välj händelse...', 'msva' ); ?></option>
-							<option
-								value="Vattenläcka" <?php selected( $meta_om_event, 'Vattenläcka' ); ?>><?php _e( 'Vattenläcka', 'msva' ); ?></option>
-							<option
-								value="Vattenavstängning" <?php selected( $meta_om_event, 'Vattenavstängning' ); ?>><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
-							<option
-								value="Spolning av avloppsledningar" <?php selected( $meta_om_event, 'Spolning av avloppsledningar' ); ?>><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
-							<option
-								value="Spolning av vattenledningar" <?php selected( $meta_om_event, 'Spolning av vattenledningar' ); ?>><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
-							<option
-								value="Vattenläcka åtgärdad" <?php selected( $meta_om_event, 'Vattenläcka åtgärdad' ); ?>><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
+                            <option value="0" <?php selected( $meta_om_event, '0' ); ?>><?php _e( 'Välj händelse...', 'msva' ); ?></option>
+
+                            <?php if (is_array($operation_disruption_events) && !empty($operation_disruption_events)) : ?>
+
+                                   <?php foreach ($operation_disruption_events as $event) : ?>
+
+                                        <?php if ($this->array_key_exists_have_value($event, self::FIELD_EVENT_NAME)) : ?>
+                                            <option value="<?php echo $event_name = $event[self::FIELD_EVENT_NAME]; ?>" <?php selected( $meta_om_event, $event_name ); ?>><?php echo $event_name;?></option>
+                                        <?php endif; ?>
+
+                                    <?php endforeach; ?>
+
+                            <?php endif; ?>
+
 							<option
 								value="1" <?php selected( $meta_om_event, '1' ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
 						</select>
@@ -361,6 +372,25 @@ class SK_Operation_Message_Shortcode {
 		</div>
 		<?php
 		return ob_get_clean();
+	}
+
+
+    /**
+     *
+     * Checks wether provided key exists and have a value. Empty string is interpreted as a no value
+     * @param array $array
+     * @param string $key
+     *
+     * @return true if key exists in array and have a value. or false if key could not be found or the value is empty
+     */
+	private function array_key_exists_have_value($array, $key) {
+
+	    if ( array_key_exists($key, $array) && !empty($array[$key]) ) {
+	        return true;
+	    }
+
+	    return false;
+
 	}
 
 }
