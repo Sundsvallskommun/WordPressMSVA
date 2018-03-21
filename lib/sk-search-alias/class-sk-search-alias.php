@@ -57,7 +57,7 @@ class SK_Search_Alias {
 
 		register_taxonomy(
 			'search_alias',
-			'page',
+			['page', 'faq'],
 			array(
 				'labels'  => $labels,
 				'rewrite' => array( 'slug' => 'alias' ),
