@@ -34,7 +34,7 @@
 						<?php else : ?>
 
 							<li class="done"><?php material_icon( 'error', array( 'size' => '2em' ) ); ?><?php _e( 'Vi har för
-							närvarande inga driftstörningar.', 'msva' ); ?>
+							närvarande inga driftmeddelanden.', 'msva' ); ?>
 							</li>
 
 						<?php endif; ?>
