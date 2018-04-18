@@ -45,7 +45,7 @@
 				<div class="operation-messages__button">
 					<a class="btn btn-secondary btn-rounded btn-rounded"
 					   href="<?php echo get_bloginfo( 'url' ) . '/driftstorningar/'; ?>"
-					   title="<?php _e( 'Arkiv driftstörningar', 'sk_tivoli' ); ?>"><?php _e( 'Arkiv driftstörningar', 'sk_tivoli' ); ?></a>
+					   title="<?php _e( 'Arkiv driftmeddelanden', 'sk_tivoli' ); ?>"><?php _e( 'Arkiv driftmeddelanden', 'sk_tivoli' ); ?></a>
 				</div>
 			</div>
 		</div><!-- .row -->
