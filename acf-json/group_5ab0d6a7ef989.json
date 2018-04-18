@@ -77,6 +77,25 @@
                     "maxlength": "",
                     "rows": "",
                     "new_lines": "wpautop"
+                },
+                {
+                    "key": "field_5ad728c5be9c2",
+                    "label": "Avslut",
+                    "name": "operation_disruption_event_end",
+                    "type": "textarea",
+                    "instructions": "",
+                    "required": 0,
+                    "conditional_logic": 0,
+                    "wrapper": {
+                        "width": "",
+                        "class": "",
+                        "id": ""
+                    },
+                    "default_value": "",
+                    "placeholder": "",
+                    "maxlength": "",
+                    "rows": "",
+                    "new_lines": "wpautop"
                 }
             ]
         }
@@ -99,5 +118,5 @@
     "active": 1,
     "description": "",
     "menu_item_level": "all",
-    "modified": 1521548765
+    "modified": 1524050245
 }
