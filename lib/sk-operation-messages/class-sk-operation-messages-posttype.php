@@ -161,18 +161,25 @@ class SK_Operation_Messages_Posttype {
 
 		?>
         <div class="operation-message-metabox-wrapper">
-
+        	<?php $operation_disruption_events = get_field('operation_disruption_events', 'option'); ?>
+        	<?php printf("<script>var operation_disruption_events = %s</script>", str_replace('<\/p>', '\n', str_replace('<p>', '', json_encode($operation_disruption_events)))); ?>
             <div class="operation-message-metabox-section">
 	            <div class="form-row">
 		            <label><?php _e( 'Händelse', 'msva' ); ?></label>
 	                <select id="operation-message-event" name="operation_message[om_event]">
-	                    <option value="0"><?php _e( 'Välj händelse...', 'msva' ); ?></option>
-	                    <option value="Vattenläcka" <?php selected( $event, 'Vattenläcka' ); ?>><?php _e( 'Vattenläcka', 'msva' ); ?></option>
-	                    <option value="Vattenavstängning" <?php selected( $event, 'Vattenavstängning' ); ?>><?php _e( 'Vattenavstängning', 'msva' ); ?></option>
-	                    <option value="Spolning av avloppsledningar" <?php selected( $event, 'Spolning av avloppsledningar' ); ?>><?php _e( 'Spolning av avloppsledningar', 'msva' ); ?></option>
-	                    <option value="Spolning av vattenledningar" <?php selected( $event, 'Spolning av vattenledningar' ); ?>><?php _e( 'Spolning av vattenledningar', 'msva' ); ?></option>
-	                    <option value="Vattenläcka åtgärdad" <?php selected( $event, 'Vattenläcka åtgärdad' ); ?>><?php _e( 'Vattenläcka åtgärdad' ); ?></option>
-	                    <option value="1" <?php selected( $event, 1 ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
+	                    
+	                    <?php if (is_array($operation_disruption_events) && !empty($operation_disruption_events)) : ?>
+
+                           <?php foreach ($operation_disruption_events as $seletable_event) : ?>
+
+                                <?php if (SK_Operation_Message_Shortcode::array_key_exists_have_value($seletable_event, SK_Operation_Message_Shortcode::FIELD_EVENT_NAME)) : ?>
+                                    <option value="<?php echo $event_name = $seletable_event[SK_Operation_Message_Shortcode::FIELD_EVENT_NAME]; ?>" <?php selected( $event, $event_name ); ?>><?php echo $event_name;?></option>
+                                <?php endif; ?>
+
+                            <?php endforeach; ?>
+
+                        <?php endif; ?>
+                        <option value="1" <?php selected( $event, 1 ); ?>><?php _e( 'Egen händelse', 'msva' ); ?></option>
 	                </select>
 	            </div>
 	            <div class="form-row">
@@ -221,7 +228,7 @@ class SK_Operation_Messages_Posttype {
 		            </div>
 	            <div class="form-row">
 	            <label><?php _e( 'Avslut', 'msva' ); ?></label>
-	            <textarea cols="" rows="5" name="operation_message[om_ending]"><?php echo ! empty( $ending ) ? $ending : null;?></textarea>
+	            <textarea cols="" rows="5" class="operation-message-om-ending" name="operation_message[om_ending]"><?php echo ! empty( $ending ) ? $ending : null;?></textarea>
 		            </div>
 
             </div>

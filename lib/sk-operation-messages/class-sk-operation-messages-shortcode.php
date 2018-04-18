@@ -82,7 +82,7 @@ class SK_Operation_Message_Shortcode {
 
                                    <?php foreach ($operation_disruption_events as $event) : ?>
 
-                                        <?php if ($this->array_key_exists_have_value($event, self::FIELD_EVENT_NAME)) : ?>
+                                        <?php if (self::array_key_exists_have_value($event, self::FIELD_EVENT_NAME)) : ?>
                                             <option value="<?php echo $event_name = $event[self::FIELD_EVENT_NAME]; ?>" <?php selected( $meta_om_event, $event_name ); ?>><?php echo $event_name;?></option>
                                         <?php endif; ?>
 
@@ -383,7 +383,7 @@ class SK_Operation_Message_Shortcode {
      *
      * @return true if key exists in array and have a value. or false if key could not be found or the value is empty
      */
-	private function array_key_exists_have_value($array, $key) {
+	public static function array_key_exists_have_value($array, $key) {
 
 	    if ( array_key_exists($key, $array) && !empty($array[$key]) ) {
 	        return true;
