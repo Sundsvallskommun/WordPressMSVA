@@ -27,7 +27,7 @@ class SK_Search_Alias {
 	 */
 	public function init() {
 		add_action( 'delete_search_alias', [ $this, 'update_posts_with_deleted_alias' ], 10 );
-		add_action( 'pre_delete_term', [ $this, 'before_alias_deleted' ], 10 );
+		add_action( 'pre_delete_term', [ $this, 'before_alias_deleted' ], 1, 2 );
 		add_action( 'init', [ $this, 'register_taxonomy' ], 10 );
 		add_action( 'save_post', [ $this, 'custom_search_data_in_post_content' ], 10 );
 	}
