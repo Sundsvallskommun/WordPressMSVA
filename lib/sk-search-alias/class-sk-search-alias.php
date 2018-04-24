@@ -40,7 +40,7 @@ class SK_Search_Alias {
 		// create a new taxonomy
 
 		$labels = array(
-			'name'                       => __( 'Synomymer', 'msva' ),
+			'name'                       => __( 'Synonymer', 'msva' ),
 			'singular_name'              => __( 'Synonym', 'msva' ),
 			'search_items'               => __( 'Sök synonymer', 'msva' ),
 			'popular_items'              => __( 'Populära synonymer', 'msva' ),
@@ -57,12 +57,13 @@ class SK_Search_Alias {
 
 		register_taxonomy(
 			'search_alias',
-			'page',
+			['page', 'faq'],
 			array(
 				'labels'  => $labels,
 				'rewrite' => array( 'slug' => 'alias' ),
 			)
 		);
+
 	}
 
 	/**
@@ -72,10 +73,11 @@ class SK_Search_Alias {
 	 */
 	public function custom_search_data_in_post_content( $post_id ) {
 
-		$post_type = get_post_type( $post_id );
 
-		// Do not add searchable data on these post types
-		if ( $post_type === 'acf-field-group' || $post_type === 'acf-field' ) {
+		// check if search alias is assigned to post type.
+		$post_type = get_post_type( $post_id );
+		$assigned_taxonomies = get_object_taxonomies( $post_type );
+		if ( ! in_array( 'search_alias', $assigned_taxonomies ) ) {
 			return;
 		}
 
@@ -147,6 +149,7 @@ class SK_Search_Alias {
 
 		global $posts_to_update_alias;
 		$posts_to_update_alias = wp_list_pluck( $query->posts, 'ID' );
+
 	}
 
 }
