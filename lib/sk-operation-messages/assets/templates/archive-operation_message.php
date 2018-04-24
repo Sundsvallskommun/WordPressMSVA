@@ -14,7 +14,7 @@ $messages = SK_Operation_Messages::messages(array('publish'), true, true);
 
 		</aside>
 		<div class="single-post__content">
-			<h1 class="archive__title"><?php _e( 'Arkiv, driftstörningar', 'msva' ); ?></h1>
+			<h1 class="archive__title"><?php _e( 'Arkiv, driftmeddelanden', 'msva' ); ?></h1>
 
 			<div class="row posts">
 				<div class="col-md-12">
