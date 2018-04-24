@@ -12,6 +12,19 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar
 
+#### 1.5.0
+
+##### Ändring
+* Lagt till så att det går att lägga till egna händelser för driftmeddelanden.
+* Lagt till synonymer för FAQ.
+
+##### Buggfixar
+* Åtgärdat så att span elementet för synonymer inte läggs till på samtliga posttyper. 
+
+
+##### Buggfixar
+* Åtgärdat omdirigering till startsida vid sökning från startsida vilket uppfattas som ett nollresultat.
+
 #### 1.3.1
 ##### Buggfixar
 * Åtgärdat omdirigering till startsida vid sökning från startsida vilket uppfattas som ett nollresultat.
