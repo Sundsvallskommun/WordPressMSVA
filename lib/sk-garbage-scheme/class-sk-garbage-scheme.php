@@ -11,7 +11,6 @@ class SK_Garbage_Scheme {
 		add_action( 'after_setup_theme', function () {
 			$this->init();
 		} );
-
 	}
 
 	/**
@@ -169,8 +168,8 @@ class SK_Garbage_Scheme {
 	 */
 	static function scheme_output( $run_code ) {
 		$run_code = trim( $run_code );
-		$week     = mb_substr( $run_code, - 1 );
-		$day      = mb_substr( $run_code, - 3, 2 );
+		$week     = mb_substr( $run_code, 6, 1 );
+		$day      = mb_substr( $run_code, 4, 2 );
 
 		$output = sprintf( '%s %s veckor', self::get_local_day( $day ), $week % 2 == 0 ? 'jämna' : 'udda' );
 
