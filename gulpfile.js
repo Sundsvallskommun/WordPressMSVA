@@ -23,7 +23,7 @@ var gulp         = require('gulp'),
 var config = {
 	/* Local address of wordpress install. Used by browsersync,
 	 * use proxy flag to override (e.g. --proxy tema.dev) */
-	PROXY: util.env.proxy || 'msva.dev',
+	PROXY: util.env.proxy || 'msva.utv',
 
 	production: !!util.env.production
 }
