@@ -8,10 +8,10 @@
 					<ul>
 						<?php if ( ! empty( $messages ) ) : ?>
 							<?php foreach ( $messages as $message ) :
-									$type_of_action = $message->meta['om_event'][0];
-									if( $message->meta['om_event'][0] === '1' ){
-										$type_of_action = $message->meta['om_custom_event'][0];
-									}
+								$type_of_action = isset( $message->meta['om_event'][0] ) ? $message->meta['om_event'][0] : '';
+								if ( $type_of_action === '1' ) {
+									$type_of_action = $message->meta['om_custom_event'][0];
+								}
 
 								?>
 								<li class="active">
