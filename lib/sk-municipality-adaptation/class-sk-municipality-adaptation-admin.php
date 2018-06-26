@@ -355,7 +355,7 @@ class SK_Municipality_Adaptation_Admin {
 
 		    }
 
-		    return $post['ID'];
+		    return $post;
 
 
         }
