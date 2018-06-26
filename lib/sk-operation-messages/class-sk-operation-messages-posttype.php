@@ -87,24 +87,33 @@ class SK_Operation_Messages_Posttype {
 	 * @access   public
 	 *
 	 */
-	public function save( $post_id ) {
+	public function save($post_id){
 		global $post;
 
-		if ( isset( $post->post_type ) && $post->post_type != 'operation_message' ) {
+		if (isset($post->post_type) && $post->post_type != 'operation_message') {
 			return;
 		}
 
 		// If this is a revision, get real post ID
-		if ( $parent_id = wp_is_post_revision( $post_id ) ) {
+		if ($parent_id = wp_is_post_revision($post_id)) {
 			$post_id = $parent_id;
 		}
 
-		if ( isset( $_POST['operation_message'] ) && is_array( $_POST['operation_message'] ) ) {
+		if (isset($_POST['operation_message']) && is_array($_POST['operation_message'])) {
 
-			foreach ( $_POST['operation_message'] as $key => $value ) {
+			foreach ($_POST['operation_message'] as $key => $value) {
+				update_post_meta($post_id, $key, $value);
+			}
 
-				update_post_meta( $post_id, $key, $value );
 
+			// check if post is republished and if there is a new archive date.
+			$is_archived = get_post_meta($post_id, 'om_archived_at', true);
+
+			if (!empty($is_archived)) {
+				$archive_at = $_POST['operation_message']['om_archive_at_date'] . ' ' . $_POST['operation_message']['om_archive_at_hour'] . ':' . $_POST['operation_message']['om_archive_at_minute'];
+				if (strtotime($is_archived) < strtotime($archive_at)) {
+					delete_post_meta($post_id, 'om_archived_at');
+				}
 			}
 
 		}
