@@ -21,7 +21,7 @@ if ( isset( $_GET['parallel_type'] ) && $_GET['parallel_type'] === 'operation-me
 			<title><?php bloginfo_rss( 'name' ); ?> - Parallellpublicering driftmeddelanden</title>
 			<atom:link href="<?php self_link(); ?>" rel="self" type="application/rss+xml"/>
 			<link><?php bloginfo_rss( 'url' ) ?></link>
-			<description><?php bloginfo_rss( 'description' ) ?></description>
+			<description></description>
 			<lastBuildDate><?php echo mysql2date( 'D, d M Y H:i:s +0000', get_lastpostmodified( 'GMT' ), false ); ?></lastBuildDate>
 			<language><?php echo get_option( 'rss_language' ); ?></language>
 			<sy:updatePeriod><?php echo apply_filters( 'rss_update_period', 'hourly' ); ?></sy:updatePeriod>
@@ -39,7 +39,13 @@ if ( isset( $_GET['parallel_type'] ) && $_GET['parallel_type'] === 'operation-me
 					<dc:creator><?php the_author(); ?></dc:creator>
 					<guid isPermaLink="false"><?php the_guid(); ?></guid>
 					<event>
-						<action><?php echo !empty( $post->meta['om_event'][0] ) ? $post->meta['om_event'][0] : null; ?></action>
+						<?php
+						$type_of_action = $post->meta['om_event'][0];
+						if( $post->meta['om_event'][0] === '1' ){
+							$type_of_action = $post->meta['om_custom_event'][0];
+						}
+						?>
+						<action><?php echo !empty( $type_of_action ) ? $type_of_action : null; ?></action>
 						<municipality><?php echo !empty( $post->meta['om_municipality'][0] ) ? $post->meta['om_municipality'][0] : null; ?></municipality>
 						<title><?php echo !empty( $post->meta['om_title'][0] ) ? $post->meta['om_title'][0] : null; ?></title>
 						<address><?php echo !empty( $post->meta['om_area_street'][0] ) ? $post->meta['om_area_street'][0] : null; ?></address>
@@ -90,7 +96,7 @@ if ( isset( $_GET['parallel_type'] ) && $_GET['parallel_type'] === 'operation-me
 			<title><?php bloginfo_rss( 'name' ); ?> - Parallellpublicering</title>
 			<atom:link href="<?php self_link(); ?>" rel="self" type="application/rss+xml"/>
 			<link><?php bloginfo_rss( 'url' ) ?></link>
-			<description><?php bloginfo_rss( 'description' ) ?></description>
+			<description></description>
 			<lastBuildDate><?php echo mysql2date( 'D, d M Y H:i:s +0000', get_lastpostmodified( 'GMT' ), false ); ?></lastBuildDate>
 			<language><?php echo get_option( 'rss_language' ); ?></language>
 			<sy:updatePeriod><?php echo apply_filters( 'rss_update_period', 'hourly' ); ?></sy:updatePeriod>

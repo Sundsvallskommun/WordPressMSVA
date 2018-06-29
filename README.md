@@ -12,6 +12,17 @@ Utveckla i dev gren. Sammanfoga till master vid ny release och uppdatera version
 
 Större ändringar . Antal ändringar och nya funktioner . Antal åtgärdade buggar
 
+#### 1.8.0
+
+##### Ändring
+* Ändrat hur vi plockar ut delar av körkoden för att kunna tillåta text efter körkod.
+* Skapat möjlighet att kunna återaktivera ett driftmeddelande.
+* Lagt till egna händelser i RSS feed för driftmeddelande.
+
+##### Buggfixar
+* Åtgärdat så att det går att redigera filnamn med mera från listvyn i admin.
+
+
 #### 1.5.0
 
 ##### Ändring
