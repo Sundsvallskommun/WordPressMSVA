@@ -40,17 +40,17 @@ if ( isset( $_GET['parallel_type'] ) && $_GET['parallel_type'] === 'operation-me
 					<guid isPermaLink="false"><?php the_guid(); ?></guid>
 					<event>
 						<?php
-						$type_of_action = $post->meta['om_event'][0];
-						if( $post->meta['om_event'][0] === '1' ){
+						$type_of_action = isset( $post->meta['om_event'][0] ) ? $post->meta['om_event'][0] : null;
+						if( isset( $post->meta['om_event'][0] ) && $post->meta['om_event'][0] === '1' ){
 							$type_of_action = $post->meta['om_custom_event'][0];
 						}
 						?>
 						<action><?php echo !empty( $type_of_action ) ? $type_of_action : null; ?></action>
 						<municipality><?php echo !empty( $post->meta['om_municipality'][0] ) ? $post->meta['om_municipality'][0] : null; ?></municipality>
-						<title><?php echo !empty( $post->meta['om_title'][0] ) ? $post->meta['om_title'][0] : null; ?></title>
-						<address><?php echo !empty( $post->meta['om_area_street'][0] ) ? $post->meta['om_area_street'][0] : null; ?></address>
-						<info><?php echo !empty( $post->meta['om_information_part_1'][0] ) ? $post->meta['om_information_part_1'][0] : null; ?></info>
-						<more><?php echo !empty( $post->meta['om_information_part_2'][0] ) ? $post->meta['om_information_part_2'][0] : null; ?></more>
+						<title><?php echo !empty( $post->meta['om_title'][0] ) ? htmlspecialchars( $post->meta['om_title'][0] ) : null; ?></title>
+						<address><?php echo !empty( $post->meta['om_area_street'][0] ) ? htmlspecialchars( $post->meta['om_area_street'][0] ) : null; ?></address>
+						<info><?php echo !empty( $post->meta['om_information_part_1'][0] ) ? htmlspecialchars( $post->meta['om_information_part_1'][0] ): null; ?></info>
+						<more><?php echo !empty( $post->meta['om_information_part_2'][0] ) ? htmlspecialchars( $post->meta['om_information_part_2'][0] ): null; ?></more>
 					</event>
 
 					<description><![CDATA[<?php the_excerpt_rss() ?>]]></description>
