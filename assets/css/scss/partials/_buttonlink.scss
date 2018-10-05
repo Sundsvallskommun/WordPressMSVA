@@ -1,0 +1,49 @@
+.sk-buttonlink {
+
+	margin-bottom: 1.75rem;
+    clear: both;
+    
+    .icon{
+        margin-top: .5em;
+        float: right
+    }
+
+	> div {
+		padding: 0 $spacer-x * 1.5;
+		overflow: hidden;
+		border: 5px solid $gray-lightest;
+		border-top: none;
+		> :first-child {
+			margin-top: 1.75rem;
+		}
+	}
+
+	&--fullwidth > div {
+		padding: 0;
+		border: none;
+	}
+
+	> h2,
+	> h3,
+	> h4 {
+		margin-bottom: 0;
+
+		a {
+			color: inherit;
+			display: block;
+			padding: $spacer-x * 1.5;
+			background:  #f9f9f9;
+			position: relative;
+			text-decoration: none;
+
+			&:after {
+				
+			}
+
+			&:hover {
+				background: $gray-lighter;
+			}
+		}
+	}
+
+}

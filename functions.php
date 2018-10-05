@@ -260,6 +260,10 @@ add_action( 'sk_after_page_title', 'msva_ingress_navigation_card' );
 //require_once locate_template( 'lib/XXXX' );
 //$sk_name = new SK_NAME();
 
+/* SK Button Link */
+require_once locate_template( 'lib/sk-buttonlink/class-sk-buttonlink.php' );
+$sk_buttonlink = new SK_Buttonlink();
+
 /* SK Waste Guide */
 require_once locate_template( 'lib/sk-wasteguide/class-sk-wasteguide.php' );
 $sk_wasteguide = new SK_Wasteguide();
