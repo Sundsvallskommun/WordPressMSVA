@@ -4,6 +4,25 @@
 
 	$(document).ready(function() {
 
+		$('a[href^="#"], a[href^="/#"]').on('click', function(e) {
+			e.preventDefault();
+			goToTarget(this.hash);
+	  	});
+	  
+	  	$(window).load(function(e){
+			if( window.location.hash ){
+				goToTarget(window.location.hash);
+			}
+	  	});
+	  
+	  	function goToTarget(target) {
+			if (target) {
+				$(target).collapse('show');
+				$('html, body').animate({scrollTop: $(target).offset().top -100 }, 'linear' );
+			}
+	  	}
+
+
 		if ( $(window).width() < 768 && ajax_object.area === 'Sundsvall' && ajax_object.page === '1' ) {
 			if( $('.opening-hours-wrapper').length > 0 ){
 				var opening_hours = $('.opening-hours-wrapper').clone();
