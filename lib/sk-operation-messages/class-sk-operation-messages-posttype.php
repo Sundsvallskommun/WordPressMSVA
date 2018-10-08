@@ -90,6 +90,9 @@ class SK_Operation_Messages_Posttype {
 	public function save($post_id){
 		global $post;
 
+		//Util::debug($_POST);
+		
+
 		if (isset($post->post_type) && $post->post_type != 'operation_message') {
 			return;
 		}
@@ -100,8 +103,20 @@ class SK_Operation_Messages_Posttype {
 		}
 
 		if (isset($_POST['operation_message']) && is_array($_POST['operation_message'])) {
+			$post_data['operation_message'] = $_POST['operation_message'];
+		}
+		
+		if (isset($_POST['om_info_1']) ) {
+			$post_data['operation_message']['om_information_part_1'] = $_POST['om_info_1'];
+		}
 
-			foreach ($_POST['operation_message'] as $key => $value) {
+		if (isset($_POST['om_info_2']) ) {
+			$post_data['operation_message']['om_information_part_2'] = $_POST['om_info_2'];
+		}
+
+		if (!empty( $post_data ) ) {
+
+			foreach ($post_data as $key => $value) {
 				update_post_meta($post_id, $key, $value);
 			}
 
@@ -110,7 +125,7 @@ class SK_Operation_Messages_Posttype {
 			$is_archived = get_post_meta($post_id, 'om_archived_at', true);
 
 			if (!empty($is_archived)) {
-				$archive_at = $_POST['operation_message']['om_archive_at_date'] . ' ' . $_POST['operation_message']['om_archive_at_hour'] . ':' . $_POST['operation_message']['om_archive_at_minute'];
+				$archive_at = $post_data['operation_message']['om_archive_at_date'] . ' ' . $post_data['operation_message']['om_archive_at_hour'] . ':' . $post_data['operation_message']['om_archive_at_minute'];
 				if (strtotime($is_archived) < strtotime($archive_at)) {
 					delete_post_meta($post_id, 'om_archived_at');
 				}
@@ -233,7 +248,18 @@ class SK_Operation_Messages_Posttype {
 		            </div>
 	            <div class="form-row">
                 <label><?php _e( 'Information del 2', 'msva' ); ?></label>
-	            <textarea cols="" rows="5" name="operation_message[om_information_part_2]" class="operation-message-information-2"><?php echo ! empty( $info_2 ) ? $info_2 : null;?></textarea>
+				<?php
+$content = !empty( $info_2 ) ? $info_2 : null;
+
+$editor_id = 'om_info_2';
+$settings = array( 
+	'quicktags' => array( 'buttons' => 'strong,em,del,ul,ol,li,close' ), // note that spaces in this list seem to cause an issue
+);
+
+wp_editor( $content, $editor_id, $settings );
+?>
+
+	           <!-- <textarea cols="" rows="5" name="operation_message[om_information_part_2]" class="operation-message-information-2"><?php echo ! empty( $info_2 ) ? $info_2 : null;?></textarea>-->
 		            </div>
 	            <div class="form-row">
 	            <label><?php _e( 'Avslut', 'msva' ); ?></label>
