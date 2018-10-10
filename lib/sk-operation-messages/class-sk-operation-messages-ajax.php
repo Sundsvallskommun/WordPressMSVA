@@ -17,7 +17,6 @@ class SK_Operation_Messages_Ajax {
 	 *
 	 */
 	public function callback() {
-
 		$params = array();
 		parse_str( $_POST['form_data'], $params );
 
