@@ -5648,3 +5648,48 @@ h1, h2, h3, h4, h5, h6,
 
 .widget-wasteguide .widget-wasteguide__text {
   margin: 1em 0; }
+
+.info-banner {
+  margin-top: -1.5em;
+  background: blue;
+  color: #ffffff;
+  margin-bottom: 1.25em; }
+  .info-banner a, .info-banner a:visited, .info-banner a:active, .info-banner a:hover {
+    display: block;
+    color: #ffffff; }
+  .info-banner span {
+    padding-top: .25em;
+    padding-bottom: .25em;
+    display: block; }
+
+.highlight-badge {
+  display: inline-block;
+  padding: .5em;
+  font-size: 10px;
+  font-weight: bold;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  background-color: #dc3545;
+  color: #ffffff;
+  position: absolute;
+  top: -1em;
+  right: 4em;
+  border-radius: 0.25em; }
+  .highlight-badge:empty {
+    display: none; }
+
+.search-module__items .highlight-badge {
+  top: .5em;
+  right: 4em; }
+
+.navigation-page__header__title .page-title {
+  position: relative; }
+
+.navigation-page__header__title .highlight-badge {
+  top: -1em;
+  right: -2em; }
+
+.search-module__item__container {
+  position: relative; }

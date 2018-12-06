@@ -1,6 +1,6 @@
 <?php $messages = SK_Operation_Messages::messages(); ?>
 
-<div class="operation-messages">
+<div class="operation-messages" <?php echo SK_Info_Banner::is_active() ? 'style="border-bottom: 0"' : null; ?>>
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-9">

@@ -154,19 +154,19 @@ class SK_Search {
 		?>
 			
 			<script id="searchitem-template-generic" type="text/x-handlebars-template">
-				<?php printf($this->item_template(), '{{type}}', '{{url}}', get_icon('alignleft'), '{{title}}', '{{type_label}}', 'Uppdaterad {{modified}}' ); ?>
+				<?php printf($this->item_template(), '{{type}}', '{{url}}', get_icon('alignleft'), '{{{title}}}', '{{type_label}}', 'Uppdaterad {{modified}}' ); ?>
 			</script>
 			
 			<script id="searchitem-template-posts" type="text/x-handlebars-template">
-				<?php printf($this->item_template(), '{{type}}', '{{url}}', get_icon('alignleft'), '{{title}}', '{{type_label}}', 'Uppdaterad {{modified}}' ); ?>
+				<?php printf($this->item_template(), '{{type}}', '{{url}}', get_icon('alignleft'), '{{{title}}}', '{{type_label}}', 'Uppdaterad {{modified}}' ); ?>
 			</script>
 
 			<script id="searchitem-template-attachments" type="text/x-handlebars-template">
-				<?php printf($this->item_template(), '{{type}}', '{{url}}', get_icon('alignleft'), '{{title}}', '{{file_type}}', 'Uppdaterad {{modified}}' ); ?>
+				<?php printf($this->item_template(), '{{type}}', '{{url}}', get_icon('alignleft'), '{{{title}}}', '{{file_type}}', 'Uppdaterad {{modified}}' ); ?>
 			</script>
 
 			<script id="searchitem-template-contacts" type="text/x-handlebars-template">
-				<?php printf($this->item_template(), '{{type}}', '{{url}}', '{{{thumbnail}}}', '{{title}}', '{{type_label}}', 'Uppdaterad {{modified}}' ); ?>
+				<?php printf($this->item_template(), '{{type}}', '{{url}}', '{{{thumbnail}}}', '{{{title}}}', '{{type_label}}', 'Uppdaterad {{modified}}' ); ?>
 			</script>
 		<?php
 	}
@@ -183,7 +183,7 @@ class SK_Search {
 
 		$arr = array(
 			'id'      => $post->ID,
-			'title'      => $post->post_title,
+			'title'      => SK_Highlight::is_highlighted( $post->post_title, $post->ID ),
 			'type'       => $post->post_type,
 			'type_label' => get_post_type_object( $post->post_type )->labels->singular_name,
 			'modified'   => date_i18n( get_option('date_format'), strtotime( $post->post_modified ) ),

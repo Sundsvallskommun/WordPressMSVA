@@ -374,3 +374,11 @@ $sk_critical_information = new SK_Critical_Information();
 /* SK Search Alias */
 require_once locate_template( 'lib/sk-search-alias/class-sk-search-alias.php' );
 $sk_search_alias = new SK_Search_Alias();
+
+/* SK Info Banner */
+require_once locate_template( 'lib/sk-info-banner/class-sk-info-banner.php' );
+$sk_info_banner = new SK_Info_Banner();
+
+/* SK Highlight */
+require_once locate_template( 'lib/sk-highlight/class-sk-highlight.php' );
+$sk_highlight = new SK_Highlight();
