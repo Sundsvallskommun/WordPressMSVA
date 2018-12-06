@@ -26,15 +26,21 @@ class SK_Info_Banner {
      */
     public static function get_data() {
         $banner = [];
+        
+        $banner['bg_color']   = get_field( 'startpage_banner_bg_color', 'options' );
+        $banner['text_color'] = get_field( 'startpage_banner_text_color', 'options' );
 
         if ( !empty( get_field( 'startpage_banner_link', 'options' ) ) ) {
-            $banner['content'] = sprintf( '<a href="%s"><span>%s</span><a>', get_field( 'startpage_banner_link', 'options' ), get_field( 'startpage_banner_content', 'options' ) );
+            $banner['content'] = sprintf( 
+                '<a href="%s"%s><span>%s</span><a>', 
+                get_field( 'startpage_banner_link', 'options' ), 
+                !empty( $banner['text_color'] ) ? ' style="color: ' . $banner['text_color'] . '"' : '', 
+                get_field( 'startpage_banner_content', 'options' ) );
         } else {
             $banner['content'] = sprintf( '<span>%s</span>', get_field( 'startpage_banner_content', 'options' ) );
         }
 
-        $banner['bg_color']   = get_field( 'startpage_banner_bg_color', 'options' );
-        $banner['text_color'] = get_field( 'startpage_banner_text_color', 'options' );
+
 
         return $banner;
     }
