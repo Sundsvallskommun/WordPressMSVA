@@ -1,0 +1,54 @@
+{
+    "key": "group_5c07922c3893a",
+    "title": "Label highlight",
+    "fields": [
+        {
+            "key": "field_5c07924e35fd9",
+            "label": "Aktivera label highlight f\u00f6r denna post",
+            "name": "sk_highlight",
+            "type": "checkbox",
+            "instructions": "En label kommer att visas intill artikelns titel. Texten f\u00f6r label hanteras under \"Webbplatsen > MSVA\" i panelen \"Inst\u00e4llningar - label (highlight).",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Ja, jag vill anv\u00e4nda label highlight."
+            },
+            "allow_custom": 0,
+            "save_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ],
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "faq"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1544098456
+}

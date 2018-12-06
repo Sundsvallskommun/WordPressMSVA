@@ -1,0 +1,112 @@
+{
+    "key": "group_5c064706af378",
+    "title": "Inst\u00e4llningar - informationsbanner",
+    "fields": [
+        {
+            "key": "field_5c0656469af80",
+            "label": "Aktivera",
+            "name": "startpage_banner_activated",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "1": "Ja, aktivera informationsbanner."
+            },
+            "allow_custom": 0,
+            "save_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value"
+        },
+        {
+            "key": "field_5c06470d0ed17",
+            "label": "Text",
+            "name": "startpage_banner_content",
+            "type": "text",
+            "instructions": "Text som visas f\u00f6r bes\u00f6karen.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5c0656957f3e7",
+            "label": "L\u00e4nk",
+            "name": "startpage_banner_link",
+            "type": "url",
+            "instructions": "Ange den l\u00e4nk som informationsbannern ska h\u00e4nvisa till.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5c06533f0ed18",
+            "label": "Textf\u00e4rg",
+            "name": "startpage_banner_text_color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        },
+        {
+            "key": "field_5c06535d0ed19",
+            "label": "Bakgrundsf\u00e4rg",
+            "name": "startpage_banner_bg_color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#1b5eae"
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-msva"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1544098271
+}
