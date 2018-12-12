@@ -5664,8 +5664,8 @@ h1, h2, h3, h4, h5, h6,
 
 .highlight-badge {
   display: inline-block;
-  padding: .5em;
-  font-size: 10px;
+  padding: .25em .5em;
+  font-size: 12px;
   font-weight: bold;
   line-height: 1;
   text-align: center;
@@ -5681,9 +5681,12 @@ h1, h2, h3, h4, h5, h6,
   .highlight-badge:empty {
     display: none; }
 
+.tt-suggestion .highlight-badge {
+  top: .5em; }
+
 .search-module__items .highlight-badge {
   top: .5em;
-  right: 4em; }
+  right: 3em; }
 
 .navigation-page__header__title .page-title {
   position: relative; }
