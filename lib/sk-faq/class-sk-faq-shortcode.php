@@ -61,7 +61,7 @@ class SK_FAQ_Shortcode {
 				echo $this->filter_options();
 			}
 			?>
-
+<?php echo '<div class="faq-section">'; ?>
 			<?php foreach ( $faqs as $faq ) : ?>
 
 				<?php
@@ -70,20 +70,20 @@ class SK_FAQ_Shortcode {
 					// Do not show the question because it's internal only
 
 				} else {
-
 					echo do_shortcode(
 						sprintf(
-							'[utfallbar tag="h2" title="%s"]%s[/utfallbar]',
-							$faq->post_title,
-							$this->content( $faq, $has_access )
+							'[utfallbar tag="h3" title="%s"]%s[/utfallbar]',
+							htmlspecialchars( $faq->post_title ),
+							'<p>'.$this->content( $faq, $has_access ).'</p>'
 						)
 					);
+					
 
 				}
 				?>
 
 			<?php endforeach; ?>
-
+<?php echo '</div>'; ?>
 		<?php endif; ?>
 
 
@@ -198,7 +198,7 @@ class SK_FAQ_Shortcode {
 	 */
 	private function has_access() {
 
-		if ( current_user_can( 'edit_post' ) ) {
+		if ( current_user_can( 'edit_posts' ) ) {
 			return true;
 		}
 

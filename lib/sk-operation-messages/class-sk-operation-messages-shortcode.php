@@ -142,8 +142,22 @@ class SK_Operation_Message_Shortcode {
 				<div class="form-section">
 					<div class="form-group">
 						<label><?php _e( 'Information del 1', 'msva' ); ?></label>
-						<textarea cols="" rows="5" name="operation_message[om_information_part_1]"
-						          class="form-control operation-message-information-1"><?php echo isset( $message ) ? str_replace( '<br />', '', $message->info_1() ) : null; ?></textarea>
+
+				<?php
+					$content = isset( $message ) ? str_replace( '<br />', '', $message->info_1() ) : null;
+
+					$editor_id = 'om_info_1';
+					$settings = array( 
+						'editor_class' => 'om_info_1',
+						'media_buttons' => false,
+						'teeny' => true,
+						'quicktags' => array( 'buttons' => false )
+					);
+
+					wp_editor( $content, $editor_id, $settings );
+				?>
+
+				
 					</div>
 					<div class="form-group">
 						<label for="area_street"><?php _e( 'Område/Gata', 'msva' ); ?></label>
@@ -153,8 +167,23 @@ class SK_Operation_Message_Shortcode {
 					</div>
 					<div class="form-group">
 						<label><?php _e( 'Information del 2', 'msva' ); ?></label>
-						<textarea cols="" rows="5" name="operation_message[om_information_part_2]"
-						          class="form-control operation-message-information-2"><?php echo isset( $message ) ? str_replace( '<br />', '', $message->info_2() ) : null; ?></textarea>
+
+				<?php
+					$content = isset( $message ) ? str_replace( '<br />', '', $message->info_2() ) : null;
+
+					$editor_id = 'om_info_2';
+					$settings = array( 
+						'editor_class' => 'om_info_2',
+						'media_buttons' => false,
+						'teeny' => true,
+						'quicktags' => array( 'buttons' => false )
+					);
+
+					wp_editor( $content, $editor_id, $settings );
+				?>
+
+
+				
 					</div>
 					<div class="form-group">
 						<label><?php _e( 'Avslut', 'msva' ); ?></label>

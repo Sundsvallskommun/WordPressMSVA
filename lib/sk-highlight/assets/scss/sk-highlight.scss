@@ -1,0 +1,53 @@
+.highlight-badge {
+    display: inline-block;
+    padding: .25em .5em;
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    background-color: #dc3545;
+    color: #ffffff;
+    position: absolute;
+    top: -1em;
+    right: 4em;
+    letter-spacing: 1px;
+
+    @include border-radius(.25em);
+  
+    // Empty badges collapse automatically
+    &:empty {
+      display: none;
+    }
+
+  }
+
+  .tt-suggestion{
+    .highlight-badge{
+      top: .5em;
+      
+    }    
+  }
+
+  .search-module__items{
+    .highlight-badge{
+        top: .5em;
+        right: 3em;
+    }
+  }
+
+  .navigation-page__header__title{
+    .page-title{
+        position: relative;
+    }
+    .highlight-badge{
+        top: -1em;
+        right: -2em;
+    }
+  }
+
+  // override parent theme
+  .search-module__item__container{
+    position: relative;
+  }

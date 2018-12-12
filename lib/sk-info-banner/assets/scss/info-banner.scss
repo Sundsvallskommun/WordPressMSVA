@@ -1,0 +1,16 @@
+.info-banner{
+    margin-top: -1.5em;
+    background: blue;
+    color: #ffffff;
+    margin-bottom: 1.25em;
+    a, a:visited, a:active, a:hover{
+        display: block;
+        color: #ffffff;
+    }
+
+    span{
+        padding-top: .25em;
+        padding-bottom: .25em;
+        display: block;
+    }
+}

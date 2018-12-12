@@ -1,4 +1,62 @@
 <?php
+/**
+ * Override parent tiny mce settings.
+ * 
+ * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+ * 
+ * @param integer $toolbar
+ * @return void
+ */
+function get_tinymce_toolbar_items($toolbar = 1) {
+	if ( 1 === intval($toolbar) ) return 'formatselect, bold, link, unlink, blockquote, bullist, numlist, table, spellchecker, eservice_button, youtube_button, sk_collapse, sk_buttonlink, rml_folder';
+	if ( 2 === intval($toolbar) ) return 'pastetext, removeformat, charmap, undo, redo';
+	return false;
+}
+add_filter('tiny_mce_before_init', 'tiny_mce_settings', 99);
+
+function tiny_mce_settings($settings) {
+
+	/**
+	 * Select what to be shown in tinymce toolbars.
+	 *
+	 * Original settings:
+	 *
+	 * toolbar1 = 'bold,italic,strikethrough,bullist,numlist,blockquote,hr,alignleft,aligncenter,alignright,link,unlink,wp_more,spellchecker,fullscreen,wp_adv,eservice_button'
+	 * toolbar2 = 'formatselect,underline,alignjustify,forecolor,pastetext,removeformat,charmap,outdent,indent,undo,redo,wp_help'
+	 */
+	$settings['toolbar1'] = get_tinymce_toolbar_items(1);
+	$settings['toolbar2'] = get_tinymce_toolbar_items(2);
+
+	/**
+	 * Always show toolbar 2
+	 */
+	$settings['wordpress_adv_hidden'] = false;
+
+	/**
+	 * Block formats to show in editor dropdown. We remove h1 as we set page
+	 * title to h1 in the theme.
+	 */
+	$settings['block_formats'] = 'Paragraph=p;Heading 2=h2;Heading 3=h3;Heading 4=h4;';
+
+	return $settings;
+
+}
+
+/**
+ * Adding template path to script.
+ * 
+ * @author Daniel Pihlström <daniel.pihlstrom@cybercom.com>
+ *
+ * @return void
+ */
+function msva_template_dir_js_var() {
+	?>
+	<script>
+		var msvaTemplateDir = "<?php echo get_stylesheet_directory_uri(); ?>";
+	</script>
+	<?php
+}
+add_action('admin_head', 'msva_template_dir_js_var');
 
 
 /**
@@ -260,6 +318,10 @@ add_action( 'sk_after_page_title', 'msva_ingress_navigation_card' );
 //require_once locate_template( 'lib/XXXX' );
 //$sk_name = new SK_NAME();
 
+/* SK Button Link */
+require_once locate_template( 'lib/sk-buttonlink/class-sk-buttonlink.php' );
+$sk_buttonlink = new SK_Buttonlink();
+
 /* SK Waste Guide */
 require_once locate_template( 'lib/sk-wasteguide/class-sk-wasteguide.php' );
 $sk_wasteguide = new SK_Wasteguide();
@@ -312,3 +374,11 @@ $sk_critical_information = new SK_Critical_Information();
 /* SK Search Alias */
 require_once locate_template( 'lib/sk-search-alias/class-sk-search-alias.php' );
 $sk_search_alias = new SK_Search_Alias();
+
+/* SK Info Banner */
+require_once locate_template( 'lib/sk-info-banner/class-sk-info-banner.php' );
+$sk_info_banner = new SK_Info_Banner();
+
+/* SK Highlight */
+require_once locate_template( 'lib/sk-highlight/class-sk-highlight.php' );
+$sk_highlight = new SK_Highlight();

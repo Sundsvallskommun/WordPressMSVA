@@ -14,6 +14,7 @@
 @import 'overrides/openinghours';
 
 @import 'partials/overlay';
+@import 'partials/buttonlink';
 @import 'partials/blocks';
 @import 'partials/buttons';
 @import 'partials/collapse';
@@ -29,3 +30,7 @@
 @import 'partials/critical-information';
 
 @import 'pages/wasteguide_search';
+
+
+@import '../../../lib/sk-info-banner/assets/scss/info-banner';
+@import '../../../lib/sk-highlight/assets/scss/sk-highlight';

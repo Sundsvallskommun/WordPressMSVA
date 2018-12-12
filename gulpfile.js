@@ -87,7 +87,12 @@ gulp.task('browser-sync', function() {
 gulp.task('watch', ['default'], function() {
 
 	var watchArgs = { interval: 500 };
-	watch('./assets/css/scss/**/*.scss', watchArgs,function() {
+	watch([
+		'./assets/css/scss/**/*.scss', 
+		'./lib/sk-info-banner/assets/scss/*.scss',
+		'./lib/sk-highlight/assets/scss/*.scss'
+	], 
+		watchArgs,function() {
 		gulp.start('styles');
 	});
 
