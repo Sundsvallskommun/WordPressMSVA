@@ -312,7 +312,7 @@ add_action( 'sk_after_page_title', 'msva_ingress_navigation_card' );
  * Add survey popup to page
  */
 function addSurvey() {
-    echo '<script src="https://www.defgo.net/surveys/se/msva/float/defgo_float_init.js"></script>';
+	echo '<script src="https://www.defgo.net/surveys/se/msva/float/defgo_float_init.js"></script>';
 }
 // Hook for <head></head>
 add_action( 'wp_head', 'addSurvey' );
