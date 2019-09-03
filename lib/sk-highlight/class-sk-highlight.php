@@ -14,8 +14,10 @@ class SK_Highlight {
      */
     public function init() {
 
-        if( self::is_active() ){
-            add_action( 'the_post', [$this, 'add_badge_to_title'] );
+        if( self::is_active() && !is_admin() ){
+            add_action( 'the_post', function () {
+                add_filter( 'the_title', ['SK_Highlight', 'rerender_title'] );
+            } );
         }
     
         add_action( 'acf/save_post', [$this, 'save_acf_option'], 20 );
@@ -33,18 +35,6 @@ class SK_Highlight {
         }
 
         return false;
-    }
-
-    /**
-     * Add the badge to title.
-     *
-     * @return void
-     */
-    public function add_badge_to_title() {
-        global $post;
-        if ( get_field( 'sk_highlight', $post->ID ) ) {
-            add_filter( 'the_title', ['SK_Highlight', 'rerender_title'], 10, 2 );
-        }
     }
 
     /**
@@ -69,10 +59,15 @@ class SK_Highlight {
      * @return void
      */
     public static function rerender_title( $title, $id = null ) {
-
-        $text = get_transient( 'highlight_transient' );
-        return $title . $text;
-
+        global $post;
+        
+        if ( get_field( 'sk_highlight', $post->ID ) ) {
+            $text = get_transient( 'highlight_transient' );
+            return $title . $text;
+        }
+        
+        return $title;
+        
     }
 
     /**
