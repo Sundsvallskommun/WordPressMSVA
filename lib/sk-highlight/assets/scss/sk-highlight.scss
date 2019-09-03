@@ -47,7 +47,19 @@
     }
   }
 
+  .archive-post {
+    .media-heading{
+      position: relative;
+      .highlight-badge{
+        position: relative;
+        right: 0;
+      }
+    }
+  }
+
   // override parent theme
   .search-module__item__container{
     position: relative;
   }
+
+  
