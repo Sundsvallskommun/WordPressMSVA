@@ -25,7 +25,7 @@
 									<?php echo ! empty( $message->post_title ) ? $message->post_title . ':' : null; ?>
 								</span>
 										<span class="operation-messages-list__om-info">
-									<?php echo ! empty( $message->meta['om_information_part_1'][0] ) ? $message->meta['om_information_part_1'][0] : null; ?>
+									<?php echo ! empty( $message->meta['om_information_part_1'][0] ) ? strip_tags( $message->meta['om_information_part_1'][0] ) : null; ?>
 								</span>
 									</a>
 								</li>
