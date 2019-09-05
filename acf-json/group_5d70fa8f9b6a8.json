@@ -1,0 +1,139 @@
+{
+    "key": "group_5d70fa8f9b6a8",
+    "title": "Block - bild och media",
+    "fields": [
+        {
+            "key": "field_5d70fa8fa3082",
+            "label": "YouTube videoID",
+            "name": "sk-block-media-and-text-videoid",
+            "type": "text",
+            "instructions": "Ange ID f\u00f6r videon p\u00e5 YouTube, ID finns angiven i URL:en f\u00f6r den aktuella videon. I f\u00f6ljande exempel https:\/\/www.youtube.com\/watch?v=Li40Isn9GUs \u00e4r ID f\u00f6r videon Li40Isn9GUs",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5d70fa8fa3133",
+            "label": "Rubrik",
+            "name": "sk-block-media-and-text-title",
+            "type": "text",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5d70fa8fa31e0",
+            "label": "Text",
+            "name": "sk-block-media-and-text-content",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": 3,
+            "new_lines": ""
+        },
+        {
+            "key": "field_5d70fa8fa328d",
+            "label": "Tema",
+            "name": "sk-block-media-and-text-theme",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "blue": "Bl\u00e5tt",
+                "green": "Gr\u00f6nt",
+                "white": "Vitt"
+            },
+            "default_value": [
+                "white"
+            ],
+            "allow_null": 0,
+            "multiple": 0,
+            "ui": 0,
+            "ajax": 0,
+            "return_format": "value",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5d70fa8fa3339",
+            "label": "Bakgrundsf\u00e4rg",
+            "name": "sk-block-media-and-text-bg",
+            "type": "color_picker",
+            "instructions": "Egen bakgrundsf\u00e4rg\/textf\u00e4rg skriver \u00f6ver valt tema.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        },
+        {
+            "key": "field_5d70fa8fa33e5",
+            "label": "Textf\u00e4rg",
+            "name": "sk-block-media-and-text-color",
+            "type": "color_picker",
+            "instructions": "Egen bakgrundsf\u00e4rg\/textf\u00e4rg skriver \u00f6ver valt tema.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_taxonomy",
+                "operator": "==",
+                "value": "block-type:bild-och-media"
+            }
+        ]
+    ],
+    "menu_order": 1,
+    "position": "acf_after_title",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1567692350
+}

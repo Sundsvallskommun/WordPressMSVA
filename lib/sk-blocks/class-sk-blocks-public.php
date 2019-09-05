@@ -229,10 +229,11 @@ class SK_Blocks_Public {
 		// get alt text for image
 		$image[] = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
 		
-
+		$video   = get_field( 'sk-block-media-and-text-url', $block_id );
 		$title   = get_field( 'sk-block-media-and-text-title', $block_id );
 		$content = get_field( 'sk-block-media-and-text-content', $block_id );
 		$theme   = get_field( 'sk-block-media-and-text-theme', $block_id );
+
 
 		if( get_field( 'sk-block-media-and-text-bg', $block_id ) ){
 			$custom['bg_color'] = sprintf(' style="background-color: %s"', get_field( 'sk-block-media-and-text-bg', $block_id ) ) ;
@@ -258,7 +259,11 @@ class SK_Blocks_Public {
 		<div
 			class="block block-media-and-text<?php echo ! empty( $theme ) ? ' ' . $theme : null; ?><?php echo $grid === '12' ? ' block-full-width' : null; ?>"<?php echo isset( $custom['bg_color'] ) ? $custom['bg_color'] : null; ?>>
 			<div class="block-block__media">
-				<iframe width="" height="" src="https://www.youtube.com/embed/BLJFGr-i6kU?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<?php if( !empty( $video ) ) : ?>
+					<iframe src="<?php echo $video; ?>?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<?php else : ?>
+					[video url saknas]
+				<?php endif; ?>
 			</div>
 			
 			<div class="block-footer"<?php echo isset( $custom['text_color'] ) ? $custom['text_color'] : null; ?>>
