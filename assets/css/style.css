@@ -4840,6 +4840,9 @@ h1, h2, h3, h4, h5, h6,
 
 .opening-hours-wrapper {
   background: #52a65a !important; }
+  @media (max-width: 767px) {
+    .opening-hours-wrapper {
+      margin-bottom: 5px; } }
 
 .opening-hours-wrapper .list-group {
   background: #52a65a !important; }
@@ -5073,7 +5076,11 @@ h1, h2, h3, h4, h5, h6,
       float: left;
       width: 100%;
       padding: 1em;
-      border-bottom: 1px solid #c8d2ec; }
+      border-bottom: 1px solid #c8d2ec; } }
+  @media (max-width: 767px) and (max-width: 767px) {
+    .blocks .block.block-image-and-text {
+      border-bottom: 2px solid #ffffff; } }
+  @media (max-width: 767px) {
       .blocks .block.block-image-and-text.block-full-width .block-block__image {
         float: left; }
         .blocks .block.block-image-and-text.block-full-width .block-block__image img {
