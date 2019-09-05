@@ -14,7 +14,7 @@
 				?>
 
 				<li class="media widget-latest-news__post archive-post">
-					<a href="<?php the_permalink(); ?>">
+					<a href="<?php the_permalink(); ?>" title="<?php echo $post->post_title; ?>">
 
 						<div class="media-body">
 							<?php if ( has_post_thumbnail() ): ?>

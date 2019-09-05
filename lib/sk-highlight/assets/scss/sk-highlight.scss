@@ -20,7 +20,6 @@
     &:empty {
       display: none;
     }
-
   }
 
   .tt-suggestion{
@@ -47,7 +46,20 @@
     }
   }
 
+  .archive-post {
+    .media-heading{
+      position: relative;
+      .highlight-badge{
+        position: relative;
+        right: 0;
+        top: 0;
+      }
+    }
+  }
+
   // override parent theme
   .search-module__item__container{
     position: relative;
   }
+
+  

@@ -5695,5 +5695,12 @@ h1, h2, h3, h4, h5, h6,
   top: -1em;
   right: -2em; }
 
+.archive-post .media-heading {
+  position: relative; }
+  .archive-post .media-heading .highlight-badge {
+    position: relative;
+    right: 0;
+    top: 0; }
+
 .search-module__item__container {
   position: relative; }

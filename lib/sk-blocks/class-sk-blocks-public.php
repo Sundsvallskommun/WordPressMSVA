@@ -98,6 +98,9 @@ class SK_Blocks_Public {
 
 		$image_id = get_field( 'sk-blocks-image', $block_id );
 		$image    = wp_get_attachment_image_src( $image_id, 'msva-content-full' );
+		
+		// get alt text for image
+		$image[] = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
 
 		$links['internal'] = get_field( 'sk-block-link-internal', $block_id );
 		$links['external'] = get_field( 'sk-block-link-external', $block_id );
@@ -119,7 +122,7 @@ class SK_Blocks_Public {
 				<?php if ( ! empty( $link ) ) : ?>
 				<a href="<?php echo $link; ?>">
 					<?php endif; ?>
-					<img src="<?php echo $image[0]; ?>">
+					<img src="<?php echo $image[0]; ?>" alt="<?php echo $image[4]; ?>">
 					<?php if ( ! empty( $link ) ) : ?>
 				</a>
 			<?php endif; ?>
@@ -145,6 +148,10 @@ class SK_Blocks_Public {
 
 		$image_id = get_field( 'sk-block-image-and-text', $block_id );
 		$image    = wp_get_attachment_image_src( $image_id, $grid === '12' ? 'page-full' : 'msva-content-full' );
+
+		// get alt text for image
+		$image[] = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+		
 
 		$title   = get_field( 'sk-block-image-and-text-title', $block_id );
 		$content = get_field( 'sk-block-image-and-text-content', $block_id );
@@ -173,13 +180,13 @@ class SK_Blocks_Public {
 
 		<div
 			class="block block-image-and-text<?php echo ! empty( $theme ) ? ' ' . $theme : null; ?><?php echo $grid === '12' ? ' block-full-width' : null; ?>"<?php echo isset( $custom['bg_color'] ) ? $custom['bg_color'] : null; ?>>
-			<div class="block-block__image"><img src="<?php echo $image[0]; ?>"></div>
+			<div class="block-block__image"><img src="<?php echo $image[0]; ?>" alt="<?php echo $image[4]; ?>"></div>
 			<div class="block-footer"<?php echo isset( $custom['text_color'] ) ? $custom['text_color'] : null; ?>>
 				<div class="block-footer__title"><h3><?php echo $title; ?></h3></div>
 				<div class="block-footer__content"><?php echo $content; ?></div>
 				<?php if ( ! empty( $link ) ) : ?>
 					<div class="block-footer__link"><a
-							href="<?php echo $link; ?>"<?php echo isset( $custom['text_color'] ) ? $custom['text_color'] : null; ?>><?php _e( 'Läs mer', 'sk-tivoli' ); ?><?php material_icon( 'keyboard arrow right', array( 'size' => '1.3em' ) ); ?></a>
+							href="<?php echo $link; ?>"<?php echo isset( $custom['text_color'] ) ? $custom['text_color'] : null; ?> title="<?php echo $title; ?>"><?php _e( 'Läs mer', 'sk-tivoli' ); ?>  <?php material_icon( 'keyboard arrow right', array( 'size' => '1.3em' ) ); ?></a>
 					</div>
 				<?php endif; ?>
 			</div>
