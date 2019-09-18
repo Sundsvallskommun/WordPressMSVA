@@ -114,6 +114,10 @@
         padding: 1em;
         border-bottom: 1px solid $msva_border_color;
 
+        @include media-breakpoint-down(sm) {
+          border-bottom: 2px solid #ffffff;
+        }
+
         &.block-full-width{
           .block-block__image {
             float: left;
