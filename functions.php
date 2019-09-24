@@ -318,6 +318,36 @@ function addSurvey() {
 add_action( 'wp_head', 'addSurvey' );
 
 
+
+/**
+ * Adding OG meta tags for sharing.
+ *
+ * @return void
+ */
+function og_meta_tags() { 
+	$custom_logo_id = get_theme_mod( 'custom_logo' );
+	$og_image = get_post( $custom_logo_id );
+
+	?>
+	<meta name="title" property="og:title" content="<?php echo is_front_page() ? __( 'MittSverige Vatten & Avfall', 'msva' )  : get_the_title(); ?>">
+	<meta property="og:type" content="website">
+	<meta property="og:image" content="<?php echo $og_image->guid; ?>">
+	<meta property="og:url" content="<?php echo get_permalink(); ?>">
+<?php
+}
+add_action( 'wp_head', 'og_meta_tags', 1 );
+
+// Disable REST API link tag
+remove_action( 'wp_head', 'rest_output_link_wp_head', 10 );
+
+// Disable oEmbed Discovery Links
+remove_action( 'wp_head', 'wp_oembed_add_discovery_links', 10 );
+
+// Disable REST API link in HTTP headers
+remove_action( 'template_redirect', 'rest_output_link_header', 11, 0 );
+
+
+
 /**
  * REQUIRE NAME
  * ============
