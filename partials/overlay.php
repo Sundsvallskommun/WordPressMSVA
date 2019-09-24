@@ -11,7 +11,7 @@ $has_logo                   = function_exists( 'the_custom_logo' ) && has_custom
 				<div class="region-selector">
 					<div class="shadow"></div>
 					<h1><?php echo $region_selector['title']; ?></h1>
-					<div class="content"><p><?php echo $region_selector['content']; ?></p></div>
+					<div class="content"><?php echo $region_selector['content']; ?></div>
 					<div class="actions">
 						<ul>
 							<li><a class="region-selected btn btn-secondary btn-rounded btn-rounded"
@@ -29,7 +29,7 @@ $has_logo                   = function_exists( 'the_custom_logo' ) && has_custom
 
 					<?php if ( ! empty( $region_selector['footer'] ) ) : ?>
 						<div class="region-selector__footer">
-							<p><?php echo $region_selector['footer']; ?></p>
+							<?php echo $region_selector['footer']; ?>
 						</div>
 					<?php endif; ?>
 
