@@ -22,7 +22,7 @@ if ( ! class_exists( 'Menu_Icons_Walker' ) ) {
 			global $page_themes;
 
 			$output .= sprintf( "\n
-				<a class='nav-%s %s' href='%s'%s>
+				<a class='nav-%s %s' href='%s'%s title='%s'>
 					<span class='menu-item-icon'>%s</span>
 					<span class='menu-item-text'>%s</span>
 				</a>
@@ -31,6 +31,7 @@ if ( ! class_exists( 'Menu_Icons_Walker' ) ) {
 				$class_names,
 				$item->url,
 				( $item->object_id === get_the_ID() ) ? ' class="current"' : '',
+				$item->title,
 				get_section_icon( $item->object_id ),
 				$item->title
 			);

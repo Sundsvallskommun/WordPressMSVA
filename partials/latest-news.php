@@ -14,7 +14,7 @@
 				?>
 
 				<li class="media widget-latest-news__post archive-post">
-					<a href="<?php the_permalink(); ?>">
+					<a href="<?php the_permalink(); ?>" title="<?php echo $post->post_title; ?>">
 
 						<div class="media-body">
 							<?php if ( has_post_thumbnail() ): ?>
@@ -65,6 +65,6 @@
 	$all_posts_page = get_option( 'page_for_posts' );
 	?>
 	<a class="btn btn-secondary btn-rounded btn-rounded btn-block"
-	   href="<?php echo get_permalink( $all_posts_page ); ?>"><?php _e( 'Visa alla nyheter', 'msva' );?></a>
+	   href="<?php echo get_permalink( $all_posts_page ); ?>" title="<?php _e( 'Visa alla nyheter', 'msva' );?>"><?php _e( 'Visa alla nyheter', 'msva' );?></a>
 
 </section>

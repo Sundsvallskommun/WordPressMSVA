@@ -156,6 +156,11 @@ class SK_Blocks_Admin {
 			array(
 				'name' => 'Bild och Text',
 			),
+
+			array(
+				'name' => 'Bild och Media',
+			),
+			
 			array(
 				'name' => 'Länklista',
 			),
