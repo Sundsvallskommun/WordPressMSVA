@@ -1,0 +1,216 @@
+{
+    "key": "group_5b156d3e38f15",
+    "title": "Integritet och kakor (cookies)",
+    "fields": [
+        {
+            "key": "field_5b156d625ded1",
+            "label": "Aktivering",
+            "name": "sk_cookie_informer_activated",
+            "type": "checkbox",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "yes": "Ja, aktivera meddelande f\u00f6r godk\u00e4nnande."
+            },
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "allow_custom": 0,
+            "save_custom": 0,
+            "return_format": "value"
+        },
+        {
+            "key": "field_5b15a8984e0cc",
+            "label": "Inst\u00e4llningar",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5b156e7f64c86",
+            "label": "Informationstext",
+            "name": "sk_cookie_informer_text",
+            "type": "textarea",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": "",
+            "maxlength": "",
+            "rows": "",
+            "new_lines": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_5b156ec4054e0",
+            "label": "L\u00e4nk till GDPR-sida",
+            "name": "sk_cookie_informer_privacylink",
+            "type": "url",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "",
+            "placeholder": ""
+        },
+        {
+            "key": "field_5b15aacb1caa7",
+            "label": "Text p\u00e5 GDPR-sida l\u00e4nk",
+            "name": "sk_cookie_informer_privacylink_text",
+            "type": "text",
+            "instructions": "Text p\u00e5 l\u00e4nken till GDPR-sida, som standard anv\u00e4nds \"L\u00e4s mer\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "L\u00e4s mer",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": ""
+        },
+        {
+            "key": "field_5b15ab481caa8",
+            "label": "Text p\u00e5 godk\u00e4nn l\u00e4nk",
+            "name": "sk_cookie_informer_approve_text",
+            "type": "text",
+            "instructions": "Text p\u00e5 knappen f\u00f6r att godk\u00e4nna och acceptera kakor\/cookies, som standard anv\u00e4nds \"Acceptera\".",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "Acceptera",
+            "placeholder": "",
+            "prepend": "",
+            "append": "",
+            "maxlength": "",
+            "readonly": 0,
+            "disabled": 0
+        },
+        {
+            "key": "field_5b15a8ac4e0cd",
+            "label": "Utseende",
+            "name": "",
+            "type": "tab",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "placement": "top",
+            "endpoint": 0
+        },
+        {
+            "key": "field_5b15a8c897fad",
+            "label": "Bakgrundsf\u00e4rg",
+            "name": "sk_cookie_informer_panel_bg",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#222222"
+        },
+        {
+            "key": "field_5b15a90597fae",
+            "label": "Textf\u00e4rg",
+            "name": "sk_cookie_informer_panel_text_color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": "#ffffff"
+        },
+        {
+            "key": "field_5b15a998c61d0",
+            "label": "Knappf\u00e4rg",
+            "name": "sk_cookie_informer_button_bg",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        },
+        {
+            "key": "field_5b15a9b4c61d1",
+            "label": "Textf\u00e4rg i knapp",
+            "name": "sk_cookie_informer_button_text_color",
+            "type": "color_picker",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "default_value": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "options_page",
+                "operator": "==",
+                "value": "acf-options-integritet-och-kakor"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": 1,
+    "description": "",
+    "modified": 1571383709
+}
