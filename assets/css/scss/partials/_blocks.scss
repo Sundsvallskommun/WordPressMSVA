@@ -146,6 +146,32 @@
       }
 
 
+      &.block-media-and-text {
+        float: left;
+        width: 100%;
+        padding: 1em;
+        border-bottom: 1px solid $msva_border_color;
+
+        @include media-breakpoint-down(sm) {
+          border-bottom: 2px solid #ffffff;
+        }
+
+
+        .block-block__media {
+          //float: left;
+          padding-bottom: 30%;
+          iframe {
+            //float:left;
+            width: 100%;
+            height: auto;
+            margin-right: 1em;
+          }
+
+        }
+
+      }
+
+
     }
 
 
@@ -268,7 +294,7 @@
 
     .block-block__media {
       position: relative;
-      padding-bottom: 56.25%; /* 16:9 */
+      padding-bottom: 59.75%;
       padding-top: 25px;
       height: 0;
       
