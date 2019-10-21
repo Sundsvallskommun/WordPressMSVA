@@ -195,6 +195,15 @@ function msva_options_page( $subpages ) {
 
 	);
 
+	$subpages[] = array(
+
+		'page_title' 	=> 'Integritet och kakor',
+		'menu_title'	=> 'Integritet och kakor',
+		'parent_slug'	=> 'general-settings',
+
+	);
+
+
 	return $subpages;
 }
 
@@ -421,3 +430,7 @@ $sk_info_banner = new SK_Info_Banner();
 /* SK Highlight */
 require_once locate_template( 'lib/sk-highlight/class-sk-highlight.php' );
 $sk_highlight = new SK_Highlight();
+
+/* SK Cookie Informer */
+require_once locate_template( '/lib/sk-cookie-informer/class-sk-cookie-informer.php' );
+$sk_cookie_informer = new SK_Cookie_Informer();

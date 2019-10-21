@@ -1,0 +1,31 @@
+.cookie-informer{
+  width: 100%;
+  padding: 2em;
+  background: #222222;
+  color: #ffffff;
+  text-align: center;
+  font-size: 90%;
+
+  &__inner {
+    &--text {
+    }
+  }
+
+  button{
+    margin-left: 1em;
+    margin-right: 1em;
+    border-radius: 3px;
+    border: none;
+    background: #00d7d2;
+    font-size: 85%;
+    padding: .15em .55em;
+  }
+
+  a{
+    color: inherit;
+    font-weight: bold;
+  }
+
+
+}
+

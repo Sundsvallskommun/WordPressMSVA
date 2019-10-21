@@ -260,7 +260,7 @@ class SK_Blocks_Public {
 			class="block block-media-and-text<?php echo ! empty( $theme ) ? ' ' . $theme : null; ?><?php echo $grid === '12' ? ' block-full-width' : null; ?>"<?php echo isset( $custom['bg_color'] ) ? $custom['bg_color'] : null; ?>>
 			<div class="block-block__media">
 				<?php if( !empty( $video ) ) : ?>
-					<?php printf( '<iframe src="https://www.youtube.com/embed/%s?autoplay=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', $video );?>
+					<?php printf( '<iframe src="https://www.youtube.com/embed/%s?autoplay=1&rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>', $video );?>
 				<?php else : ?>
 					[video url saknas]
 				<?php endif; ?>
