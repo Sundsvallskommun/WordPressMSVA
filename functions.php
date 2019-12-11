@@ -382,6 +382,10 @@ $sk_municipality_adaptation = new SK_Municipality_Adaptation();
 require_once locate_template( 'lib/sk-connection-fee/class-sk-connection-fee.php' );
 $sk_connection_fee = new SK_Connection_Fee();
 
+/* SK Connection Fee 2020*/
+require_once locate_template( 'lib/sk-connection-fee-2020/class-sk-connection-fee-2020.php' );
+$sk_connection_fee_2020 = new SK_Connection_Fee_2020();
+
 /* SK Garbage Scheme */
 require_once locate_template( 'lib/sk-garbage-scheme/class-sk-garbage-scheme.php' );
 $sk_garbage_scheme = new SK_Garbage_Scheme();
