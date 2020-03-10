@@ -54,47 +54,49 @@ class SK_Connection_Fee_Ajax_2020 {
 		$apartments = absint( $params['apartments'] );
 
 		// Init municipal fees
-		$this->setup_standard_fees( $municipality );
+		$this->setup_standard_fees();
 
 		// Calculate area and apartment fees
-		$area_fee = $this->area_fee( $municipality, $area, $apartments );
+		$area_fee = $this->area_fee( $municipality, $area );
 		$apartment_fee = $this->apartment_fee( $municipality, $apartments );
 
 
 		$this->sum = $apartment_fee + $this->service_fee;
-		$this->sum_before_reduction = $this->sum;
-
+		$this->sum_before_reduction = $apartment_fee + $area_fee + $this->point_fee;		
 
 		// Set reduction for water fee
 		$water_fee = 0;
+	
 		if( isset( $params['water_fee'] ) ) {
-
-			$water_fee = $this->sum * 0.3;
+			$water_fee = $this->sum_before_reduction * 0.3;
 			$this->nr_of_services++;
 
 		}
 
 		// Set reduction for spill water fee
 		$spillwater_fee = 0;
+
 		if ( isset( $params['spillwater_fee'] ) ) {
 
-			$spillwater_fee = $this->sum * 0.5;
+			$spillwater_fee = $this->sum_before_reduction * 0.5;
 			$this->nr_of_services++;
 
 		}
 
 		// Set reduction for rain water fee. Only for Sundsvall and Timrå.
 		$rain_fee = 0;
-		if ( isset( $params['rainwater_fee'] ) && $municipality != 'nordanstig' ) {
 
-			$rain_fee = $this->sum * 0.2;
+		if ( isset( $params['rainwater_fee'] ) ) {
+
+			$rain_fee = $this->sum_before_reduction * 0.2;
 			$this->nr_of_services++;
 
 		}
 
 		$this->calculate_service_fee();
+		
 		$this->sum = $water_fee + $spillwater_fee + $rain_fee + $this->service_fee;		
-
+	
 		// Send the response
 		wp_send_json_success( $this->markup( $municipality, $this->sum ) );
 
@@ -139,21 +141,10 @@ eol;
 	 *
 	 * @param string    the municipality
 	 */
-	private function setup_standard_fees( $municipality ) {
+	private function setup_standard_fees() {
 
-		switch ( $municipality ) {
-
-			case 'sundsvall':
-				$this->service_fee = 100000;
-				$this->point_fee = 50000;
-				break;
-
-			default:
-				break;
-
-
-		}
-
+		$this->service_fee = 100000;
+		$this->point_fee = 50000;
 
 	}
 
@@ -198,12 +189,12 @@ eol;
 	 *
 	 * @return integer  the area fee
 	 */
-	private function area_fee( $municipality, $area, $apartments ) {
+	private function area_fee( $municipality, $area ) {
 
 		switch ( $municipality ) {
 
 			case 'sundsvall':
-				$area_fee = $this->area_fee_sundsvall( $area, $apartments );
+				$area_fee = $this->area_fee_sundsvall( $area );
 				break;
 
 			default:
@@ -257,7 +248,7 @@ eol;
 	 *
 	 * @return integer  the area fee
 	 */
-	private function area_fee_sundsvall( $area, $apartments ) {
+	private function area_fee_sundsvall( $area ) {
 
 		$area_fee = $area * 30;
 		return $area_fee;
