@@ -89,6 +89,31 @@
                 "id": ""
             },
             "default_value": "#1b5eae"
+        },
+        {
+            "key": "field_5e8203106c4fa",
+            "label": "Kommuner",
+            "name": "startpage_banner_municipalities",
+            "type": "checkbox",
+            "instructions": "Markera de kommuner som informationsbannern ska aktiveras f\u00f6r.",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "sundsvall": "Sundsvall",
+                "timra": "Timr\u00e5",
+                "nordanstig": "Nordanstig"
+            },
+            "allow_custom": 0,
+            "save_custom": 0,
+            "default_value": [],
+            "layout": "vertical",
+            "toggle": 0,
+            "return_format": "value"
         }
     ],
     "location": [
@@ -108,5 +133,5 @@
     "hide_on_screen": "",
     "active": 1,
     "description": "",
-    "modified": 1544098271
+    "modified": 1585578926
 }
