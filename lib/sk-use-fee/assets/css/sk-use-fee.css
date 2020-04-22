@@ -1,0 +1,96 @@
+.use-fee-container #sk-use-fee .form-control-feedback {
+  display: none; }
+
+  .use-fee-container .form-field-toggle{
+    display: none;
+  }
+
+.use-fee-container #sk-use-fee-calculation-response {
+  margin-top: 20px; }
+
+.use-fee-container #sk-use-fee-help-area-section {
+  margin-top: 10px; }
+
+.use-fee-container #sk-use-fee-help-apartment-section {
+  margin-top: 10px; }
+
+.use-fee-container .use-fee-loader {
+  margin-top: 20px;
+  display: none;
+  text-align: center; }
+.use-fee-container .use-fee-loader .sk-circle {
+  margin: auto;
+  width: 40px;
+  height: 40px;
+  position: relative; }
+.use-fee-container .use-fee-loader .sk-circle .sk-child {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0; }
+.use-fee-container .use-fee-loader .sk-circle .sk-child:before {
+  content: '';
+  display: block;
+  margin: 0 auto;
+  width: 15%;
+  height: 15%;
+  background-color: #000;
+  border-radius: 100%;
+  animation: sk-circleBounceDelay 1.2s infinite ease-in-out both; }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle2 {
+  transform: rotate(30deg); }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle3 {
+  transform: rotate(60deg); }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle4 {
+  transform: rotate(90deg); }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle5 {
+  transform: rotate(120deg); }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle6 {
+  transform: rotate(150deg); }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle7 {
+  transform: rotate(180deg); }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle8 {
+  transform: rotate(210deg); }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle9 {
+  transform: rotate(240deg); }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle10 {
+  transform: rotate(270deg); }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle11 {
+  transform: rotate(300deg); }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle12 {
+  transform: rotate(330deg); }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle2:before {
+  animation-delay: -1.1s; }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle3:before {
+  animation-delay: -1s; }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle4:before {
+  animation-delay: -0.9s; }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle5:before {
+  animation-delay: -0.8s; }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle6:before {
+  animation-delay: -0.7s; }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle7:before {
+  animation-delay: -0.6s; }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle8:before {
+  animation-delay: -0.5s; }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle9:before {
+  animation-delay: -0.4s; }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle10:before {
+  animation-delay: -0.3s; }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle11:before {
+  animation-delay: -0.2s; }
+.use-fee-container .use-fee-loader .sk-circle .sk-circle12:before {
+  animation-delay: -0.1s; }
+
+
+  .use-fee-container .form-check p{
+    margin:0;
+    font-style: italic;
+  }
+
+@keyframes sk-circleBounceDelay {
+  0%, 80%, 100% {
+    transform: scale(0); }
+  40% {
+    transform: scale(1); } }
