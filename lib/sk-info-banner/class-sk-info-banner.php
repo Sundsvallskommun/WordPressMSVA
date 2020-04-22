@@ -11,6 +11,13 @@ class SK_Info_Banner {
     public static function is_active() {
 
         if ( get_field( 'startpage_banner_activated', 'options' ) ) {
+
+            $municipalities = get_field('startpage_banner_municipalities', 'options');
+
+            if( ! in_array( SK_Municipality_Adaptation_Cookie::value(), $municipalities ) ){
+                return false;
+            }
+
             if ( !empty( get_field( 'startpage_banner_content', 'options' ) ) ) {
                 return true;
             }

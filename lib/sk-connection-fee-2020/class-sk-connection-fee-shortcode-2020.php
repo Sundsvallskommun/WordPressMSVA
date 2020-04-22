@@ -83,7 +83,7 @@ class SK_Connection_Fee_Shortcode_2020 {
 				</div>
 
 				<div class="form-group" id="sk-connection-fee-area-group-2020">
-					<legend><?php _e( 'Tomtyta för fastigheten som skall anslutas', 'msva' ); ?></legend>
+					<legend><?php _e( 'Tomtyta för fastigheten som ska anslutas', 'msva' ); ?></legend>
 
 					<input type="number" min="0" class="form-control" id="sk-connection-fee-area-input-2020" placeHolder="<?php _e( 'Tex 1500', 'msva' ); ?>" name="area">
 
@@ -99,7 +99,7 @@ class SK_Connection_Fee_Shortcode_2020 {
 				</div>
 
 				<div class="form-group" id="sk-connection-fee-apartment-group-2020">
-					<legend><?php _e( 'Antal lägenheter i fastigheten som skall anslutas', 'msva' ); ?></legend>
+					<legend><?php _e( 'Antal lägenheter i fastigheten som ska anslutas', 'msva' ); ?></legend>
 
 					<input type="text" type="number" class="form-control" id="sk-connection-fee-apartment-input-2020" placeHolder="<?php _e( 'Tex 2', 'msva' ); ?>" name="apartments" />
 

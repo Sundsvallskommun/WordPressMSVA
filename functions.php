@@ -386,6 +386,10 @@ $sk_connection_fee = new SK_Connection_Fee();
 require_once locate_template( 'lib/sk-connection-fee-2020/class-sk-connection-fee-2020.php' );
 $sk_connection_fee_2020 = new SK_Connection_Fee_2020();
 
+/* SK Use Fee */
+require_once locate_template( 'lib/sk-use-fee/class-sk-use-fee.php' );
+$sk_use_fee = new SK_Use_Fee();
+
 /* SK Garbage Scheme */
 require_once locate_template( 'lib/sk-garbage-scheme/class-sk-garbage-scheme.php' );
 $sk_garbage_scheme = new SK_Garbage_Scheme();
