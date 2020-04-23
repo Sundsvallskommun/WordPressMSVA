@@ -78,6 +78,7 @@ class SK_Use_Fee_Shortcode {
 						</label>
 						<p><?php _e( 'Tjänst som innebär att dagvatten leds bort från vägar till och från din fastighet', 'msva' ); ?></p>
 					</div>
+					<p><?php _e( 'Tänk på att den fasta avgiften kan variera beroende på mätarstorlek.', 'msva' ); ?></p>
 				</div>
 
 				<div class="form-group" id="sk-use-fee-area-group">
